@@ -7,6 +7,6 @@ def field_mapping(some_class):
     for x in some_class._meta.get_fields():
         try:
             field_mapping_dict[(x.extra['data_lookup']).strip()] = x.name
-        except:
+        except:  # noqa: E722
             pass
     return field_mapping_dict

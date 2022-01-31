@@ -42,5 +42,3 @@ class WorkAC(autocomplete.Select2QuerySetView):
                 Q(order_code__icontains=self.q)
             )
         return qs
-
-

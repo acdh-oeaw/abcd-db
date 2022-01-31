@@ -12,6 +12,7 @@ dbc = settings.LEGACY_DB_CONNECTION
 db_connection_str = f"mysql+pymysql://{dbc['USER']}:{dbc['PASSWORD']}@{dbc['HOST']}/{dbc['NAME']}"
 db_connection = create_engine(db_connection_str)
 
+
 class Command(BaseCommand):
     help = 'Imports Legacy Data'
 

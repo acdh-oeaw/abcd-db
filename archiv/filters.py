@@ -2,7 +2,6 @@
 import django_filters
 
 from dal import autocomplete
-from django import forms
 from vocabs.models import SkosConcept
 
 from . models import (
@@ -112,7 +111,6 @@ class EventListFilter(django_filters.FilterSet):
             'key_word',
             'note',
             'reference',
-            
         ]
 
 
@@ -143,7 +141,6 @@ class ReferenceListFilter(django_filters.FilterSet):
             'legacy_id',
             'work',
             'location',
-            
         ]
 
 
@@ -177,7 +174,4 @@ class WorkListFilter(django_filters.FilterSet):
             'order_code',
             'author_name',
             'full_quote',
-            
         ]
-
-

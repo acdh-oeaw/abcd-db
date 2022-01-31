@@ -2,7 +2,6 @@
 
 from django.db import models
 from django.urls import reverse
-from django.contrib.gis.db.models import MultiPolygonField, PointField
 
 from browsing.browsing_utils import model_to_dict
 from vocabs.models import SkosConcept
@@ -17,7 +16,7 @@ models.Field.set_extra = set_extra
 
 
 class Event(models.Model):
-    ### Ereignis ###
+    """ Ereignis """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -200,7 +199,7 @@ class Event(models.Model):
 
 
 class Reference(models.Model):
-    ### Referenz ###
+    """ Referenz """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -294,7 +293,7 @@ class Reference(models.Model):
 
 
 class Work(models.Model):
-    ### Literatur ###
+    """ Literatur """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -398,5 +397,3 @@ class Work(models.Model):
                 kwargs={'pk': prev.first().id}
             )
         return False
-
-

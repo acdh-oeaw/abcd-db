@@ -42,7 +42,6 @@ class EventFilterFormHelper(FormHelper):
                     'key_word',
                     'note',
                     'reference',
-                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -96,7 +95,6 @@ class ReferenceFilterFormHelper(FormHelper):
                     'Advanced search',
                     'work',
                     'location',
-                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -144,7 +142,6 @@ class WorkFilterFormHelper(FormHelper):
                     'order_code',
                     'author_name',
                     'full_quote',
-                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -170,5 +167,3 @@ class WorkForm(forms.ModelForm):
         self.helper.label_class = 'col-md-3'
         self.helper.field_class = 'col-md-9'
         self.helper.add_input(Submit('submit', 'save'),)
-
-
