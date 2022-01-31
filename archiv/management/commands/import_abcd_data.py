@@ -17,6 +17,7 @@ class Command(BaseCommand):
     help = 'Imports Legacy Data'
 
     def handle(self, *args, **kwargs):
+        event_error = []
         query = f"SELECT * FROM {Event.get_source_table()}"
         self.stdout.write(
             self.style.NOTICE(
@@ -42,7 +43,11 @@ class Command(BaseCommand):
                 )
             row_data = f"{json.dumps(row.to_dict(), cls=DjangoJSONEncoder)}"
             item.orig_data_csv = row_data
-            item.save()
+            try:
+                item.save()
+            except Exception as e:
+                event_error.append([row['input_Sortiercode'], e])
+
         self.stdout.write(
             self.style.SUCCESS(
                 "DONE with Events"
@@ -53,7 +58,7 @@ class Command(BaseCommand):
                 "#######################"
             )
         )
-
+        work_error = []
         query = f"SELECT * FROM {Work.get_source_table()}"
         self.stdout.write(
             self.style.NOTICE(
@@ -79,9 +84,22 @@ class Command(BaseCommand):
                 )
             row_data = f"{json.dumps(row.to_dict(), cls=DjangoJSONEncoder)}"
             item.orig_data_csv = row_data
-            item.save()
+            try:
+                item.save()
+            except Exception as e:
+                work_error.append([row['input_Nummer'], e])
         self.stdout.write(
             self.style.SUCCESS(
                 "DONE with Works"
             )
         )
+
+        for x in event_error:
+            self.stdout.write(
+                self.style.ERROR(x)
+            )
+        for x in work_error:
+            self.stdout.write(
+                self.style.ERROR(x)
+            )
+    
