@@ -102,4 +102,3 @@ class Command(BaseCommand):
             self.stdout.write(
                 self.style.ERROR(x)
             )
-    
