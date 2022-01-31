@@ -32,9 +32,13 @@ class Command(BaseCommand):
         )
         fm = field_mapping(Event)
         for i, row in tqdm(df.iterrows(), total=len(df)):
-            item, _ = Event.objects.get_or_create(
-                order_code=row['input_Sortiercode']
-            )
+            try:
+                item, _ = Event.objects.get_or_create(
+                    order_code=row['input_Sortiercode']
+                )
+            except Exception as e:
+                event_error.append([row['input_Sortiercode'], e])
+                continue
             for x in fm.keys():
                 setattr(
                     item,
@@ -73,9 +77,13 @@ class Command(BaseCommand):
         )
         fm = field_mapping(Work)
         for i, row in tqdm(df.iterrows(), total=len(df)):
-            item, _ = Work.objects.get_or_create(
-                order_code=row['input_Nummer']
-            )
+            try:
+                item, _ = Work.objects.get_or_create(
+                    order_code=row['input_Nummer']
+                )
+            except Exception as e:
+                work_error.append([row['input_Nummer'], e])
+                continue
             for x in fm.keys():
                 setattr(
                     item,
