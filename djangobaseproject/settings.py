@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'crispy_forms',
     'django_filters',
     'django_tables2',
@@ -53,7 +54,6 @@ INSTALLED_APPS = [
     'browsing',
     'infos',
     'vocabs',
-    'appcreator',
     'archiv',
 ]
 
@@ -151,3 +151,12 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LEGACY_DB_CONNECTION = {
+    'NAME': os.environ.get('LDB_DB', 'abcd_legacy'),
+    'USER': os.environ.get('LDB_USER'),
+    'PASSWORD': os.environ.get('LDB_PW'),
+    'HOST': os.environ.get('LDB_HOST', 'localhost'),
+    'PORT': os.environ.get('LDB_PORT', '3306')
+}

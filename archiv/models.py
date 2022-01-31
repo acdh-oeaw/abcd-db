@@ -21,6 +21,9 @@ class Event(models.Model):
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
+    ).set_extra(
+        is_public=True,
+        data_lookup="OF_ID",
     )
     order_code = models.IntegerField(
         blank=True, null=True,
@@ -295,6 +298,9 @@ class Work(models.Model):
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
+    ).set_extra(
+        is_public=True,
+        data_lookup="OF_ID",
     )
     order_code = models.CharField(
         max_length=250,
@@ -356,7 +362,7 @@ class Work(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return "tblObject_4"
+        return "tblObject_2"
 
     @classmethod
     def get_natural_primary_key(self):
