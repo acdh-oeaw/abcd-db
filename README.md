@@ -1,4 +1,9 @@
 # Anton Bruckner Chronologie Datenbank
+[![Test](https://github.com/acdh-oeaw/abcd-db/actions/workflows/test.yml/badge.svg)](https://github.com/acdh-oeaw/abcd-db/actions/workflows/test.yml)
+[![flake8 Lint](https://github.com/acdh-oeaw/abcd-db/actions/workflows/lint.yml/badge.svg)](https://github.com/acdh-oeaw/abcd-db/actions/workflows/lint.yml)
+[![codecov](https://codecov.io/gh/acdh-oeaw/abcd-db/branch/master/graph/badge.svg?token=0068S12XV0)](https://codecov.io/gh/acdh-oeaw/abcd-db)
+[![Build and push to DockerHub](https://github.com/acdh-oeaw/abcd-db/actions/workflows/build.yml/badge.svg)](https://github.com/acdh-oeaw/abcd-db/actions/workflows/build.yml)
+
 
 short description of the project
 
