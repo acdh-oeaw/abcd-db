@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 from browsing.browsing_utils import model_to_dict
 from vocabs.models import SkosConcept
@@ -56,7 +57,7 @@ class Event(models.Model):
     ).set_extra(
         is_public=True,
     )
-    main_text = models.TextField(
+    main_text = RichTextField(
         blank=True, null=True,
         verbose_name="Haupttext",
         help_text="whatever",
@@ -64,7 +65,7 @@ class Event(models.Model):
         is_public=True,
         data_lookup="text_Text1",
     )
-    notes_lit = models.TextField(
+    notes_lit = RichTextField(
         blank=True, null=True,
         verbose_name="Anmerkungen Literatur",
         help_text="whatever",
@@ -72,7 +73,7 @@ class Event(models.Model):
         is_public=True,
         data_lookup="text_Literatur",
     )
-    notes_img = models.TextField(
+    notes_img = RichTextField(
         blank=True, null=True,
         verbose_name="Anmerkungen Abbildungen",
         help_text="whatever",
@@ -80,7 +81,7 @@ class Event(models.Model):
         is_public=True,
         data_lookup="text_Abbildung",
     )
-    notes_facs = models.TextField(
+    notes_facs = RichTextField(
         blank=True, null=True,
         verbose_name="Anmerkungen Faksimiles",
         help_text="whatever",
@@ -88,7 +89,7 @@ class Event(models.Model):
         is_public=True,
         data_lookup="text_Faksimile",
     )
-    notes_archive = models.TextField(
+    notes_archive = RichTextField(
         blank=True, null=True,
         verbose_name="Anmerkungen Archiv",
         help_text="whatever",
@@ -96,7 +97,7 @@ class Event(models.Model):
         is_public=True,
         data_lookup="text_Archiv",
     )
-    notes_text = models.TextField(
+    notes_text = RichTextField(
         blank=True, null=True,
         verbose_name="Anmerkungen Text",
         help_text="whatever",
@@ -113,7 +114,7 @@ class Event(models.Model):
     ).set_extra(
         is_public=True,
     )
-    note = models.TextField(
+    note = RichTextField(
         blank=True, null=True,
         verbose_name="Allgemeine Anmkerungen",
         help_text="whatever",
@@ -130,7 +131,7 @@ class Event(models.Model):
     ).set_extra(
         is_public=True,
     )
-    orig_data_csv = models.TextField(
+    orig_data_csv = RichTextField(
         blank=True,
         null=True,
         verbose_name="The original data"
@@ -224,7 +225,7 @@ class Reference(models.Model):
     ).set_extra(
         is_public=True,
     )
-    orig_data_csv = models.TextField(
+    orig_data_csv = RichTextField(
         blank=True,
         null=True,
         verbose_name="The original data"
@@ -331,7 +332,7 @@ class Work(models.Model):
         is_public=True,
         data_lookup="text_Titel",
     )
-    orig_data_csv = models.TextField(
+    orig_data_csv = RichTextField(
         blank=True,
         null=True,
         verbose_name="The original data"

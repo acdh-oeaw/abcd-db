@@ -101,7 +101,10 @@ class Command(BaseCommand):
                 "DONE with Works"
             )
         )
-
+        df = pd.DataFrame(event_error)
+        df.to_csv('./media/event_error.csv')
+        df = pd.DataFrame(work_error)
+        df.to_csv('./media/work_error.csv')
         for x in event_error:
             self.stdout.write(
                 self.style.ERROR(x)
