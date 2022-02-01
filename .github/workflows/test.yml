@@ -32,7 +32,7 @@ jobs:
         key: ${{ env.pythonLocation }}-${{ hashFiles('requirements_dev.txt') }}
     - name: Install dependencies
       run: |
-        pip install --upgrade --upgrade-strategy eager -r requirements_test.txt
+        pip install --upgrade --upgrade-strategy eager -r requirements_dev.txt
     - name: Run migrations
       run: python manage.py migrate
     - name: Run tests
