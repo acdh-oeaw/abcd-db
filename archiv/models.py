@@ -52,7 +52,7 @@ class Event(models.Model):
     )
     not_after = models.DateField(
         blank=True, null=True,
-        verbose_name="nicht danaach",
+        verbose_name="nicht danach",
         help_text="whatever",
     ).set_extra(
         is_public=True,
