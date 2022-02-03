@@ -34,7 +34,7 @@ class Command(BaseCommand):
         for i, row in tqdm(df.iterrows(), total=len(df)):
             try:
                 item, _ = Event.objects.get_or_create(
-                    order_code=row['input_Sortiercode']
+                    id=row['input_Sortiercode']
                 )
             except Exception as e:
                 event_error.append([row['input_Sortiercode'], e])

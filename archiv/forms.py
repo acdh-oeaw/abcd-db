@@ -29,7 +29,6 @@ class EventFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'Advanced search',
-                    'order_code',
                     'date_written',
                     'not_before',
                     'not_after',

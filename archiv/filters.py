@@ -98,7 +98,6 @@ class EventListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
-            'order_code',
             'date_written',
             'not_before',
             'not_after',
