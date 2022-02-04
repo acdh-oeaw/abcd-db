@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Persons</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <h1>Persons</h1>
+  <a href="{% url 'archiv:create' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Create another GND Object</a>
+</div>
+
+
+  
+<div class="container">
+    <ul>
+    {% for object in page_obj %}
+        <li>
+            <a href="{{ object.get_absolute_url }}">{{ object.gnd_pref_name }}</a> <br />
+            {% if object.gnd_html_thumb %} 
+                {{ object.gnd_html_thumb|safe }}
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+    
+</div>
+
+</body>
+</html>

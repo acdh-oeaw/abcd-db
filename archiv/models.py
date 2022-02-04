@@ -7,6 +7,7 @@ from ckeditor.fields import RichTextField
 from browsing.browsing_utils import model_to_dict
 from vocabs.models import SkosConcept
 
+from gnd.models import GndPersonBase
 
 def set_extra(self, **kwargs):
     self.extra = kwargs
@@ -14,6 +15,16 @@ def set_extra(self, **kwargs):
 
 
 models.Field.set_extra = set_extra
+
+
+class Person(GndPersonBase):
+    title = models.CharField(max_length=250, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.title}"
+
+    def get_absolute_url(self):
+        return reverse('archiv:person_detail', kwargs={'pk': self.id})
 
 
 class Event(models.Model):
@@ -137,6 +148,11 @@ class Event(models.Model):
         verbose_name="The original data"
     ).set_extra(
         is_public=True
+    )
+    person = models.ManyToManyField(
+        'Person',
+        blank=True,
+        related_name="person_mentioned_in"
     )
 
     class Meta:
