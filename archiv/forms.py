@@ -23,6 +23,7 @@ class PersonForm(GndModelForm):
             'gnd_pref_name'
         ]
 
+
 class EventFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super(EventFilterFormHelper, self).__init__(*args, **kwargs)

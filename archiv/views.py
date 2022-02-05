@@ -6,7 +6,6 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
-from gnd.forms import GndForm
 
 from . forms import PersonForm
 from . filters import (

@@ -9,12 +9,27 @@ from vocabs.models import SkosConcept
 
 from gnd.models import GndPersonBase
 
+
 def set_extra(self, **kwargs):
     self.extra = kwargs
     return self
 
 
 models.Field.set_extra = set_extra
+
+
+class Place(models.Model):
+    title = models.CharField(max_length=250, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.title}"
+
+
+class Institution(models.Model):
+    title = models.CharField(max_length=250, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.title}"
 
 
 class Person(GndPersonBase):
@@ -153,6 +168,16 @@ class Event(models.Model):
         'Person',
         blank=True,
         related_name="person_mentioned_in"
+    )
+    place = models.ManyToManyField(
+        'Place',
+        blank=True,
+        related_name="place_mentioned_in"
+    )
+    institution = models.ManyToManyField(
+        'Institution',
+        blank=True,
+        related_name="institution_mentioned_in"
     )
 
     class Meta:

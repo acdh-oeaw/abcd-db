@@ -4,9 +4,13 @@ from . models import (
     Event,
     Reference,
     Work,
-    Person
+    Person,
+    Place,
+    Institution
 )
 admin.site.register(Event)
 admin.site.register(Reference)
 admin.site.register(Work)
 admin.site.register(Person)
+admin.site.register(Place)
+admin.site.register(Institution)
