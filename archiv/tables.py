@@ -23,7 +23,6 @@ class InstitutionTable(tables.Table):
         attrs = {"class": "table table-responsive table-hover"}
 
 
-
 class PersonTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')

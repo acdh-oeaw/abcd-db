@@ -180,7 +180,7 @@ class WorkListFilter(django_filters.FilterSet):
 
 
 class PlaceListFilter(django_filters.FilterSet):
-   
+
     class Meta:
         model = Place
         fields = '__all__'
@@ -193,7 +193,7 @@ class PersonListFilter(django_filters.FilterSet):
         help_text=Person._meta.get_field('title').help_text,
         label=Person._meta.get_field('title').verbose_name
     )
-   
+
     class Meta:
         model = Person
         exclude = [
@@ -202,7 +202,7 @@ class PersonListFilter(django_filters.FilterSet):
 
 
 class InstitutionListFilter(django_filters.FilterSet):
-   
+
     class Meta:
         model = Institution
         fields = '__all__'

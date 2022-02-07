@@ -15,6 +15,7 @@ from . models import (
     Institution
 )
 
+
 class InstitutionForm(forms.ModelForm):
 
     class Meta:
@@ -22,7 +23,7 @@ class InstitutionForm(forms.ModelForm):
         fields = [
             'title',
         ]
-    
+
     def __init__(self, *args, **kwargs):
         super(InstitutionForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -64,7 +65,7 @@ class PlaceForm(forms.ModelForm):
         fields = [
             'title',
         ]
-    
+
     def __init__(self, *args, **kwargs):
         super(PlaceForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -108,7 +109,7 @@ class PersonForm(GndModelForm):
             'gnd_gnd_id',
             'gnd_pref_name'
         ]
-    
+
     def __init__(self, *args, **kwargs):
         super(PersonForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
