@@ -23,7 +23,7 @@ class Place(models.Model):
 
     def __str__(self):
         return f"{self.title}"
-    
+
     def field_dict(self):
         return model_to_dict(self)
 
@@ -68,7 +68,7 @@ class Institution(models.Model):
 
     def __str__(self):
         return f"{self.title}"
-    
+
     def field_dict(self):
         return model_to_dict(self)
 
@@ -113,7 +113,7 @@ class Person(GndPersonBase):
 
     def __str__(self):
         return f"{self.title}"
-    
+
     def field_dict(self):
         return model_to_dict(self)
 
