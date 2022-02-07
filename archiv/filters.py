@@ -181,6 +181,12 @@ class WorkListFilter(django_filters.FilterSet):
 
 class PlaceListFilter(django_filters.FilterSet):
 
+    title = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
+        help_text=Place._meta.get_field('title').help_text,
+        label=Place._meta.get_field('title').verbose_name
+    )
+
     class Meta:
         model = Place
         fields = '__all__'
@@ -202,6 +208,12 @@ class PersonListFilter(django_filters.FilterSet):
 
 
 class InstitutionListFilter(django_filters.FilterSet):
+
+    title = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
+        help_text=Institution._meta.get_field('title').help_text,
+        label=Institution._meta.get_field('title').verbose_name
+    )
 
     class Meta:
         model = Institution

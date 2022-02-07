@@ -23,6 +23,44 @@ class Place(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+    
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_listview_url(self):
+        return reverse('archiv:place_browse')
+
+    @classmethod
+    def get_createview_url(self):
+        return reverse('archiv:place_create')
+
+    def get_absolute_url(self):
+        return reverse('archiv:place_detail', kwargs={'pk': self.id})
+
+    def get_delete_url(self):
+        return reverse('archiv:place_delete', kwargs={'pk': self.id})
+
+    def get_edit_url(self):
+        return reverse('archiv:place_edit', kwargs={'pk': self.id})
+
+    def get_next(self):
+        next = self.__class__.objects.filter(id__gt=self.id)
+        if next:
+            return reverse(
+                'archiv:place_detail',
+                kwargs={'pk': next.first().id}
+            )
+        return False
+
+    def get_prev(self):
+        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        if prev:
+            return reverse(
+                'archiv:place_detail',
+                kwargs={'pk': prev.first().id}
+            )
+        return False
 
 
 class Institution(models.Model):
@@ -30,6 +68,44 @@ class Institution(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+    
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_listview_url(self):
+        return reverse('archiv:institution_browse')
+
+    @classmethod
+    def get_createview_url(self):
+        return reverse('archiv:institution_create')
+
+    def get_absolute_url(self):
+        return reverse('archiv:institution_detail', kwargs={'pk': self.id})
+
+    def get_delete_url(self):
+        return reverse('archiv:institution_delete', kwargs={'pk': self.id})
+
+    def get_edit_url(self):
+        return reverse('archiv:institution_edit', kwargs={'pk': self.id})
+
+    def get_next(self):
+        next = self.__class__.objects.filter(id__gt=self.id)
+        if next:
+            return reverse(
+                'archiv:institution_detail',
+                kwargs={'pk': next.first().id}
+            )
+        return False
+
+    def get_prev(self):
+        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        if prev:
+            return reverse(
+                'archiv:institution_detail',
+                kwargs={'pk': prev.first().id}
+            )
+        return False
 
 
 class Person(GndPersonBase):
@@ -37,6 +113,9 @@ class Person(GndPersonBase):
 
     def __str__(self):
         return f"{self.title}"
+    
+    def field_dict(self):
+        return model_to_dict(self)
 
     @classmethod
     def get_listview_url(self):
@@ -203,7 +282,7 @@ class Event(models.Model):
     person = models.ManyToManyField(
         'Person',
         blank=True,
-        related_name="person_mentioned_in"
+        related_name="rvn_person_mentioned_in"
     )
     place = models.ManyToManyField(
         'Place',

@@ -9,29 +9,33 @@ from . filters import (
     EventListFilter,
     ReferenceListFilter,
     WorkListFilter,
-    PersonListFilter
+    PersonListFilter,
+    PlaceListFilter,
+    InstitutionListFilter
 )
 from . forms import (
     EventForm, EventFilterFormHelper,
     ReferenceForm, ReferenceFilterFormHelper,
     WorkForm, WorkFilterFormHelper,
     PersonForm, PersonFilterFormHelper,
-    # PlaceForm, PlaceFilterFormHelper,
-    # InstitutionForm, InstitutionFilterFormHelper
+    PlaceForm, PlaceFilterFormHelper,
+    InstitutionForm, InstitutionFilterFormHelper
 )
 from . tables import (
     EventTable,
     ReferenceTable,
     WorkTable,
     PersonTable,
-    # PlaceTable,
-    # InstitutionTable
+    PlaceTable,
+    InstitutionTable
 )
 from . models import (
     Event,
     Reference,
     Work,
-    Person
+    Person,
+    Place,
+    Institution
 )
 from browsing.browsing_utils import (
     GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
@@ -86,6 +90,106 @@ class PersonDelete(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(PersonDelete, self).dispatch(*args, **kwargs)
+
+
+class PlaceListView(GenericListView):
+
+    model = Place
+    filter_class = PlaceListFilter
+    formhelper_class = PlaceFilterFormHelper
+    table_class = PlaceTable
+    init_columns = [
+        'id', 'title',
+    ]
+    enable_merge = True
+
+
+class PlaceDetailView(BaseDetailView):
+
+    model = Place
+    template_name = 'archiv/generic_detail.html'
+
+
+class PlaceCreate(BaseCreateView):
+
+    model = Place
+    form_class = PlaceForm
+    template_name = 'archiv/generic_create.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PlaceCreate, self).dispatch(*args, **kwargs)
+
+
+class PlaceUpdate(BaseUpdateView):
+
+    model = Place
+    form_class = PlaceForm
+    template_name = 'archiv/generic_create.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PlaceUpdate, self).dispatch(*args, **kwargs)
+
+
+class PlaceDelete(DeleteView):
+    model = Place
+    template_name = 'webpage/confirm_delete.html'
+    success_url = reverse_lazy('archiv:place_browse')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PlaceDelete, self).dispatch(*args, **kwargs)
+
+
+class InstitutionListView(GenericListView):
+
+    model = Institution
+    filter_class = InstitutionListFilter
+    formhelper_class = InstitutionFilterFormHelper
+    table_class = InstitutionTable
+    init_columns = [
+        'id', 'title',
+    ]
+    enable_merge = True
+
+
+class InstitutionDetailView(BaseDetailView):
+
+    model = Institution
+    template_name = 'archiv/generic_detail.html'
+
+
+class InstitutionCreate(BaseCreateView):
+
+    model = Institution
+    form_class = InstitutionForm
+    template_name = 'archiv/generic_create.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(InstitutionCreate, self).dispatch(*args, **kwargs)
+
+
+class InstitutionUpdate(BaseUpdateView):
+
+    model = Institution
+    form_class = InstitutionForm
+    template_name = 'archiv/generic_create.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(InstitutionUpdate, self).dispatch(*args, **kwargs)
+
+
+class InstitutionDelete(DeleteView):
+    model = Institution
+    template_name = 'webpage/confirm_delete.html'
+    success_url = reverse_lazy('archiv:institution_browse')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(InstitutionDelete, self).dispatch(*args, **kwargs)
 
 
 class EventListView(GenericListView):
