@@ -38,8 +38,44 @@ class Person(GndPersonBase):
     def __str__(self):
         return f"{self.title}"
 
+    @classmethod
+    def get_listview_url(self):
+        return reverse('archiv:person_browse')
+
+    @classmethod
+    def get_natural_primary_key(self):
+        return "id"
+
+    @classmethod
+    def get_createview_url(self):
+        return reverse('archiv:person_create')
+
     def get_absolute_url(self):
         return reverse('archiv:person_detail', kwargs={'pk': self.id})
+
+    def get_delete_url(self):
+        return reverse('archiv:person_delete', kwargs={'pk': self.id})
+
+    def get_edit_url(self):
+        return reverse('archiv:person_edit', kwargs={'pk': self.id})
+
+    def get_next(self):
+        next = self.__class__.objects.filter(id__gt=self.id)
+        if next:
+            return reverse(
+                'archiv:person_detail',
+                kwargs={'pk': next.first().id}
+            )
+        return False
+
+    def get_prev(self):
+        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        if prev:
+            return reverse(
+                'archiv:person_detail',
+                kwargs={'pk': prev.first().id}
+            )
+        return False
 
 
 class Event(models.Model):

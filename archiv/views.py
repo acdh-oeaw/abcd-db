@@ -7,21 +7,27 @@ from django.views.generic.edit import DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-from . forms import PersonForm
 from . filters import (
     EventListFilter,
     ReferenceListFilter,
-    WorkListFilter
+    WorkListFilter,
+    PersonListFilter
 )
 from . forms import (
     EventForm, EventFilterFormHelper,
     ReferenceForm, ReferenceFilterFormHelper,
-    WorkForm, WorkFilterFormHelper
+    WorkForm, WorkFilterFormHelper,
+    PersonForm, PersonFilterFormHelper,
+    PlaceForm, PlaceFilterFormHelper,
+    InstitutionForm, InstitutionFilterFormHelper
 )
 from . tables import (
     EventTable,
     ReferenceTable,
-    WorkTable
+    WorkTable,
+    PersonTable,
+    PlaceTable,
+    InstitutionTable
 )
 from . models import (
     Event,
@@ -32,6 +38,56 @@ from . models import (
 from browsing.browsing_utils import (
     GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
 )
+
+
+class PersonListView(GenericListView):
+
+    model = Person
+    filter_class = PersonListFilter
+    formhelper_class = PersonFilterFormHelper
+    table_class = PersonTable
+    init_columns = [
+        'id', 'title',
+    ]
+    enable_merge = True
+
+
+class PersonDetailView(BaseDetailView):
+
+    model = Person
+    template_name = 'archiv/generic_detail.html'
+
+
+class PersonCreate(BaseCreateView):
+
+    model = Person
+    form_class = PersonForm
+    template_name = 'archiv/generic_create.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PersonCreate, self).dispatch(*args, **kwargs)
+
+
+class PersonUpdate(BaseUpdateView):
+
+    model = Person
+    form_class = PersonForm
+    template_name = 'archiv/generic_create.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PersonUpdate, self).dispatch(*args, **kwargs)
+
+
+class PersonDelete(DeleteView):
+    model = Person
+    template_name = 'webpage/confirm_delete.html'
+    success_url = reverse_lazy('archiv:person_browse')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PersonDelete, self).dispatch(*args, **kwargs)
 
 
 class EventListView(GenericListView):
@@ -182,28 +238,3 @@ class WorkDelete(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(WorkDelete, self).dispatch(*args, **kwargs)
-
-
-class PersonListView(ListView):
-    model = Person
-    paginate_by = 10
-
-
-class PersonCreateView(CreateView):
-
-    model = Person
-    form_class = PersonForm
-    template_name = 'archiv/create_person.html'
-
-
-class PersonEditView(UpdateView):
-
-    model = Person
-    form_class = PersonForm
-    template_name = 'archiv/edit_person.html'
-
-
-class PersonDetailView(DetailView):
-
-    model = Person
-    template_name = 'archiv/detail_person.html'

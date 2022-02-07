@@ -77,8 +77,29 @@ urlpatterns = [
         r'^work/delete/(?P<pk>[0-9]+)$',
         views.WorkDelete.as_view(),
         name='work_delete'),
-    path('persons', views.PersonListView.as_view(), name='person_list'),
-    path('person/create', views.PersonCreateView.as_view(), name='create'),
-    path('person/edit/<int:pk>/', views.PersonEditView.as_view(), name='edit'),
-    path('person/<int:pk>/', views.PersonDetailView.as_view(), name='person_detail'),
+    url(
+        r'^person/$',
+        views.PersonListView.as_view(),
+        name='person_browse'
+    ),
+    url(
+        r'^person/detail/(?P<pk>[0-9]+)$',
+        views.PersonDetailView.as_view(),
+        name='person_detail'
+    ),
+    url(
+        r'^person/create/$',
+        views.PersonCreate.as_view(),
+        name='person_create'
+    ),
+    url(
+        r'^person/edit/(?P<pk>[0-9]+)$',
+        views.PersonUpdate.as_view(),
+        name='person_edit'
+    ),
+    url(
+        r'^person/delete/(?P<pk>[0-9]+)$',
+        views.PersonDelete.as_view(),
+        name='person_delete'
+    ),
 ]

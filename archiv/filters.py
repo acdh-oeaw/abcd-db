@@ -7,7 +7,10 @@ from vocabs.models import SkosConcept
 from . models import (
     Event,
     Reference,
-    Work
+    Work,
+    Person,
+    Place,
+    Institution
 )
 
 NUMBER_LOOKUP_CHOICES = [
@@ -174,3 +177,32 @@ class WorkListFilter(django_filters.FilterSet):
             'author_name',
             'full_quote',
         ]
+
+
+class PlaceListFilter(django_filters.FilterSet):
+   
+    class Meta:
+        model = Place
+        fields = '__all__'
+
+
+class PersonListFilter(django_filters.FilterSet):
+
+    title = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
+        help_text=Person._meta.get_field('title').help_text,
+        label=Person._meta.get_field('title').verbose_name
+    )
+   
+    class Meta:
+        model = Person
+        exclude = [
+            'gnd_payload'
+        ]
+
+
+class InstitutionListFilter(django_filters.FilterSet):
+   
+    class Meta:
+        model = Institution
+        fields = '__all__'

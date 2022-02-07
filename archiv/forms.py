@@ -10,8 +10,93 @@ from . models import (
     Event,
     Reference,
     Work,
-    Person
+    Person,
+    Place,
+    Institution
 )
+
+class InstitutionForm(forms.ModelForm):
+
+    class Meta:
+        model = Institution
+        fields = [
+            'title',
+        ]
+    
+    def __init__(self, *args, **kwargs):
+        super(InstitutionForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = True
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-9'
+        self.helper.add_input(Submit('submit', 'save'),)
+
+
+class InstitutionFilterFormHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super(InstitutionFilterFormHelper, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.form_class = 'genericFilterForm'
+        self.form_method = 'GET'
+        self.helper.form_tag = False
+        self.add_input(Submit('Filter', 'Search'))
+        self.layout = Layout(
+            Fieldset(
+                'Basic search options',
+                'id',
+                css_id="basic_search_fields"
+            ),
+            Accordion(
+                AccordionGroup(
+                    'Advanced search',
+                    'title',
+                    css_id="more"
+                )
+            )
+        )
+
+
+class PlaceForm(forms.ModelForm):
+
+    class Meta:
+        model = Place
+        fields = [
+            'title',
+        ]
+    
+    def __init__(self, *args, **kwargs):
+        super(PlaceForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = True
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-9'
+        self.helper.add_input(Submit('submit', 'save'),)
+
+
+class PlaceFilterFormHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super(PlaceFilterFormHelper, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.form_class = 'genericFilterForm'
+        self.form_method = 'GET'
+        self.helper.form_tag = False
+        self.add_input(Submit('Filter', 'Search'))
+        self.layout = Layout(
+            Fieldset(
+                'Basic search options',
+                'id',
+                css_id="basic_search_fields"
+            ),
+            Accordion(
+                AccordionGroup(
+                    'Advanced search',
+                    'title',
+                    css_id="more"
+                )
+            )
+        )
 
 
 class PersonForm(GndModelForm):
@@ -19,9 +104,43 @@ class PersonForm(GndModelForm):
     class Meta:
         model = Person
         fields = [
+            'title',
             'gnd_gnd_id',
             'gnd_pref_name'
         ]
+    
+    def __init__(self, *args, **kwargs):
+        super(PersonForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = True
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-9'
+        self.helper.add_input(Submit('submit', 'save'),)
+
+
+class PersonFilterFormHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super(PersonFilterFormHelper, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.form_class = 'genericFilterForm'
+        self.form_method = 'GET'
+        self.helper.form_tag = False
+        self.add_input(Submit('Filter', 'Search'))
+        self.layout = Layout(
+            Fieldset(
+                'Basic search options',
+                'id',
+                css_id="basic_search_fields"
+            ),
+            Accordion(
+                AccordionGroup(
+                    'Advanced search',
+                    'title',
+                    css_id="more"
+                )
+            )
+        )
 
 
 class EventFilterFormHelper(FormHelper):
