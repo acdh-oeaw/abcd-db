@@ -111,6 +111,12 @@ class Institution(models.Model):
 class Person(GndPersonBase):
     title = models.CharField(max_length=250, blank=True, null=True)
 
+    class Meta:
+
+        ordering = [
+            'id',
+        ]
+
     def __str__(self):
         return f"{self.title}"
 

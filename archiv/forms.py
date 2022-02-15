@@ -131,7 +131,7 @@ class PersonFilterFormHelper(FormHelper):
         self.layout = Layout(
             Fieldset(
                 'Basic search options',
-                'id',
+                'gnd_gnd_id',
                 css_id="basic_search_fields"
             ),
             Accordion(
