@@ -21,8 +21,16 @@ class Command(BaseCommand):
             for ent in doc.ents:
                 if ent.label_ == 'PER':
                     if ' ' in ent.text:
-                        pers, _ = Person.objects.get_or_create(title=ent.text)
+                        try:
+                            pers, _ = Person.objects.get_or_create(title=ent.text)
+                        except Exception as e:
+                            print(e)
+                            continue
                         x.person.add(pers)
                 if ent.label_ == 'LOC':
-                    loc, _ = Place.objects.get_or_create(title=ent.text)
+                    try:
+                        loc, _ = Place.objects.get_or_create(title=ent.text)
+                    except Exception as e:
+                        print(e)
+                        continue
                     x.place.add(loc)
