@@ -1,35 +1,23 @@
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 import pandas as pd
-from sqlalchemy import create_engine
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from tqdm import tqdm
 
 from archiv.models import Event, Work
 from archiv.import_utils import field_mapping
-dbc = settings.LEGACY_DB_CONNECTION
-db_connection_str = f"mysql+pymysql://{dbc['USER']}:{dbc['PASSWORD']}@{dbc['HOST']}/{dbc['NAME']}"
-db_connection = create_engine(db_connection_str)
+from archiv.import_utils import gsheet_to_df
 
 
 class Command(BaseCommand):
     help = 'Imports Legacy Data'
 
     def handle(self, *args, **kwargs):
+        sheet_id = settings.LEGACY_DB_SHEET_ID
         event_error = []
-        query = f"SELECT * FROM {Event.get_source_table()}"
-        self.stdout.write(
-            self.style.NOTICE(
-                f"fetching data from '{query}'"
-            )
-        )
-        df = pd.read_sql(query, con=db_connection)
-        self.stdout.write(
-            self.style.NOTICE(
-                f"counting '{len(df)} entries'"
-            )
-        )
+        self.stdout.write(f"fetching data from {sheet_id}")
+        df = gsheet_to_df(sheet_id)
         fm = field_mapping(Event)
         for i, row in tqdm(df.iterrows(), total=len(df)):
             try:
@@ -63,18 +51,9 @@ class Command(BaseCommand):
             )
         )
         work_error = []
-        query = f"SELECT * FROM {Work.get_source_table()}"
-        self.stdout.write(
-            self.style.NOTICE(
-                f"fetching data from '{query}'"
-            )
-        )
-        df = pd.read_sql(query, con=db_connection)
-        self.stdout.write(
-            self.style.NOTICE(
-                f"counting '{len(df)} entries'"
-            )
-        )
+        sheet_id = settings.LEGACY_DB_LIT_SHEET_ID
+        self.stdout.write(f"fetching data from {sheet_id}")
+        df = gsheet_to_df(sheet_id)
         fm = field_mapping(Work)
         for i, row in tqdm(df.iterrows(), total=len(df)):
             try:

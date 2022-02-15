@@ -171,11 +171,5 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-LEGACY_DB_CONNECTION = {
-    'NAME': os.environ.get('LDB_DB', 'abcd_legacy'),
-    'USER': os.environ.get('LDB_USER'),
-    'PASSWORD': os.environ.get('LDB_PW'),
-    'HOST': os.environ.get('LDB_HOST', 'localhost'),
-    'PORT': os.environ.get('LDB_PORT', '3306')
-}
+LEGACY_DB_SHEET_ID = "1oG_DsN_MkAXg8mR-WmPANMyuZYbWllsNLQ6blGE_70E"
+LEGACY_DB_LIT_SHEET_ID = "17lfhVUW6RYSdwkSoginK0uKMI_Dn-iGPgAw1wcKgnHI"

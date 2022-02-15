@@ -17,6 +17,15 @@ short description of the project
 * start the dev sever `python manage.py runserver`
 * go to [http://127.0.0.1:8000](http://127.0.0.1:8000/) and check if everything works
 
+## data ingest
+
+* run `python manage.py import_abcd_data`
+
+### NER
+
+* install spacy
+* install needed spacy model `python -m spacy download de_core_news_lg`
+* run `python manage.py import_ners`
 
 ## Docker
 

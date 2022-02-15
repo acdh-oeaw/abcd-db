@@ -13,7 +13,7 @@ class Command(BaseCommand):
         for x in [Person, Place, Institution]:
             x.objects.all().delete()
 
-        nlp = spacy.load("de_core_news_sm")
+        nlp = spacy.load("de_core_news_lg")
 
         for x in tqdm(Event.objects.all(), total=Event.objects.all().count()):
             text = x.main_text
@@ -26,6 +26,3 @@ class Command(BaseCommand):
                 if ent.label_ == 'LOC':
                     loc, _ = Place.objects.get_or_create(title=ent.text)
                     x.place.add(loc)
-                if ent.label_ == 'ORG':
-                    org, _ = Institution.objects.get_or_create(title=ent.text)
-                    x.institution.add(org)
