@@ -300,6 +300,12 @@ class Event(models.Model):
         blank=True,
         related_name="institution_mentioned_in"
     )
+    work = models.ManyToManyField(
+        'Work',
+        blank=True,
+        related_name="work_referenced_in"
+    )
+
 
     class Meta:
 

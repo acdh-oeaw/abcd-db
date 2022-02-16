@@ -54,6 +54,7 @@ class EventTable(tables.Table):
     institution = tables.columns.ManyToManyColumn()
     key_word = tables.columns.ManyToManyColumn()
     reference = tables.columns.ManyToManyColumn()
+    work = tables.columns.ManyToManyColumn()
 
     class Meta:
         model = Event
