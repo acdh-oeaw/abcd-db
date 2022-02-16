@@ -21,6 +21,8 @@ short description of the project
 
 * run `python manage.py import_abcd_data`
 
+(this script processes data from the gsheets [Bruckner_DB_20220204](https://docs.google.com/spreadsheets/d/1oG_DsN_MkAXg8mR-WmPANMyuZYbWllsNLQ6blGE_70E) and [Literatur_DB_20220204](https://docs.google.com/spreadsheets/d/17lfhVUW6RYSdwkSoginK0uKMI_Dn-iGPgAw1wcKgnHI))
+
 ### NER
 
 * install spacy
