@@ -306,7 +306,6 @@ class Event(models.Model):
         related_name="work_referenced_in"
     )
 
-
     class Meta:
 
         ordering = [
