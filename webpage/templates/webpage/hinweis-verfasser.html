@@ -1,0 +1,42 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block content %}
+
+<section class="showcase">
+  <div class="container-fluid p-0">
+    <div class="row no-gutters justify-content-md-center">
+      <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+        <h1>Einführung und Vorwort zur Anton Bruckner Chronologie Datenbank</h1>
+        <small>von Franz Scheder</small>
+        <div class="chapter">
+            <h2>1. Umfang der Datenbank</h2>
+            <p>
+                Die vorliegende Materialsammlung bietet eine chronologische Reihung sämtlicher bisher erfassten Informationen zu Bruckners Leben und Werk und für die Jahre nach Bruckners Tod bis heute, die durch Sichtung der vorhandenen Literatur, der Zeitungsdokumentation des Anton-Bruckner-Institutes Linz (ABIL) und durch eigene Recherchen des Verfassers gewonnen wurden. Sie enthält in möglichster Vollständigkeit sämtliche Daten zu den Jahren 1824 bis heute, berücksichtigt aber den Zeitraum davor detailliert nur insoweit, als die in der neueren Literatur veröffentlichten Forschungen Neues zu Tage förderten. 
+            </p>
+            <p>
+                Namentlich für Bruckners Wiener Jahre wurden einige wichtige Alltagsereignisse, Opernaufführungen und Konzerte miterfasst, auch wenn sie - zumindest vorerst - keinen unmittelbaren Bezug zu Bruckners Leben haben.
+            </p>
+            <p>
+                Der Vollständigkeit halber wurden auch falsche Datierungen und Angaben der bisherigen Bruckner-Literatur mit aufgenommen, jedoch als solche kenntlich gemacht und, soweit möglich, mit Korrekturen versehen.
+            </p>
+            <p>
+                Wegen des enormen Umfanges und der schwer abschätzbaren Bedeutung für exakte und bislang unbekannte biographische Erkenntnisse harrt die überwiegend in Zeitungsartikeln der 1920er bis 1940er Jahre veröffentlichte Erinnerungsliteratur noch der systematischen Auswertung. Der Verfasser wird die vorliegende Datensammlung regelmäßig ergänzen; dies betrifft vor allem auch die inhaltliche Auswertung der bereits erfassten Zeitungsartikel der ABIL-Dokumentation, deren Lektüre vorerst bis zum Jahre 1888 gediehen ist.
+            </p>
+        </div>
+        <div class="chapter">
+            <h2>2. Aufbau der Datenbank</h2>
+            <p>Alle Ereignisse eines Tages sind in einem eigenen Datensatz erfasst. Zur Sortierung und leichteren Auffindbarkeit dient ein Sortiercode, der das Datum in verschlüsselter Form enthält. Hierzu ein Beispiel: der 21. März 1886 wird in der Form "21.3.1886" wiedergegeben, der zugehörige (quasi rückläufige) Sortiercode lautet 18860321 (also beginnend mit den vier Ziffern der Jahreszahl); ihm wird die Ziffer "5" angehängt "188603215". Nicht genau datierbare Ereignisse davor erhalten die Endziffer 4 ("vor dem 21.3.1886" = 188603214), nicht genau datierbare Ereignisse danach erhalten die Endziffer 6 ("nach dem 21.3.1886" = 188603216). In vielen Fällen ist z.B. bei Kritiken auch ein Querverweis auf das betreffende Ereignis in Form des Datums (z.B. "21.3.1886") angebracht.</p>
+            <p>
+                Größere Zeiträume sind an passender Stelle eingefügt: "Schuljahr" meist anfangs Oktober, "Sommer" ab Juli, "Frühling" ab 21.3., "Kronstorfer Zeit" ab Februar 1843 usw.
+            </p>
+            <p>
+                Die Einzelereignisse eines jeden Datensatzes sind durch spezielle in Klammern gesetzte Markierungszeichen gekennzeichnet, z.B. in der Regel (*), (**), (***), (°), (°°), (°°°), (#) etc., im Bedarfsfall auch unterteilt z.B. durch (*a), (*b), (*c) oder bei besonders umfangreichen Ereignissen ausgeweitet durch Buchstaben wie (a), (b), (c) usw. Wegen der Materialfülle an einigen Tagen, beispielsweise um den 70. Geburtstag am 4.9.1894 herum und in der Zeit nach Bruckners Tod (nach dem 11.10.1896), wurden die dortigen Ereignisse, Briefe, Telegramme und Zeitungsartikel blockartig zusammengefasst und mit speziellen Zusätzen in alphabetischer Reihung erfasst (z.B. "br" oder "B" für Brief, "t" für Telegramm und "z" für Zeitungsartikel.</p><p>
+                In jedem Falle dienen diese Markierungszeichen dem Auffinden der zugehörigen Hinweise: zur immer vorhandenen Literatur- bzw. Quellenangabe, gegebenfalls auch zum Nachweis von Faksimilia, Abbildungen, Archivaufbewahrung und Anmerkungen des Verfassers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

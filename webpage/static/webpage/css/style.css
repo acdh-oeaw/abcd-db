@@ -7,10 +7,41 @@ body {
     flex-direction: column;
     height: 100%;
     font-family: 'Libre Franklin', sans-serif;
+    background-color: #ffffff;
+}
+
+header.masthead {
+  position: relative;
+  background-color: #343a40;
+  background: url("https://upload.wikimedia.org/wikipedia/commons/6/6d/A-Bruckner_B%C3%BCste.jpg") no-repeat center center;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+
+.showcase .showcase-text {
+  padding: 3rem;
+}
+
+.showcase .showcase-img {
+  min-height: 30rem;
+  background-size: cover;
+}
+
+@media (min-width: 768px) {
+  .showcase .showcase-text {
+    padding: 7rem;
+  }
 }
 
 .navbar {
-	border-bottom: 5px solid #254aa5;;
+	border-bottom: 5px solid gray;
+}
+
+.navbar .navbar-brand img {
+    max-height: none;
+    height: 5rem;
 }
 
 span.select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -48,7 +79,7 @@ span.select2-container--default .select2-selection--single .select2-selection__r
 }
 
 a {
-    color: #295495;
+    color: #1d82dcb8;
 }
 
 header {
@@ -243,4 +274,149 @@ footer {
 
 a > .fa-2x {
     color: #444;
+}
+
+
+.btn {
+  color: white;
+  background-color:#1d82dcb8;
+  border-color:#1d82dcb8;
+}
+
+.filter-option {
+  color:white
+}
+
+
+/* Modifikations of Transkribus-App */
+.transkribus_collection-description {
+  display:none;
+}
+
+.transkibus_search-button {
+  background-color:#1d82dcb8;
+  border-color:#1d82dcb8;
+}
+
+.transkibus_search-button:hover {
+  background-color:#1d82dcb8;
+  border-color:#1d82dcb8;
+}
+
+.transkibus_search-button:active {
+  background-color:#1d82dcb8;
+  border-color:#1d82dcb8;
+}
+
+.transkribus_hit-info-collection {
+  display: none;
+}
+
+.transkribus_hit-info-doc-id {
+  display: none;
+}
+
+.transkribus_kwic {
+  order:2;
+}
+
+.transkribus_kwic::before {
+  content:"…";
+}
+
+.transkribus_kwic::after {
+  content:" …";
+}
+
+.transkribus_kwic em {
+  color: #1d82dcb8;
+  font-weight: bold;
+}
+
+.transkribus_facets-list {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.transkribus_hit-info {
+  list-style:none;
+  margin-bottom: 0.3em;
+  padding-left: 0px;
+
+}
+
+
+.transkribus_hit-info-doc {
+  font-weight: bold;
+  display: inline;
+}
+
+.transkribus_hit-info-page {
+  display: inline;
+}
+
+.transkribus_hit {
+  /* border-bottom:3px solid #1d82dcb8; */
+  margin-bottom: 1em;
+  display: flex;
+  flex-flow: column;
+}
+
+.transkribus_hit-info-doc .transkribus_hit-info-label, .transkribus_hit-info-separator {
+  display: none;
+}
+
+
+.transkribus_facets-container {
+
+}
+
+.breadcrumb {
+  /* background-color: #1d82dcb869; */
+  background-color:white;
+  font-weight: bolder;
+}
+
+.transkribus_hits .card-header {
+  display: none;
+}
+
+
+.transkribus_facets-container .card-header {
+  display: none;
+}
+
+.transkribus_facets-container .card-body h3 {
+  display: none;
+}
+
+.transkribus_hits-container .card-header h1 {
+  font-size: inherit;
+}
+
+
+.card {
+    overflow: visible;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #1d82dcb8;
+}
+
+a:not([href]):not([tabindex]) {
+    color: #bd0000;
+    text-decoration: none;
+}
+
+.help-block {
+	font-size: 0.9em;
+}
+.create-label {
+	font-weight: 700;
+}
+
+
+.highlighted {
+  background-color: #ffc107;
 }

@@ -63,7 +63,7 @@
                 <div class="container-fluid">
                     <!-- Your site title as branding in the menu -->
                     <a href="/" class="navbar-brand custom-logo-link" rel="home" itemprop="url">
-                        <img src="{{ PROJECT_LOGO }}" class="img-fluid" alt="{% projects_metadata 'title' %}" itemprop="{% projects_metadata 'title' %}"/>
+                        <img src="{{ PROJECT_LOGO }}" class="img-fluid" alt="ABCD" itemprop="{% projects_metadata 'title' %}" style="padding-top: 1.3em;"/>
                     </a><!-- end custom logo -->
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"/>
@@ -72,12 +72,11 @@
                         <!-- Your menu goes here -->
                         <ul id="main-menu" class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Info
                                     <span class="caret"/>
                                 </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{% url 'infos:about-the-project' %}">About the project</a>
-                                        <a class="dropdown-item" href="{% url 'infos:project-team' %}">Team</a>
+                                        <a class="dropdown-item" href="{% url 'webpage:staticpage' template='hinweis-verfasser' %}">Hinweis Verfasser</a>
                                         <a class="dropdown-item" href="{% url 'webpage:staticpage' template='imprint' %}">Imprint | Impressum</a>
                                     </div>
                                 </li>

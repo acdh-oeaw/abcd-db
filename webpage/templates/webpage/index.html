@@ -1,36 +1,52 @@
 {% extends "webpage/base.html" %}
 {% load static %}
-{% load stats_extras %}
 {% load webpage_extras %}
 {% block content %}
 
-        <div class="jumbotron" style="background-image: url({% static 'webpage/img/project_background.jpg' %}) ">
-            <div class="container">
-                <h1 style="text-align:center; color: #111;">{% projects_metadata 'title' %}</h1>
-                <h3 style="text-align:center; color: #111;">{% projects_metadata 'subtitle' %}</h3>
-                <h5 style="text-align:center; color: #111;">{% projects_metadata 'description' %}</h5>
+<header class="masthead text-white text-center">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto" style="background-color: #1d82dcb8; padding-top:3em">
+        <h1 class="mb-5">A B C D</h1>
+        <h1 class="mb-5">{% projects_metadata 'title' %}</h1>
+        <p>
+          <small><a href="https://commons.wikimedia.org/wiki/File:A-Bruckner_B%C3%BCste.jpg" style="color: aliceblue;">Taglieber Christian Dr.</a>,
+            <a href="https://creativecommons.org/licenses/by-sa/3.0/at/deed.en" style="color: aliceblue;">CC BY-SA 3.0 AT</a>, via Wikimedia Commons</small>
+        </p>
+      </div>
+      <div class="col-md-12 mx-auto">
+        <form method="get" action="{% url 'archiv:event_browse' %}" style="margin: 2em">
+          <div class="form-row">
+            <!-- <div class="col-md-2">
+              <select class="custom-select custom-select-lg mb-3" name="main_text">
+                <option value="vfb">Suche im Haupttext</option>
+                <option value="ft">Suche in Anmerkungen</option>
+              </select>
+            </div> -->
+            <div class="col-md-10">
+              <input type="search" class="form-control form-control-lg" placeholder="z.B. 'Te deum'" required name="main_text">
             </div>
-        </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12" style="text-align:center">
-                <h4>Data-Count</h4>
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-block btn-lg btn-primary" style="background-color:#1d82dcb8; border-color:#1d82dcb8;">Los!</button>
             </div>
-            {% create_object_count app='archiv' as models %}
-            {% for x in models %}
-                <div class="col-md-4  text-center">
-                    <div class="card flex-md-row mb-4 box-shadow">
-                        <div class="card-body">
-                            <h4 class="mb-0">{{x.name}}</h4>
-                            <h4 class="count">{{ x.count }}</h4>
-                            {% if x.link %}
-                                <a class="btn btn-main btn-outline-primary btn-sm" href="{{ x.link }}" role="button">View Details</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+          </div>
+          <input type="hidden" id="main_text_lookup" name="main_text_lookup" value="icontains">
+        </form>
+      </div>
     </div>
+  </div>
+</header>
+
+<section class="showcase">
+  <div class="container-fluid p-0">
+    <div class="row no-gutters justify-content-md-center">
+      <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+        <p>
+            Die ABCD bietet Ihnen die Möglichkeit, sämtliche biographisch erfassten Informationen zu Bruckners Leben und Werk in chronologischer Übersicht abzurufen. – Hinweise zur Benützung der Internet-Datenbank erhalten Sie unmittelbar bei der Datenbank-Suche; wenn Sie sich für den Aufbau der ABCD, die zur Verfügung stehenden Informationsmöglichkeiten und weitere Einzelheiten interessieren, lesen Sie bitte die <a href="{% url 'webpage:staticpage' template='hinweis-verfasser' %}">Hinweise des Verfassers</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
