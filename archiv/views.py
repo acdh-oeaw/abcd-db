@@ -7,7 +7,6 @@ from django.views.generic.edit import DeleteView
 
 from . filters import (
     EventListFilter,
-    ReferenceListFilter,
     WorkListFilter,
     PersonListFilter,
     PlaceListFilter,
@@ -15,7 +14,6 @@ from . filters import (
 )
 from . forms import (
     EventForm, EventFilterFormHelper,
-    ReferenceForm, ReferenceFilterFormHelper,
     WorkForm, WorkFilterFormHelper,
     PersonForm, PersonFilterFormHelper,
     PlaceForm, PlaceFilterFormHelper,
@@ -23,7 +21,6 @@ from . forms import (
 )
 from . tables import (
     EventTable,
-    ReferenceTable,
     WorkTable,
     PersonTable,
     PlaceTable,
@@ -31,7 +28,6 @@ from . tables import (
 )
 from . models import (
     Event,
-    Reference,
     Work,
     Person,
     Place,
@@ -240,56 +236,6 @@ class EventDelete(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(EventDelete, self).dispatch(*args, **kwargs)
-
-
-class ReferenceListView(GenericListView):
-
-    model = Reference
-    filter_class = ReferenceListFilter
-    formhelper_class = ReferenceFilterFormHelper
-    table_class = ReferenceTable
-    init_columns = [
-        'id', 'id',
-    ]
-    enable_merge = False
-
-
-class ReferenceDetailView(BaseDetailView):
-
-    model = Reference
-    template_name = 'archiv/generic_detail.html'
-
-
-class ReferenceCreate(BaseCreateView):
-
-    model = Reference
-    form_class = ReferenceForm
-    template_name = 'archiv/generic_create.html'
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ReferenceCreate, self).dispatch(*args, **kwargs)
-
-
-class ReferenceUpdate(BaseUpdateView):
-
-    model = Reference
-    form_class = ReferenceForm
-    template_name = 'archiv/generic_create.html'
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ReferenceUpdate, self).dispatch(*args, **kwargs)
-
-
-class ReferenceDelete(DeleteView):
-    model = Reference
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:reference_browse')
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ReferenceDelete, self).dispatch(*args, **kwargs)
 
 
 class WorkListView(GenericListView):

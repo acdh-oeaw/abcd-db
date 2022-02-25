@@ -6,7 +6,6 @@ from vocabs.models import SkosConcept
 
 from . models import (
     Event,
-    Reference,
     Work,
     Person,
     Place,
@@ -82,18 +81,22 @@ class EventListFilter(django_filters.FilterSet):
             },
         )
     )
+    work = django_filters.ModelMultipleChoiceFilter(
+        queryset=Work.objects.all(),
+        help_text=Event._meta.get_field('work').help_text,
+        label=Event._meta.get_field('work').verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="/archiv-ac/work-autocomplete",
+            attrs={
+                'data-placeholder': 'Autocomplete ...',
+                'data-minimum-input-length': 2,
+            },
+        )
+    )
     note = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Event._meta.get_field('note').help_text,
         label=Event._meta.get_field('note').verbose_name
-    )
-    reference = django_filters.ModelMultipleChoiceFilter(
-        queryset=Reference.objects.all(),
-        help_text=Event._meta.get_field('reference').help_text,
-        label=Event._meta.get_field('reference').verbose_name,
-        widget=autocomplete.Select2Multiple(
-            url="archiv-ac:reference-autocomplete",
-        )
     )
 
     class Meta:
@@ -112,37 +115,6 @@ class EventListFilter(django_filters.FilterSet):
             'notes_text',
             'key_word',
             'note',
-            'reference',
-        ]
-
-
-class ReferenceListFilter(django_filters.FilterSet):
-    legacy_id = django_filters.LookupChoiceFilter(
-        lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=Reference._meta.get_field('legacy_id').help_text,
-        label=Reference._meta.get_field('legacy_id').verbose_name
-    )
-    work = django_filters.ModelMultipleChoiceFilter(
-        queryset=Work.objects.all(),
-        help_text=Reference._meta.get_field('work').help_text,
-        label=Reference._meta.get_field('work').verbose_name,
-        widget=autocomplete.Select2Multiple(
-            url="archiv-ac:work-autocomplete",
-        )
-    )
-    location = django_filters.LookupChoiceFilter(
-        lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=Reference._meta.get_field('location').help_text,
-        label=Reference._meta.get_field('location').verbose_name
-    )
-
-    class Meta:
-        model = Reference
-        fields = [
-            'id',
-            'legacy_id',
-            'work',
-            'location',
         ]
 
 

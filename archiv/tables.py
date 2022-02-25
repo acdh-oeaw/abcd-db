@@ -4,7 +4,6 @@ import django_tables2 as tables
 from browsing.browsing_utils import MergeColumn
 from . models import (
     Event,
-    Reference,
     Work,
     Place,
     Person,
@@ -53,22 +52,10 @@ class EventTable(tables.Table):
     place = tables.columns.ManyToManyColumn()
     institution = tables.columns.ManyToManyColumn()
     key_word = tables.columns.ManyToManyColumn()
-    reference = tables.columns.ManyToManyColumn()
     work = tables.columns.ManyToManyColumn()
 
     class Meta:
         model = Event
-        sequence = ('id',)
-        attrs = {"class": "table table-responsive table-hover"}
-
-
-class ReferenceTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
-
-    class Meta:
-        model = Reference
         sequence = ('id',)
         attrs = {"class": "table table-responsive table-hover"}
 

@@ -8,7 +8,6 @@ from gnd.forms import GndModelForm
 from vocabs.models import SkosConcept
 from . models import (
     Event,
-    Reference,
     Work,
     Person,
     Place,
@@ -156,6 +155,8 @@ class EventFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'id',
+                'main_text',
+                'work',
                 css_id="basic_search_fields"
             ),
             Accordion(
@@ -164,7 +165,6 @@ class EventFilterFormHelper(FormHelper):
                     'date_written',
                     'not_before',
                     'not_after',
-                    'main_text',
                     'notes_lit',
                     'notes_img',
                     'notes_facs',
@@ -172,7 +172,6 @@ class EventFilterFormHelper(FormHelper):
                     'notes_text',
                     'key_word',
                     'note',
-                    'reference',
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -192,6 +191,11 @@ class EventForm(forms.ModelForm):
             tech_collection__pref_label="event__key_word"
         )
     )
+    work = forms.ModelMultipleChoiceField(
+        required=False,
+        label="Literatur",
+        queryset=Work.objects.all()
+    )
 
     class Meta:
         model = Event
@@ -199,52 +203,6 @@ class EventForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(EventForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_tag = True
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-md-3'
-        self.helper.field_class = 'col-md-9'
-        self.helper.add_input(Submit('submit', 'save'),)
-
-
-class ReferenceFilterFormHelper(FormHelper):
-    def __init__(self, *args, **kwargs):
-        super(ReferenceFilterFormHelper, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.form_class = 'genericFilterForm'
-        self.form_method = 'GET'
-        self.helper.form_tag = False
-        self.add_input(Submit('Filter', 'Search'))
-        self.layout = Layout(
-            Fieldset(
-                'Basic search options',
-                'id',
-                css_id="basic_search_fields"
-            ),
-            Accordion(
-                AccordionGroup(
-                    'Advanced search',
-                    'work',
-                    'location',
-                    css_id="more"
-                ),
-                AccordionGroup(
-                    'admin',
-                    'legacy_id',
-                    css_id="admin_search"
-                ),
-            )
-        )
-
-
-class ReferenceForm(forms.ModelForm):
-
-    class Meta:
-        model = Reference
-        fields = "__all__"
-
-    def __init__(self, *args, **kwargs):
-        super(ReferenceForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = 'form-horizontal'

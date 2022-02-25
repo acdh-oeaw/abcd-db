@@ -3,7 +3,6 @@ from django.db.models import Q
 from dal import autocomplete
 from . models import (
     Event,
-    Reference,
     Work
 )
 
@@ -20,18 +19,6 @@ class EventAC(autocomplete.Select2QuerySetView):
         return qs
 
 
-class ReferenceAC(autocomplete.Select2QuerySetView):
-    def get_queryset(self):
-        qs = Reference.objects.all()
-
-        if self.q:
-            qs = qs.filter(
-                Q(legacy_id__icontains=self.q) |
-                Q(id__icontains=self.q)
-            )
-        return qs
-
-
 class WorkAC(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Work.objects.all()
@@ -39,6 +26,7 @@ class WorkAC(autocomplete.Select2QuerySetView):
         if self.q:
             qs = qs.filter(
                 Q(legacy_id__icontains=self.q) |
-                Q(order_code__icontains=self.q)
+                Q(order_code__icontains=self.q) |
+                Q(full_quote__icontains=self.q)
             )
         return qs

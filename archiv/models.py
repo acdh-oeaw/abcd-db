@@ -269,15 +269,6 @@ class Event(models.Model):
         is_public=True,
         data_lookup="text_Notizen",
     )
-    reference = models.ManyToManyField(
-        "Reference",
-        related_name='rvn_event_reference_reference',
-        blank=True,
-        verbose_name="Literatur",
-        help_text="whatever",
-    ).set_extra(
-        is_public=True,
-    )
     orig_data_csv = RichTextField(
         blank=True,
         null=True,
@@ -375,100 +366,6 @@ class Event(models.Model):
         return False
 
 
-class Reference(models.Model):
-    """ Referenz """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-    )
-    work = models.ForeignKey(
-        "Work",
-        related_name='rvn_reference_work_work',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="Werk",
-        help_text="whatever",
-    ).set_extra(
-        is_public=True,
-    )
-    location = models.CharField(
-        max_length=250,
-        blank=True,
-        null=True,
-        verbose_name="Seitenzahl",
-        help_text="whatever",
-    ).set_extra(
-        is_public=True,
-    )
-    orig_data_csv = RichTextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-    ).set_extra(
-        is_public=True
-    )
-
-    class Meta:
-
-        ordering = [
-            'id',
-        ]
-        verbose_name = "Referenz"
-
-    def __str__(self):
-        if self.id:
-            return "{}".format(self.id)
-        else:
-            return "{}".format(self.legacy_id)
-
-    def field_dict(self):
-        return model_to_dict(self)
-
-    @classmethod
-    def get_listview_url(self):
-        return reverse('archiv:reference_browse')
-
-    @classmethod
-    def get_source_table(self):
-        return None
-
-    @classmethod
-    def get_natural_primary_key(self):
-        return "id"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse('archiv:reference_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:reference_detail', kwargs={'pk': self.id})
-
-    def get_delete_url(self):
-        return reverse('archiv:reference_delete', kwargs={'pk': self.id})
-
-    def get_edit_url(self):
-        return reverse('archiv:reference_edit', kwargs={'pk': self.id})
-
-    def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
-        if next:
-            return reverse(
-                'archiv:reference_detail',
-                kwargs={'pk': next.first().id}
-            )
-        return False
-
-    def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
-        if prev:
-            return reverse(
-                'archiv:reference_detail',
-                kwargs={'pk': prev.first().id}
-            )
-        return False
-
-
 class Work(models.Model):
     """ Literatur """
     legacy_id = models.CharField(
@@ -524,10 +421,7 @@ class Work(models.Model):
         verbose_name = "Literatur"
 
     def __str__(self):
-        if self.order_code:
-            return "{}".format(self.order_code)
-        else:
-            return "{}".format(self.legacy_id)
+        return f"{self.author_name}, {self.order_code}"
 
     def field_dict(self):
         return model_to_dict(self)

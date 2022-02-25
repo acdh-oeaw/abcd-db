@@ -10,11 +10,6 @@ urlpatterns = [
         name='event-autocomplete'
     ),
     url(
-        r'^reference-autocomplete/$',
-        dal_views.ReferenceAC.as_view(),
-        name='reference-autocomplete'
-    ),
-    url(
         r'^work-autocomplete/$',
         dal_views.WorkAC.as_view(),
         name='work-autocomplete'

@@ -29,30 +29,6 @@ urlpatterns = [
         views.EventDelete.as_view(),
         name='event_delete'),
     url(
-        r'^reference/$',
-        views.ReferenceListView.as_view(),
-        name='reference_browse'
-    ),
-    url(
-        r'^reference/detail/(?P<pk>[0-9]+)$',
-        views.ReferenceDetailView.as_view(),
-        name='reference_detail'
-    ),
-    url(
-        r'^reference/create/$',
-        views.ReferenceCreate.as_view(),
-        name='reference_create'
-    ),
-    url(
-        r'^reference/edit/(?P<pk>[0-9]+)$',
-        views.ReferenceUpdate.as_view(),
-        name='reference_edit'
-    ),
-    url(
-        r'^reference/delete/(?P<pk>[0-9]+)$',
-        views.ReferenceDelete.as_view(),
-        name='reference_delete'),
-    url(
         r'^work/$',
         views.WorkListView.as_view(),
         name='work_browse'
