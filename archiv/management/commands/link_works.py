@@ -1,4 +1,5 @@
 import re
+import pandas as pd
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand
 from tqdm import tqdm
@@ -10,7 +11,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
 
-        dict_lit = {}
+        miss_matches = []
 
         all_events = Event.objects.all()
 
@@ -44,13 +45,10 @@ class Command(BaseCommand):
                         try:
                             related_work = Work.objects.get(order_code=lit_string)
                         except ObjectDoesNotExist:
+                            failed = [event.id, lit_string]
+                            failed.append(miss_matches)
                             continue
 
                         event.work.add(related_work)
-
-                        if event.id in dict_lit:
-                            if lit_string not in dict_lit[event.id]:
-                                dict_lit[event.id].append(lit_string)
-
-                        else:
-                            dict_lit[event.id] = [lit_string]
+        df = pd.DataFrame(miss_matches)
+        df.to_csv('./media/miss_matches.csv')
