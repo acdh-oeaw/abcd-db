@@ -421,10 +421,16 @@ class Work(models.Model):
         verbose_name = "Literatur"
 
     def __str__(self):
-        return f"{self.author_name}, {self.order_code}"
+        return f"{self.author_name}, {self.work_title()}, {self.order_code}"
 
     def field_dict(self):
         return model_to_dict(self)
+
+    def work_title(self):
+        if self.full_quote:
+            title_parts = self.full_quote.split(':')
+            if len(title_parts) > 1:
+                return title_parts[1].split(',')[0]
 
     @classmethod
     def get_listview_url(self):

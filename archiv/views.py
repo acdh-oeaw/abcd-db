@@ -195,7 +195,7 @@ class EventListView(GenericListView):
     formhelper_class = EventFilterFormHelper
     table_class = EventTable
     init_columns = [
-        'id', 'order_code',
+        'id', 'main_text'
     ]
     enable_merge = False
 
@@ -245,7 +245,7 @@ class WorkListView(GenericListView):
     formhelper_class = WorkFilterFormHelper
     table_class = WorkTable
     init_columns = [
-        'id', 'order_code',
+        'id', 'author_name', 'order_code',
     ]
     enable_merge = False
 
