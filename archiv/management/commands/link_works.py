@@ -1,7 +1,7 @@
 import re
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand
-
+from tqdm import tqdm
 from archiv.models import Event, Work
 
 
@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
         all_events = Event.objects.all()
 
-        for event in all_events:
+        for event in tqdm(all_events, total=len(all_events)):
             lit_main_text = event.main_text
             lit_notes_lit = event.notes_lit
             lit_notes_img = event.notes_img
