@@ -28,11 +28,12 @@ class Command(BaseCommand):
                 event_error.append([row['input_Sortiercode'], e])
                 continue
             for x in fm.keys():
-                setattr(
-                    item,
-                    fm[x],
-                    row[x]
-                )
+                if isinstance(row[x], str):
+                    setattr(
+                        item,
+                        fm[x],
+                        row[x]
+                    )
             row_data = f"{json.dumps(row.to_dict(), cls=DjangoJSONEncoder)}"
             item.orig_data_csv = row_data
             try:

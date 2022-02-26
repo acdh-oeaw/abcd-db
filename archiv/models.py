@@ -318,7 +318,8 @@ class Event(models.Model):
             except ValueError:
                 dto = None
             self.not_before = dto
-        self.full_text = self.join_search_fields()
+        if self.main_text:
+            self.full_text = self.join_search_fields()
         super(Event, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -360,12 +361,9 @@ class Event(models.Model):
         return reverse('archiv:event_create')
 
     def join_search_fields(self):
-        full_text = " ".join(
-            set(
-                [getattr(self, x) for x in self.search_field_names() if getattr(self, x) != 'nan']
-            )
-        )
-        return strip_tags(full_text).replace('\n', ' ')
+        full_text = set([getattr(self, x, '') for x in self.search_field_names() if getattr(self, x, None) is not None])
+        full_text_str = " ".join([x for x in full_text if isinstance(x, str) and x != 'nan'])
+        return strip_tags(full_text_str).replace('\n', ' ')
 
     def get_absolute_url(self):
         return reverse('archiv:event_detail', kwargs={'pk': self.id})
