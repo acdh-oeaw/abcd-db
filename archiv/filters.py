@@ -27,16 +27,16 @@ CHAR_LOOKUP_CHOICES = [
 
 
 class EventSimpleFilter(django_filters.FilterSet):
-    main_text = django_filters.CharFilter(
+    full_text = django_filters.CharFilter(
         lookup_expr='icontains',
-        help_text=Event._meta.get_field('main_text').help_text,
-        label=Event._meta.get_field('main_text').verbose_name
+        help_text=Event._meta.get_field('full_text').help_text,
+        label=Event._meta.get_field('full_text').verbose_name
     )
 
     class Meta:
         model = Event
         fields = [
-            'main_text',
+            'full_text',
         ]
 
 

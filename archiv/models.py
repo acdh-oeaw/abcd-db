@@ -2,6 +2,7 @@
 from datetime import datetime
 from django.db import models
 from django.urls import reverse
+from django.utils.html import strip_tags
 from ckeditor.fields import RichTextField
 
 from browsing.browsing_utils import model_to_dict
@@ -296,6 +297,12 @@ class Event(models.Model):
         blank=True,
         related_name="work_referenced_in"
     )
+    full_text = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Volltext Feld",
+        help_text="Volltext Feld (technisch notwendig)"
+    )
 
     class Meta:
 
@@ -311,6 +318,7 @@ class Event(models.Model):
             except ValueError:
                 dto = None
             self.not_before = dto
+        self.full_text = self.join_search_fields()
         super(Event, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -321,6 +329,19 @@ class Event(models.Model):
 
     def field_dict(self):
         return model_to_dict(self)
+
+    @classmethod
+    def search_field_names(self):
+        text_fields = [
+            'main_text',
+            'notes_lit',
+            'notes_img',
+            'notes_facs',
+            'notes_archive',
+            'notes_text',
+            'note'
+        ]
+        return text_fields
 
     @classmethod
     def get_listview_url(self):
@@ -337,6 +358,14 @@ class Event(models.Model):
     @classmethod
     def get_createview_url(self):
         return reverse('archiv:event_create')
+
+    def join_search_fields(self):
+        full_text = " ".join(
+            set(
+                [getattr(self, x) for x in self.search_field_names() if getattr(self, x) != 'nan']
+            )
+        )
+        return strip_tags(full_text).replace('\n', ' ')
 
     def get_absolute_url(self):
         return reverse('archiv:event_detail', kwargs={'pk': self.id})
