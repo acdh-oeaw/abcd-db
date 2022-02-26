@@ -3,6 +3,7 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Fieldset
 from crispy_forms.bootstrap import Accordion, AccordionGroup
+from dal import autocomplete
 from gnd.forms import GndModelForm
 
 from vocabs.models import SkosConcept
@@ -185,22 +186,15 @@ class EventFilterFormHelper(FormHelper):
 
 
 class EventForm(forms.ModelForm):
-    key_word = forms.ModelMultipleChoiceField(
-        required=False,
-        label="Stichwort",
-        queryset=SkosConcept.objects.filter(
-            tech_collection__pref_label="event__key_word"
-        )
-    )
-    work = forms.ModelMultipleChoiceField(
-        required=False,
-        label="Literatur",
-        queryset=Work.objects.all()
-    )
 
     class Meta:
         model = Event
         fields = "__all__"
+        widgets = {
+            'work': autocomplete.ModelSelect2Multiple(
+                url='archiv-ac:work-autocomplete'
+            )
+        }
 
     def __init__(self, *args, **kwargs):
         super(EventForm, self).__init__(*args, **kwargs)

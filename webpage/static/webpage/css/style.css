@@ -19,6 +19,10 @@ header.masthead {
   padding-bottom: 8rem;
 }
 
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    display: list-item !important;
+    overflow: inherit !important;
+}
 
 .showcase .showcase-text {
   padding: 3rem;
