@@ -13,7 +13,10 @@ class Command(BaseCommand):
         miss_matches = []
         all_events = Event.objects.all()
         for event in tqdm(all_events, total=len(all_events)):
-            number = re.findall('([0-9]+)/[0-9]+', event.full_text)
+            try:
+                number = re.findall('([0-9]+)/[0-9]+', event.full_text)
+            except TypeError:
+                continue
             works = []
             for literature in set(number):
                 number_int = int(literature)
