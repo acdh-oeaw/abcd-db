@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from django.views.generic.base import RedirectView
 from . import views
+from archiv import search_result_views
 
 app_name = 'webpage'
 
@@ -10,6 +11,7 @@ urlpatterns = [
     url(r'^favicon\.ico$', favicon_view),
     url(r'^imprint', views.ImprintView.as_view(), name="imprint"),
     url(r'^$', views.GenericWebpageView.as_view(), name="start"),
+    url(r'^results', search_result_views.EventResultView.as_view(), name="results"),
     url(r'^accounts/login/$', views.user_login, name='user_login'),
     url(r'^logout/$', views.user_logout, name='user_logout'),
     url(r'^project-info/$', views.project_info, name='project_info'),

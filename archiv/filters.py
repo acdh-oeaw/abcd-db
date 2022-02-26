@@ -26,6 +26,20 @@ CHAR_LOOKUP_CHOICES = [
 ]
 
 
+class EventSimpleFilter(django_filters.FilterSet):
+    main_text = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=Event._meta.get_field('main_text').help_text,
+        label=Event._meta.get_field('main_text').verbose_name
+    )
+
+    class Meta:
+        model = Event
+        fields = [
+            'main_text',
+        ]
+
+
 class EventListFilter(django_filters.FilterSet):
     legacy_id = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,

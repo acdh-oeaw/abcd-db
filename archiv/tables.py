@@ -11,6 +11,19 @@ from . models import (
 )
 
 
+class ResultsTable(tables.Table):
+    id = tables.LinkColumn(verbose_name='ID')
+    main_text = tables.columns.TemplateColumn(
+        template_code="{{ record.main_text|safe }}"
+    )
+
+    class Meta:
+        model = Event
+        fields = ("id", "main_text", )
+        sequence = ('id',)
+        attrs = {"class": "table table-responsive table-hover"}
+
+
 class InstitutionTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')

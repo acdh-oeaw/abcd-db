@@ -1,0 +1,26 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %}Suchergebnisse{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="card" style="padding-top: 2em;">
+        <div class="card-header" style="text-align: center;">
+            {% with table.paginator.count as total %}
+                <h1>{{ total }} Treffer für <strong>{{ query_string }}</strong></h1>
+            {% endwith %}
+            {% include "archiv/search_form.html" %}
+        </div>
+        <div class="card-body table-responsive">
+            
+            {% include 'browsing/partials/download_menu.html' %}
+            {% block table %}
+            {% include 'browsing/partials/table.html' %}
+            {% endblock table %}
+            {% block pagination.allpages %}
+            {% include 'browsing/partials/pagination.html' %}
+            {% endblock pagination.allpages %}
+        </div>
+    </div>
+</div>
+{% endblock %}
