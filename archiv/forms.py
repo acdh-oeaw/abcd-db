@@ -6,7 +6,6 @@ from crispy_forms.bootstrap import Accordion, AccordionGroup
 from dal import autocomplete
 from gnd.forms import GndModelForm
 
-from vocabs.models import SkosConcept
 from . models import (
     Event,
     Work,
