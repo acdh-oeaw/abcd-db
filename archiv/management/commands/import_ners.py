@@ -32,6 +32,7 @@ class Command(BaseCommand):
                             pers, _ = Person.objects.get_or_create(title=ent.text)
                         except Exception as e:
                             print(e)
+                            print(ent.text)
                             continue
                         x.person.add(pers)
                 if ent.label_ == 'LOC':
@@ -40,5 +41,6 @@ class Command(BaseCommand):
                             loc, _ = Place.objects.get_or_create(title=ent.text)
                         except Exception as e:
                             print(e)
+                            print(ent.text)
                             continue
                         x.place.add(loc)
