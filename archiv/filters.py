@@ -51,8 +51,8 @@ class EventListFilter(django_filters.FilterSet):
         help_text=Event._meta.get_field('date_written').help_text,
         label=Event._meta.get_field('date_written').verbose_name
     )
-    main_text = django_filters.LookupChoiceFilter(
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+    main_text = django_filters.CharFilter(
+        lookup_expr='icontains',
         help_text=Event._meta.get_field('main_text').help_text,
         label=Event._meta.get_field('main_text').verbose_name
     )
@@ -101,6 +101,42 @@ class EventListFilter(django_filters.FilterSet):
         label=Event._meta.get_field('work').verbose_name,
         widget=autocomplete.Select2Multiple(
             url="/archiv-ac/work-autocomplete",
+            attrs={
+                'data-placeholder': 'Autocomplete ...',
+                'data-minimum-input-length': 2,
+            },
+        )
+    )
+    person = django_filters.ModelMultipleChoiceFilter(
+        queryset=Person.objects.all(),
+        help_text=Event._meta.get_field('person').help_text,
+        label=Event._meta.get_field('person').verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="/archiv-ac/person-autocomplete",
+            attrs={
+                'data-placeholder': 'Autocomplete ...',
+                'data-minimum-input-length': 2,
+            },
+        )
+    )
+    place = django_filters.ModelMultipleChoiceFilter(
+        queryset=Place.objects.all(),
+        help_text=Event._meta.get_field('place').help_text,
+        label=Event._meta.get_field('place').verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="/archiv-ac/place-autocomplete",
+            attrs={
+                'data-placeholder': 'Autocomplete ...',
+                'data-minimum-input-length': 2,
+            },
+        )
+    )
+    institution = django_filters.ModelMultipleChoiceFilter(
+        queryset=Institution.objects.all(),
+        help_text=Event._meta.get_field('institution').help_text,
+        label=Event._meta.get_field('institution').verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="/archiv-ac/institution-autocomplete",
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,

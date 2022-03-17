@@ -280,17 +280,20 @@ class Event(models.Model):
     person = models.ManyToManyField(
         'Person',
         blank=True,
-        related_name="rvn_person_mentioned_in"
+        related_name="rvn_person_mentioned_in",
+        verbose_name="erwähnte Personen"
     )
     place = models.ManyToManyField(
         'Place',
         blank=True,
-        related_name="place_mentioned_in"
+        related_name="place_mentioned_in",
+        verbose_name="erwähnte Orte"
     )
     institution = models.ManyToManyField(
         'Institution',
         blank=True,
-        related_name="institution_mentioned_in"
+        related_name="institution_mentioned_in",
+        verbose_name="erwähnte Institutionen"
     )
     work = models.ManyToManyField(
         'Work',

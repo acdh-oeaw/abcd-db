@@ -3,8 +3,46 @@ from django.db.models import Q
 from dal import autocomplete
 from . models import (
     Event,
-    Work
+    Work,
+    Person,
+    Place,
+    Institution
 )
+
+
+class PersonAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Person.objects.all()
+
+        if self.q:
+            qs = qs.filter(
+                Q(title__icontains=self.q) |
+                Q(gnd_gnd_id=self.q) |
+                Q(gnd_pref_name=self.q)
+            )
+        return qs
+
+
+class PlaceAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Place.objects.all()
+
+        if self.q:
+            qs = qs.filter(
+                Q(title__icontains=self.q)
+            )
+        return qs
+
+
+class InstitutionAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Institution.objects.all()
+
+        if self.q:
+            qs = qs.filter(
+                Q(title__icontains=self.q)
+            )
+        return qs
 
 
 class EventAC(autocomplete.Select2QuerySetView):

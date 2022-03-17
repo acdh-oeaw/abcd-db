@@ -53,7 +53,7 @@ class PersonListView(GenericListView):
 class PersonDetailView(BaseDetailView):
 
     model = Person
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class PersonCreate(BaseCreateView):
@@ -103,14 +103,14 @@ class PlaceListView(GenericListView):
 class PlaceDetailView(BaseDetailView):
 
     model = Place
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class PlaceCreate(BaseCreateView):
 
     model = Place
     form_class = PlaceForm
-    template_name = 'browsing/generic_create.html'
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -121,7 +121,7 @@ class PlaceUpdate(BaseUpdateView):
 
     model = Place
     form_class = PlaceForm
-    template_name = 'browsing/generic_create.html'
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -153,14 +153,14 @@ class InstitutionListView(GenericListView):
 class InstitutionDetailView(BaseDetailView):
 
     model = Institution
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class InstitutionCreate(BaseCreateView):
 
     model = Institution
     form_class = InstitutionForm
-    template_name = 'browsing/generic_create.html'
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -171,7 +171,7 @@ class InstitutionUpdate(BaseUpdateView):
 
     model = Institution
     form_class = InstitutionForm
-    template_name = 'browsing/generic_create.html'
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -203,14 +203,14 @@ class EventListView(GenericListView):
 class EventDetailView(BaseDetailView):
 
     model = Event
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class EventCreate(BaseCreateView):
 
     model = Event
     form_class = EventForm
-    template_name = 'browsing/generic_create.html'
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -221,7 +221,7 @@ class EventUpdate(BaseUpdateView):
 
     model = Event
     form_class = EventForm
-    template_name = 'browsing/generic_create.html'
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -253,14 +253,14 @@ class WorkListView(GenericListView):
 class WorkDetailView(BaseDetailView):
 
     model = Work
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class WorkCreate(BaseCreateView):
 
     model = Work
     form_class = WorkForm
-    template_name = 'browsing/generic_create.html'
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -271,7 +271,7 @@ class WorkUpdate(BaseUpdateView):
 
     model = Work
     form_class = WorkForm
-    template_name = 'browsing/generic_create.html'
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):

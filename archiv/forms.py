@@ -153,16 +153,24 @@ class EventFilterFormHelper(FormHelper):
         self.helper.form_tag = False
         self.add_input(Submit('Filter', 'Search'))
         self.layout = Layout(
-            Fieldset(
-                'Basic search options',
-                'id',
-                'main_text',
-                'work',
-                css_id="basic_search_fields"
+            Accordion(
+                AccordionGroup(
+                    'Volltext und Bibliographie',
+                    'main_text',
+                    'work',
+                    css_id="basic_search_fields"
+                )
             ),
             Accordion(
                 AccordionGroup(
-                    'Advanced search',
+                    'Personen, Orte, Institutionen',
+                    'person',
+                    'place',
+                    'institution',
+                    css_id="entities"
+                ),
+                AccordionGroup(
+                    'weitere Suchoptionen',
                     'date_written',
                     'not_before',
                     'not_after',
@@ -178,6 +186,7 @@ class EventFilterFormHelper(FormHelper):
                 AccordionGroup(
                     'admin',
                     'legacy_id',
+                    'id',
                     css_id="admin_search"
                 ),
             )
@@ -188,11 +197,24 @@ class EventForm(forms.ModelForm):
 
     class Meta:
         model = Event
-        fields = "__all__"
+        exclude = [
+            'legacy_id',
+            'orig_data_csv',
+            'full_text'
+        ]
         widgets = {
             'work': autocomplete.ModelSelect2Multiple(
                 url='archiv-ac:work-autocomplete'
-            )
+            ),
+            'person': autocomplete.ModelSelect2Multiple(
+                url='archiv-ac:person-autocomplete'
+            ),
+            'place': autocomplete.ModelSelect2Multiple(
+                url='archiv-ac:place-autocomplete'
+            ),
+            'institution': autocomplete.ModelSelect2Multiple(
+                url='archiv-ac:institution-autocomplete'
+            ),
         }
 
     def __init__(self, *args, **kwargs):
