@@ -26,6 +26,10 @@ class Command(BaseCommand):
             text = strip_tags(orig_text).replace('\n', ' ')
             doc = nlp(text)
             for ent in doc.ents:
+                if not ent.text[0].isalpha():
+                    continue
+                if ent.text[0].islower():
+                    continue
                 if ent.label_ == 'PER':
                     if ' ' in ent.text and ent.text not in PERS_TO_EXLUDE and len(ent.text) > 7:
                         try:
@@ -35,7 +39,7 @@ class Command(BaseCommand):
                             print(ent.text)
                             continue
                         x.person.add(pers)
-                if ent.label_ == 'LOC':
+                elif ent.label_ == 'LOC':
                     if len(ent.text) > 3:
                         try:
                             loc, _ = Place.objects.get_or_create(title=ent.text)
@@ -44,3 +48,5 @@ class Command(BaseCommand):
                             print(ent.text)
                             continue
                         x.place.add(loc)
+                else:
+                    pass

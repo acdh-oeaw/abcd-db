@@ -84,11 +84,6 @@ class PlaceFilterFormHelper(FormHelper):
         self.helper.form_tag = False
         self.add_input(Submit('Filter', 'Search'))
         self.layout = Layout(
-            Fieldset(
-                'Basic search options',
-                'id',
-                css_id="basic_search_fields"
-            ),
             Accordion(
                 AccordionGroup(
                     'Advanced search',
