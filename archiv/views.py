@@ -203,7 +203,7 @@ class EventListView(GenericListView):
 class EventDetailView(BaseDetailView):
 
     model = Event
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'archiv/event_detail.html'
 
 
 class EventCreate(BaseCreateView):

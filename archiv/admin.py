@@ -7,8 +7,21 @@ from . models import (
     Place,
     Institution
 )
+
+
+@admin.register(Person)
+class PersonAdmin(admin.ModelAdmin):
+    model = Person
+    search_fields = [
+        'title',
+    ]
+    list_display = [
+        'title',
+        'gnd_gnd_id',
+    ]
+
+
 admin.site.register(Event)
 admin.site.register(Work)
-admin.site.register(Person)
 admin.site.register(Place)
 admin.site.register(Institution)
