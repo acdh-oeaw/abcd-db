@@ -4,6 +4,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.html import strip_tags
 from ckeditor.fields import RichTextField
+from next_prev import next_in_order, prev_in_order
 
 from browsing.browsing_utils import model_to_dict
 from vocabs.models import SkosConcept
@@ -46,20 +47,20 @@ class Place(models.Model):
         return reverse('archiv:place_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
             return reverse(
                 'archiv:place_detail',
-                kwargs={'pk': next.first().id}
+                kwargs={'pk': next.id}
             )
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = prev_in_order(self)
         if prev:
             return reverse(
                 'archiv:place_detail',
-                kwargs={'pk': prev.first().id}
+                kwargs={'pk': prev.id}
             )
         return False
 
@@ -91,20 +92,20 @@ class Institution(models.Model):
         return reverse('archiv:institution_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
             return reverse(
                 'archiv:institution_detail',
-                kwargs={'pk': next.first().id}
+                kwargs={'pk': next.id}
             )
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = prev_in_order(self)
         if prev:
             return reverse(
                 'archiv:institution_detail',
-                kwargs={'pk': prev.first().id}
+                kwargs={'pk': prev.id}
             )
         return False
 
@@ -146,20 +147,20 @@ class Person(GndPersonBase):
         return reverse('archiv:person_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
             return reverse(
                 'archiv:person_detail',
-                kwargs={'pk': next.first().id}
+                kwargs={'pk': next.id}
             )
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = prev_in_order(self)
         if prev:
             return reverse(
                 'archiv:person_detail',
-                kwargs={'pk': prev.first().id}
+                kwargs={'pk': prev.id}
             )
         return False
 
@@ -272,13 +273,6 @@ class Event(models.Model):
         is_public=True,
         data_lookup="text_Notizen",
     )
-    orig_data_csv = RichTextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-    ).set_extra(
-        is_public=True
-    )
     person = models.ManyToManyField(
         'Person',
         blank=True,
@@ -380,20 +374,20 @@ class Event(models.Model):
         return reverse('archiv:event_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
             return reverse(
                 'archiv:event_detail',
-                kwargs={'pk': next.first().id}
+                kwargs={'pk': next.id}
             )
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = prev_in_order(self)
         if prev:
             return reverse(
                 'archiv:event_detail',
-                kwargs={'pk': prev.first().id}
+                kwargs={'pk': prev.id}
             )
         return False
 
@@ -490,19 +484,19 @@ class Work(models.Model):
         return reverse('archiv:work_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
             return reverse(
                 'archiv:work_detail',
-                kwargs={'pk': next.first().id}
+                kwargs={'pk': next.id}
             )
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = prev_in_order(self)
         if prev:
             return reverse(
                 'archiv:work_detail',
-                kwargs={'pk': prev.first().id}
+                kwargs={'pk': prev.id}
             )
         return False

@@ -6,7 +6,9 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Event
-        fields = "__all__"
+        exclude = [
+            'full_text',
+        ]
         depth = 1
 
 
