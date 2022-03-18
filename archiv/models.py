@@ -168,6 +168,7 @@ class Event(models.Model):
     """ Ereignis """
     legacy_id = models.CharField(
         max_length=300, blank=True,
+        db_index=True,
         verbose_name="Legacy ID"
     ).set_extra(
         is_public=True,
@@ -175,6 +176,7 @@ class Event(models.Model):
     )
     id = models.IntegerField(
         primary_key=True,
+        db_index=True,
         verbose_name="Ordnungsnummer",
         help_text="YYYYMMDD+curnr",
     ).set_extra(
