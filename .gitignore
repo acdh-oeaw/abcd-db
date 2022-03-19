@@ -39,3 +39,4 @@ staticfiles
 media/event_error.csv
 media/work_error.csv
 media/miss_matches.csv
+env_production.secret
