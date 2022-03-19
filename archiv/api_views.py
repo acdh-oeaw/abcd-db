@@ -1,13 +1,14 @@
 import django_filters.rest_framework
 from rest_framework.filters import OrderingFilter
 from rest_framework import viewsets
-from archiv.models import Event, Work, Place, Person, Institution
+from archiv.models import Event, Work, Place, Person, Institution, Wab
 from archiv.api_serializers import (
     EventSerializer,
     WorkSerializer,
     PersonSerializer,
     PlaceSerializer,
-    InstitutionSerializer
+    InstitutionSerializer,
+    WabSerializer
 )
 from archiv.filters import EventListFilter
 
@@ -52,6 +53,15 @@ class PlaceViewSet(viewsets.ModelViewSet):
 class InstitutionViewSet(viewsets.ModelViewSet):
     queryset = Institution.objects.all().distinct()
     serializer_class = InstitutionSerializer
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
+
+
+class WabViewSet(viewsets.ModelViewSet):
+    queryset = Wab.objects.all().distinct()
+    serializer_class = WabSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter

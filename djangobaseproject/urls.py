@@ -12,6 +12,7 @@ router.register(r'works', archiv_api_views.WorkViewSet)
 router.register(r'persons', archiv_api_views.PersonViewSet)
 router.register(r'places', archiv_api_views.PlaceViewSet)
 router.register(r'institutions', archiv_api_views.InstitutionViewSet)
+router.register(r'wabs', archiv_api_views.WabViewSet)
 
 
 urlpatterns = [

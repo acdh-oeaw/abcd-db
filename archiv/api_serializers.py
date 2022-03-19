@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from archiv.models import Event, Work, Place, Person, Institution
+from archiv.models import Event, Work, Place, Person, Institution, Wab
 
 
 class EventSerializer(serializers.HyperlinkedModelSerializer):
@@ -41,4 +41,14 @@ class InstitutionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Institution
         fields = "__all__"
+        depth = 1
+
+
+class WabSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Wab
+        exclude = [
+            'wab_xml',
+        ]
         depth = 1
