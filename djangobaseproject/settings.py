@@ -39,6 +39,9 @@ ALLOWED_HOSTS = [
     ADD_ALLOWED_HOST,
 ]
 
+GITLAB_TOKEN = os.environ.get('GITLAB_TOKEN')
+BRUCKNER_PERSON_URL = "https://gitlab.com/api/v4/projects/34600039/repository/files/100_register%2F101_persons%2FRegister_Personen.xml/raw?ref=main"  # noqa: 501
+
 
 # Application definition
 

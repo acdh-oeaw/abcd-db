@@ -133,6 +133,7 @@ class PersonFilterFormHelper(FormHelper):
                 AccordionGroup(
                     'Advanced search',
                     'title',
+                    'bruckner_entity',
                     css_id="more"
                 )
             )

@@ -112,6 +112,31 @@ class Institution(models.Model):
 
 class Person(GndPersonBase):
     title = models.CharField(max_length=250, blank=True, null=True)
+    bruckner_entity = models.BooleanField(
+        default=False,
+        verbose_name="Link zu Bruckner XML"
+    )
+    bruckner_entity_id = models.CharField(
+        blank=True,
+        null=True,
+        max_length=50,
+        verbose_name="Bruckner-Entity-ID",
+    )
+    bruckner_entity_xml = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="MEI:XML"
+    )
+    oeml_uri = models.URLField(
+        blank=True,
+        null=True,
+        verbose_name="Link zu ÖML Eintrag"
+    )
+    ablo_uri = models.URLField(
+        blank=True,
+        null=True,
+        verbose_name="Link zu ABLO Eintrag"
+    )
 
     class Meta:
 
