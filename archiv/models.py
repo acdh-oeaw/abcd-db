@@ -373,6 +373,12 @@ class Event(models.Model):
         is_public=True,
         data_lookup="text_Notizen",
     )
+    wab = models.ManyToManyField(
+        'Wab',
+        blank=True,
+        related_name="rvn_wab_mentioned_in",
+        verbose_name="erwähnte Bruckner Werke (WAB)"
+    )
     person = models.ManyToManyField(
         'Person',
         blank=True,

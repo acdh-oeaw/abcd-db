@@ -94,6 +94,12 @@
             </div>
         </div>
         <div class="col-md-5">
+          <legend>Bruckner Werke (WAB)</legend>
+          <ul>
+            {% for x in object.wab.all %}
+              <li><a href="{{ x.get_absolute_url }}">{{ x }}</a></li>
+            {% endfor %}
+          </ul>
           <legend>Personen</legend>
           <ul>
             {% for x in object.person.all %}
