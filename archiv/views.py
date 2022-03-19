@@ -10,32 +10,86 @@ from . filters import (
     WorkListFilter,
     PersonListFilter,
     PlaceListFilter,
-    InstitutionListFilter
+    InstitutionListFilter,
+    WabListFilter
 )
 from . forms import (
     EventForm, EventFilterFormHelper,
     WorkForm, WorkFilterFormHelper,
     PersonForm, PersonFilterFormHelper,
     PlaceForm, PlaceFilterFormHelper,
-    InstitutionForm, InstitutionFilterFormHelper
+    InstitutionForm, InstitutionFilterFormHelper,
+    WabForm, WabFilterFormHelper
 )
 from . tables import (
     EventTable,
     WorkTable,
     PersonTable,
     PlaceTable,
-    InstitutionTable
+    InstitutionTable,
+    WabTable
 )
 from . models import (
     Event,
     Work,
     Person,
     Place,
-    Institution
+    Institution,
+    Wab
 )
 from browsing.browsing_utils import (
     GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
 )
+
+
+class WabListView(GenericListView):
+
+    model = Wab
+    filter_class = WabListFilter
+    formhelper_class = WabFilterFormHelper
+    table_class = WabTable
+    init_columns = [
+        'id', 'title',
+    ]
+    enable_merge = False
+
+
+class WabDetailView(BaseDetailView):
+
+    model = Wab
+    template_name = 'archiv/generic_detail.html'
+
+
+class WabCreate(BaseCreateView):
+
+    model = Wab
+    form_class = WabForm
+    template_name = 'archiv/generic_create.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(WabCreate, self).dispatch(*args, **kwargs)
+
+
+class WabUpdate(BaseUpdateView):
+
+    model = Wab
+    form_class = WabForm
+    template_name = 'archiv/generic_create.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(WabUpdate, self).dispatch(*args, **kwargs)
+
+
+class WabDelete(DeleteView):
+    model = Wab
+    template_name = 'webpage/confirm_delete.html'
+    success_url = reverse_lazy('archiv:wab_browse')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(WabDelete, self).dispatch(*args, **kwargs)
 
 
 class PersonListView(GenericListView):

@@ -7,7 +7,8 @@ from . models import (
     Work,
     Place,
     Person,
-    Institution
+    Institution,
+    Wab
 )
 
 
@@ -81,5 +82,15 @@ class WorkTable(tables.Table):
 
     class Meta:
         model = Work
+        sequence = ('id',)
+        attrs = {"class": "table table-responsive table-hover"}
+
+
+class WabTable(tables.Table):
+
+    id = tables.LinkColumn(verbose_name='ID')
+
+    class Meta:
+        model = Wab
         sequence = ('id',)
         attrs = {"class": "table table-responsive table-hover"}

@@ -11,7 +11,8 @@ from . models import (
     Work,
     Person,
     Place,
-    Institution
+    Institution,
+    Wab
 )
 
 
@@ -268,3 +269,40 @@ class WorkForm(forms.ModelForm):
         self.helper.label_class = 'col-md-3'
         self.helper.field_class = 'col-md-9'
         self.helper.add_input(Submit('submit', 'save'),)
+
+
+class WabForm(forms.ModelForm):
+
+    class Meta:
+        model = Wab
+        exclude = [
+            'wab_xml',
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super(WabForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = True
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-9'
+        self.helper.add_input(Submit('submit', 'save'),)
+
+
+class WabFilterFormHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super(WabFilterFormHelper, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.form_class = 'genericFilterForm'
+        self.form_method = 'GET'
+        self.helper.form_tag = False
+        self.add_input(Submit('Filter', 'Search'))
+        self.layout = Layout(
+            Accordion(
+                AccordionGroup(
+                    'Advanced search',
+                    'title',
+                    css_id="more"
+                )
+            )
+        )

@@ -53,6 +53,30 @@ urlpatterns = [
         views.WorkDelete.as_view(),
         name='work_delete'),
     url(
+        r'^wab/$',
+        views.WabListView.as_view(),
+        name='wab_browse'
+    ),
+    url(
+        r'^wab/detail/(?P<pk>[0-9]+)$',
+        views.WabDetailView.as_view(),
+        name='wab_detail'
+    ),
+    url(
+        r'^wab/create/$',
+        views.WabCreate.as_view(),
+        name='wab_create'
+    ),
+    url(
+        r'^wab/edit/(?P<pk>[0-9]+)$',
+        views.WabUpdate.as_view(),
+        name='wab_edit'
+    ),
+    url(
+        r'^wab/delete/(?P<pk>[0-9]+)$',
+        views.WabDelete.as_view(),
+        name='wab_delete'),
+    url(
         r'^person/$',
         views.PersonListView.as_view(),
         name='person_browse'

@@ -9,7 +9,8 @@ from . models import (
     Work,
     Person,
     Place,
-    Institution
+    Institution,
+    Wab
 )
 
 NUMBER_LOOKUP_CHOICES = [
@@ -239,4 +240,17 @@ class InstitutionListFilter(django_filters.FilterSet):
 
     class Meta:
         model = Institution
+        fields = '__all__'
+
+
+class WabListFilter(django_filters.FilterSet):
+
+    title = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=Wab._meta.get_field('title').help_text,
+        label=Wab._meta.get_field('title').verbose_name
+    )
+
+    class Meta:
+        model = Wab
         fields = '__all__'

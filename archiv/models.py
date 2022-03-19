@@ -20,6 +20,81 @@ def set_extra(self, **kwargs):
 models.Field.set_extra = set_extra
 
 
+class Wab(models.Model):
+    title = models.CharField(
+        max_length=250, blank=True, null=True
+    )
+    wab_id = models.CharField(
+        max_length=3, unique=True,
+        verbose_name="WAB Nummer",
+        help_text="z.B. 003, 021, 123"
+    )
+    date = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name="Maschinenlesbare Datierung",
+        help_text="z.B. 1874-12-24"
+    )
+    date_written = models.CharField(
+        blank=True, null=True,
+        max_length=250,
+        verbose_name="Datierung des Werkes",
+        help_text="z.B. Nicht vor September 1772"
+    )
+    wab_xml = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="XML/MEI des Werkes"
+    )
+
+    class Meta:
+
+        ordering = [
+            'wab_id',
+        ]
+
+    def __str__(self):
+        return f"{self.title}"
+
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_listview_url(self):
+        return reverse('archiv:wab_browse')
+
+    @classmethod
+    def get_createview_url(self):
+        return reverse('archiv:wab_create')
+
+    def get_absolute_url(self):
+        return reverse('archiv:wab_detail', kwargs={'pk': self.id})
+
+    def get_delete_url(self):
+        return reverse('archiv:wab_delete', kwargs={'pk': self.id})
+
+    def get_edit_url(self):
+        return reverse('archiv:wab_edit', kwargs={'pk': self.id})
+
+    def get_next(self):
+        next = next_in_order(self)
+        if next:
+            return reverse(
+                'archiv:wab_detail',
+                kwargs={'pk': next.id}
+            )
+        return False
+
+    def get_prev(self):
+        prev = prev_in_order(self)
+        if prev:
+            return reverse(
+                'archiv:wab_detail',
+                kwargs={'pk': prev.id}
+            )
+        return False
+
+
 class Place(models.Model):
     title = models.CharField(max_length=250, blank=True, null=True)
 
