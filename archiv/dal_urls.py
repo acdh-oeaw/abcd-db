@@ -15,6 +15,11 @@ urlpatterns = [
         name='work-autocomplete'
     ),
     url(
+        r'^wab-autocomplete/$',
+        dal_views.WabAC.as_view(),
+        name='wab-autocomplete'
+    ),
+    url(
         r'^person-autocomplete/$',
         dal_views.PersonAC.as_view(),
         name='person-autocomplete'

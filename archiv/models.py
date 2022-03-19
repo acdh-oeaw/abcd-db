@@ -311,7 +311,7 @@ class Event(models.Model):
     main_text = RichTextField(
         blank=True, null=True,
         verbose_name="Haupttext",
-        help_text="whatever",
+        help_text="Beschreibung des Ereignis",
     ).set_extra(
         is_public=True,
         data_lookup="text_Text1",
@@ -400,7 +400,9 @@ class Event(models.Model):
     work = models.ManyToManyField(
         'Work',
         blank=True,
-        related_name="work_referenced_in"
+        related_name="work_referenced_in",
+        verbose_name="Literatur",
+        help_text="Literaturangaben zu diesem Event"
     )
     full_text = models.TextField(
         blank=True,

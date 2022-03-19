@@ -67,6 +67,7 @@ class EventTable(tables.Table):
     institution = tables.columns.ManyToManyColumn()
     key_word = tables.columns.ManyToManyColumn()
     work = tables.columns.ManyToManyColumn()
+    wab = tables.columns.ManyToManyColumn()
     main_text = tables.columns.TemplateColumn(template_code="{{ record.main_text|safe }}")
 
     class Meta:

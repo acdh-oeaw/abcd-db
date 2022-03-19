@@ -144,6 +144,18 @@ class EventListFilter(django_filters.FilterSet):
             },
         )
     )
+    wab = django_filters.ModelMultipleChoiceFilter(
+        queryset=Wab.objects.all(),
+        help_text=Event._meta.get_field('wab').help_text,
+        label=Event._meta.get_field('wab').verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="/archiv-ac/wab-autocomplete",
+            attrs={
+                'data-placeholder': 'Autocomplete ...',
+                'data-minimum-input-length': 2,
+            },
+        )
+    )
     note = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Event._meta.get_field('note').help_text,

@@ -152,9 +152,9 @@ class EventFilterFormHelper(FormHelper):
         self.layout = Layout(
             Accordion(
                 AccordionGroup(
-                    'Volltext und Bibliographie',
+                    'Volltext und Werke',
                     'main_text',
-                    'work',
+                    'wab',
                     css_id="basic_search_fields"
                 )
             ),
@@ -168,6 +168,7 @@ class EventFilterFormHelper(FormHelper):
                 ),
                 AccordionGroup(
                     'weitere Suchoptionen',
+                    'work',
                     'date_written',
                     'not_before',
                     'not_after',
@@ -211,6 +212,9 @@ class EventForm(forms.ModelForm):
             ),
             'institution': autocomplete.ModelSelect2Multiple(
                 url='archiv-ac:institution-autocomplete'
+            ),
+            'wab': autocomplete.ModelSelect2Multiple(
+                url='archiv-ac:wab-autocomplete'
             ),
         }
 

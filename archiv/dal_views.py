@@ -6,7 +6,8 @@ from . models import (
     Work,
     Person,
     Place,
-    Institution
+    Institution,
+    Wab
 )
 
 
@@ -26,6 +27,17 @@ class PersonAC(autocomplete.Select2QuerySetView):
 class PlaceAC(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Place.objects.all()
+
+        if self.q:
+            qs = qs.filter(
+                Q(title__icontains=self.q)
+            )
+        return qs
+
+
+class WabAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Wab.objects.all()
 
         if self.q:
             qs = qs.filter(
