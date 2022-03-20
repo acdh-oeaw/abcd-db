@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'django_filters',
     'django_tables2',
     'ckeditor',
+    'django_spaghetti',
     'webpage',
     'browsing',
     'infos',
@@ -67,6 +68,12 @@ INSTALLED_APPS = [
     'archiv',
     'gnd',
 ]
+
+SPAGHETTI_SAUCE = {
+    'apps': ['archiv', 'vocabs'],
+    'show_fields': False,
+    'exclude': {'auth': ['user']},
+}
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
