@@ -234,6 +234,11 @@ class PersonListFilter(django_filters.FilterSet):
         help_text=Person._meta.get_field('title').help_text,
         label=Person._meta.get_field('title').verbose_name
     )
+    gnd_gnd_id = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
+        help_text=Person._meta.get_field('gnd_gnd_id').help_text,
+        label=Person._meta.get_field('gnd_gnd_id').verbose_name
+    )
 
     class Meta:
         model = Person
