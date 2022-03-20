@@ -239,6 +239,16 @@ class PersonListFilter(django_filters.FilterSet):
         help_text=Person._meta.get_field('gnd_gnd_id').help_text,
         label=Person._meta.get_field('gnd_gnd_id').verbose_name
     )
+    ablo_uri = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
+        help_text=Person._meta.get_field('ablo_uri').help_text,
+        label=Person._meta.get_field('ablo_uri').verbose_name
+    )
+    oeml_uri = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
+        help_text=Person._meta.get_field('oeml_uri').help_text,
+        label=Person._meta.get_field('oeml_uri').verbose_name
+    )
 
     class Meta:
         model = Person

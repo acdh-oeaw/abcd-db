@@ -127,13 +127,15 @@ class PersonFilterFormHelper(FormHelper):
         self.layout = Layout(
             Fieldset(
                 'Basic search options',
-                'gnd_gnd_id',
+                'title',
                 css_id="basic_search_fields"
             ),
             Accordion(
                 AccordionGroup(
                     'Advanced search',
-                    'title',
+                    'gnd_gnd_id',
+                    'ablo_uri',
+                    'oeml_uri',
                     'bruckner_entity',
                     css_id="more"
                 )
