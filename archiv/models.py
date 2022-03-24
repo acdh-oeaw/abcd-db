@@ -419,6 +419,7 @@ class Event(models.Model):
         verbose_name = "Ereignis"
 
     def save(self, *args, **kwargs):
+        super(Event, self).save(*args, **kwargs)
         if not self.not_before:
             try:
                 dto = datetime.strptime(str(self.id)[:8], '%Y%m%d').date()
