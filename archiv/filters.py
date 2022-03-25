@@ -3,7 +3,7 @@ import django_filters
 
 from dal import autocomplete
 from vocabs.models import SkosConcept
-
+from archiv.filter_utils import SchrederFilter
 from . models import (
     Event,
     Work,
@@ -27,21 +27,25 @@ CHAR_LOOKUP_CHOICES = [
 ]
 
 
-class EventSimpleFilter(django_filters.FilterSet):
+class EventSimpleFilter(SchrederFilter):
     full_text = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=Event._meta.get_field('full_text').help_text,
         label=Event._meta.get_field('full_text').verbose_name
+    )
+    main_text = django_filters.CharFilter(
+        method='scheder_filtering'
     )
 
     class Meta:
         model = Event
         fields = [
             'full_text',
+            'main_text'
         ]
 
 
-class EventListFilter(django_filters.FilterSet):
+class EventListFilter(SchrederFilter):
     legacy_id = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Event._meta.get_field('legacy_id').help_text,
@@ -54,31 +58,40 @@ class EventListFilter(django_filters.FilterSet):
     )
     main_text = django_filters.CharFilter(
         lookup_expr='icontains',
-        help_text=Event._meta.get_field('main_text').help_text,
-        label=Event._meta.get_field('main_text').verbose_name
+        help_text="Beispiel: 'Richard Wagner' findet alle Datensätze,\
+            die 'Richard Wagner' im Haupttext enthalten, aber auch z.B.\
+                'Richard Wagners Opern",
+        label="Einfache Suche im Haupttext"
     )
-    notes_lit = django_filters.LookupChoiceFilter(
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+    main_text_scheder = django_filters.CharFilter(
+        method='scheder_filtering',
+        field_name='main_text',
+        help_text="Beispiel: +Richard +Wagner -Verein = alle Datensätze,\
+            die Richard UND Wagner aber NICHT Verein enthalten, werden angezeigt",
+        label="Erweiterte Suche im Haupttext"
+    )
+    notes_lit = django_filters.CharFilter(
+        lookup_expr='icontains',
         help_text=Event._meta.get_field('notes_lit').help_text,
         label=Event._meta.get_field('notes_lit').verbose_name
     )
-    notes_img = django_filters.LookupChoiceFilter(
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+    notes_img = django_filters.CharFilter(
+        lookup_expr='icontains',
         help_text=Event._meta.get_field('notes_img').help_text,
         label=Event._meta.get_field('notes_img').verbose_name
     )
-    notes_facs = django_filters.LookupChoiceFilter(
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+    notes_facs = django_filters.CharFilter(
+        lookup_expr='icontains',
         help_text=Event._meta.get_field('notes_facs').help_text,
         label=Event._meta.get_field('notes_facs').verbose_name
     )
-    notes_archive = django_filters.LookupChoiceFilter(
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+    notes_archive = django_filters.CharFilter(
+        lookup_expr='icontains',
         help_text=Event._meta.get_field('notes_archive').help_text,
         label=Event._meta.get_field('notes_archive').verbose_name
     )
-    notes_text = django_filters.LookupChoiceFilter(
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+    notes_text = django_filters.CharFilter(
+        lookup_expr='icontains',
         help_text=Event._meta.get_field('notes_text').help_text,
         label=Event._meta.get_field('notes_text').verbose_name
     )

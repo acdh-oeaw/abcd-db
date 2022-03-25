@@ -156,6 +156,7 @@ class EventFilterFormHelper(FormHelper):
                 AccordionGroup(
                     'Volltext und Werke',
                     'main_text',
+                    'main_text_scheder',
                     'wab',
                     css_id="basic_search_fields"
                 )
