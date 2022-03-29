@@ -88,7 +88,18 @@
                       {{ object.note|safe }}
                     </div>
                   {% endif %}
-                  
+                  {% if object.work %}
+                    <small>Bibliographie</small>
+                    <div class="bibliograhpie">
+                      <ul>
+                        {% for x in object.work.all %}
+                        <li>{{ x }} <a href="{% url 'archiv:event_browse' %}?work={{ x.id }}&Filter=Search" title="zeige weitere Ereignisse zu dieser Referenz">
+                          <i data-feather="link"></i>
+                        </a></li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
                 </ul>
               </div>
             </div>
@@ -110,6 +121,12 @@
           <ul>
             {% for x in object.place.all %}
               <li><a href="{{ x.get_absolute_url }}">{{ x }}</a></li>
+            {% endfor %}
+          </ul>
+          <legend>Schlagworte</legend>
+          <ul>
+            {% for x in object.key_word.all %}
+              <li><a href="{% url 'archiv:event_browse' %}?key_word={{ x.id }}&Filter=Search">{{ x }}</a></li>
             {% endfor %}
           </ul>
       </div>

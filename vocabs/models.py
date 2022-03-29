@@ -56,7 +56,10 @@ class SkosCollection(models.Model):
     )
 
     def __str__(self):
-        return f"{self.pref_label} <{self.source_uri}>"
+        if self.source_uri is not None:
+            return f"{self.pref_label} <{self.source_uri}>"
+        else:
+            return f"{self.pref_label}"
 
     @classmethod
     def get_natural_primary_key(self):
