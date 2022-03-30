@@ -1,5 +1,8 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
+from next_prev import next_in_order, prev_in_order
+from browsing.browsing_utils import model_to_dict
 
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -22,6 +25,38 @@ class SkosTechnicalCollection(models.Model):
 
     def __str__(self):
         return f"{self.pref_label}"
+
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_listview_url(self):
+        return reverse('vocabs:skostechnicalcollection_browse')
+
+    @classmethod
+    def get_createview_url(self):
+        return reverse('vocabs:skostechnicalcollection_create')
+
+    def get_absolute_url(self):
+        return reverse('vocabs:skostechnicalcollection_detail', kwargs={'pk': self.id})
+
+    def get_delete_url(self):
+        return reverse('vocabs:skostechnicalcollection_delete', kwargs={'pk': self.id})
+
+    def get_edit_url(self):
+        return reverse('vocabs:skostechnicalcollection_edit', kwargs={'pk': self.id})
+
+    def get_next(self):
+        next = next_in_order(self)
+        if next:
+            return next.get_absolute_url()
+        return False
+
+    def get_prev(self):
+        prev = prev_in_order(self)
+        if prev:
+            return prev.get_absolute_url()
+        return False
 
 
 class SkosCollection(models.Model):
@@ -64,6 +99,38 @@ class SkosCollection(models.Model):
     @classmethod
     def get_natural_primary_key(self):
         return "pref_label"
+
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_listview_url(self):
+        return reverse('vocabs:skoscollection_browse')
+
+    @classmethod
+    def get_createview_url(self):
+        return reverse('vocabs:skoscollection_create')
+
+    def get_absolute_url(self):
+        return reverse('vocabs:skoscollection_detail', kwargs={'pk': self.id})
+
+    def get_delete_url(self):
+        return reverse('vocabs:skoscollection_delete', kwargs={'pk': self.id})
+
+    def get_edit_url(self):
+        return reverse('vocabs:skoscollection_edit', kwargs={'pk': self.id})
+
+    def get_next(self):
+        next = next_in_order(self)
+        if next:
+            return next.get_absolute_url()
+        return False
+
+    def get_prev(self):
+        prev = prev_in_order(self)
+        if prev:
+            return prev.get_absolute_url()
+        return False
 
 
 class SkosConcept(MPTTModel):
@@ -125,3 +192,35 @@ class SkosConcept(MPTTModel):
     @classmethod
     def get_natural_primary_key(self):
         return "pref_label"
+
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_listview_url(self):
+        return reverse('vocabs:skosconcept_browse')
+
+    @classmethod
+    def get_createview_url(self):
+        return reverse('vocabs:skosconcept_create')
+
+    def get_absolute_url(self):
+        return reverse('vocabs:skosconcept_detail', kwargs={'pk': self.id})
+
+    def get_delete_url(self):
+        return reverse('vocabs:skosconcept_delete', kwargs={'pk': self.id})
+
+    def get_edit_url(self):
+        return reverse('vocabs:skosconcept_edit', kwargs={'pk': self.id})
+
+    def get_next(self):
+        next = next_in_order(self)
+        if next:
+            return next.get_absolute_url()
+        return False
+
+    def get_prev(self):
+        prev = prev_in_order(self)
+        if prev:
+            return prev.get_absolute_url()
+        return False

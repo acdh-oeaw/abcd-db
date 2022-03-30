@@ -75,33 +75,46 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Info
                                     <span class="caret"/>
                                 </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{% url 'webpage:staticpage' template='hinweis-verfasser' %}">Hinweis Verfasser</a>
-                                        <a class="dropdown-item" href="{% url 'archiv:event_browse' %}">Erweiterte Suche</a>
-                                        <a class="dropdown-item" href="{% url 'webpage:data_model' %}">Datenmodell</a>
-                                        <a class="dropdown-item" href="https://github.com/acdh-oeaw/abcd-db">Code Repo der Applikation</a>
-                                        <a class="dropdown-item" href="{% url 'webpage:staticpage' template='imprint' %}">Imprint | Impressum</a>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="navbar-nav justify-content-end">
-                                {% if user.is_authenticated %}
-                                <li class="nav-item dropdown ml-auto">
-                                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        {{ user.get_username }}
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="nav-link" href="{% url 'webpage:user_logout' %}">log out <i class="feather-32" data-feather="log-out"></i></a>
-                                    </div>
-                                </li>
-                                {% else %}
-                                <li class="nav-item dropdown my-2 my-lg-0">
-                                    <a class="nav-link" href="{% url 'webpage:user_login' %}">
-                                    <i class="feather-32" data-feather="log-in"></i>
-                                    </a>
-                                </li>
-                                {% endif %}
-                            </ul>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{% url 'webpage:staticpage' template='hinweis-verfasser' %}">Hinweis Verfasser</a>
+                                    <a class="dropdown-item" href="{% url 'archiv:event_browse' %}">Erweiterte Suche</a>
+                                    <a class="dropdown-item" href="{% url 'webpage:data_model' %}">Datenmodell</a>
+                                    <a class="dropdown-item" href="https://github.com/acdh-oeaw/abcd-db">Code Repo der Applikation</a>
+                                    <a class="dropdown-item" href="{% url 'webpage:staticpage' template='imprint' %}">Imprint | Impressum</a>
+                                </div>
+                            </li>
+                            {% if user.is_authenticated %}
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Entitäten
+                                    <span class="caret"/>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{% url 'archiv:wab_browse' %}">Bruckner Werke</a>
+                                    <a class="dropdown-item" href="{% url 'archiv:work_browse' %}">Literatur</a>
+                                    <a class="dropdown-item" href="{% url 'archiv:person_browse' %}">Personen</a>
+                                    <a class="dropdown-item" href="{% url 'vocabs:skosconcept_browse' %}">Schlagworte</a>
+                                </div>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        <ul class="navbar-nav justify-content-end">
+                            {% if user.is_authenticated %}
+                            <li class="nav-item dropdown ml-auto">
+                                <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    {{ user.get_username }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="nav-link" href="{% url 'webpage:user_logout' %}">log out <i class="feather-32" data-feather="log-out"></i></a>
+                                </div>
+                            </li>
+                            {% else %}
+                            <li class="nav-item dropdown my-2 my-lg-0">
+                                <a class="nav-link" href="{% url 'webpage:user_login' %}">
+                                <i class="feather-32" data-feather="log-in"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
                         </div>
                         <!-- .collapse navbar-collapse -->
                     </div>
