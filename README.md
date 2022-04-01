@@ -13,6 +13,7 @@ short description of the project
 * change into the project's root directory e.g. `cd abcd-db`
 * create a virtual environment e.g. `virutalenv env` and activate it `source env/bin/activate`
 * install required packages `pip install -r requirements_dev.txt`
+* [to connect to a postgres-db called `abcd_db` with user/password `postgres` run `source source set_env_variables.sh`] (this will set environment variables declared in `env.default)
 * run migrations `python manage.py migrate`
 * start the dev sever `python manage.py runserver`
 * go to [http://127.0.0.1:8000](http://127.0.0.1:8000/) and check if everything works
