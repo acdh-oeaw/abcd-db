@@ -424,3 +424,23 @@ a:not([href]):not([tabindex]) {
 .highlighted {
   background-color: #ffc107;
 }
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-width: 350px;
+  max-width: 350px;
+}
+
+#sidebar.active {
+  margin-right: -350px;
+}
+
+#sidebar {
+  /* don't forget to add all the previously mentioned styles here too */
+  transition: all 0.3s;
+}
