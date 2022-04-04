@@ -46,13 +46,29 @@
       </div>
     </div>
     <div class="wrapper">
-      
+      <nav id="sidebar_left" class="active">
+        <div>
+            <legend>Suche</legend>
+            {% include 'archiv/partials/detail_search_bar.html' %}
+        </div>
+      </nav>
       <div class="card-body">
-        <h3 id="sidebarCollapse" style="text-align: right;" title="Zeige mit diesem Eintrag verbundene Bruckner Werke und Personen"><i data-feather="more-vertical"></i></h3>
+        
+        
         {% block custom %}
         <div class="card">
-          <div class="card-body" style="font-size: larger;">
-            {{ object.main_text|safe }}
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-1">
+                <h3 id="sidebarCollapseLeft" style="text-align: left;" title="Zeige mit diesem Eintrag verbundene Bruckner Werke und Personen"><i data-feather="search"></i></h3>
+              </div>
+              <div class="col-md-10" style="font-size: larger;">
+                {{ object.main_text|safe }}
+              </div>
+              <div class="col-md-1">
+                <h3 id="sidebarCollapseRight" style="text-align: right;" title="Zeige mit diesem Eintrag verbundene Bruckner Werke und Personen"><i data-feather="users"></i></h3>
+              </div>
+            </div>
           </div>
           <div class="card-footer">
             {% if object.notes_lit %}
@@ -117,8 +133,9 @@
         {% endif %}
 
       </div>
-      <nav id="sidebar" class="active">
-        <div class="sidebar-header">
+      
+      <nav id="sidebar_right" class="active">
+        <div>
             {% include 'archiv/partials/entity_sidebar.html' %}
         </div>
       </nav>
@@ -126,8 +143,11 @@
   </div>
 {% endblock custom %}
 <script>
-  $('#sidebarCollapse').on('click', function () {
-      $('#sidebar').toggleClass('active');
+  $('#sidebarCollapseLeft').on('click', function () {
+      $('#sidebar_left').toggleClass('active');
+  });
+  $('#sidebarCollapseRight').on('click', function () {
+      $('#sidebar_right').toggleClass('active');
   });
 </script>
 {% endblock %}

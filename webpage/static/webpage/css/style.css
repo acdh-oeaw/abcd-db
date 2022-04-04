@@ -148,9 +148,6 @@ footer {
     /*color: #ffffff;*/
     padding: 5px;
 }
-.select2-container {
- /*   width: 100%;*/
-}
 
 /* css for checkbox widget in filters */
 .chbx-select-multi {
@@ -312,92 +309,11 @@ a > .fa-2x {
   border-color:#1d82dcb8;
 }
 
-.transkribus_hit-info-collection {
-  display: none;
-}
-
-.transkribus_hit-info-doc-id {
-  display: none;
-}
-
-.transkribus_kwic {
-  order:2;
-}
-
-.transkribus_kwic::before {
-  content:"…";
-}
-
-.transkribus_kwic::after {
-  content:" …";
-}
-
-.transkribus_kwic em {
-  color: #1d82dcb8;
-  font-weight: bold;
-}
-
-.transkribus_facets-list {
-  list-style: none;
-  padding-left: 0px;
-}
-
-.transkribus_hit-info {
-  list-style:none;
-  margin-bottom: 0.3em;
-  padding-left: 0px;
-
-}
-
-
-.transkribus_hit-info-doc {
-  font-weight: bold;
-  display: inline;
-}
-
-.transkribus_hit-info-page {
-  display: inline;
-}
-
-.transkribus_hit {
-  /* border-bottom:3px solid #1d82dcb8; */
-  margin-bottom: 1em;
-  display: flex;
-  flex-flow: column;
-}
-
-.transkribus_hit-info-doc .transkribus_hit-info-label, .transkribus_hit-info-separator {
-  display: none;
-}
-
-
-.transkribus_facets-container {
-
-}
-
 .breadcrumb {
   /* background-color: #1d82dcb869; */
   background-color:white;
   font-weight: bolder;
 }
-
-.transkribus_hits .card-header {
-  display: none;
-}
-
-
-.transkribus_facets-container .card-header {
-  display: none;
-}
-
-.transkribus_facets-container .card-body h3 {
-  display: none;
-}
-
-.transkribus_hits-container .card-header h1 {
-  font-size: inherit;
-}
-
 
 .card {
     overflow: visible;
@@ -431,16 +347,24 @@ a:not([href]):not([tabindex]) {
   align-items: stretch;
 }
 
-#sidebar {
+#sidebar_right {
   min-width: 350px;
   max-width: 350px;
+  transition: all 0.3s;
 }
 
-#sidebar.active {
+#sidebar_right.active {
   margin-right: -350px;
 }
 
-#sidebar {
-  /* don't forget to add all the previously mentioned styles here too */
+
+#sidebar_left {
+  padding-left: 20px;
+  min-width: 350px;
+  max-width: 350px;
   transition: all 0.3s;
+}
+
+#sidebar_left.active {
+  margin-left: -350px;
 }
