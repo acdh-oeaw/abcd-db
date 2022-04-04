@@ -367,7 +367,7 @@ class Event(models.Model):
     )
     note = RichTextField(
         blank=True, null=True,
-        verbose_name="Allgemeine Anmkerungen",
+        verbose_name="Allgemeine Anmerkungen",
         help_text="whatever",
     ).set_extra(
         is_public=True,
