@@ -154,20 +154,12 @@ class EventFilterFormHelper(FormHelper):
         self.layout = Layout(
             Accordion(
                 AccordionGroup(
-                    'Volltext und Werke',
+                    'Suche',
                     'main_text',
                     'main_text_scheder',
                     'wab',
+                    'id',
                     css_id="basic_search_fields"
-                )
-            ),
-            Accordion(
-                AccordionGroup(
-                    'Personen, Orte, Institutionen',
-                    'person',
-                    'place',
-                    'institution',
-                    css_id="entities"
                 ),
                 AccordionGroup(
                     'weitere Suchoptionen',
@@ -181,13 +173,12 @@ class EventFilterFormHelper(FormHelper):
                     'notes_archive',
                     'notes_text',
                     'key_word',
-                    'note',
                     css_id="more"
                 ),
                 AccordionGroup(
                     'admin',
                     'legacy_id',
-                    'id',
+                    'note',
                     css_id="admin_search"
                 ),
             )
