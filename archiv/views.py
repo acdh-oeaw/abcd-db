@@ -252,6 +252,7 @@ class EventListView(GenericListView):
         'id', 'main_text'
     ]
     enable_merge = False
+    template_name = 'archiv/event_list.html'
 
 
 class EventDetailView(BaseDetailView):

@@ -20,7 +20,7 @@ class ResultsTable(tables.Table):
 
     class Meta:
         model = Event
-        fields = ("id", "main_text", )
+        fields = ("id", "date_written", "main_text", )
         sequence = ('id',)
         attrs = {"class": "table table-responsive table-hover"}
 
