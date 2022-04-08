@@ -21,6 +21,7 @@
           <h2 style="text-align: center;">
             <small><a href="{{ object.get_listview_url }}" title="Zurück zur Suche"><small>zurück</small></a></small>
             {{ object.date_written }}
+            <span class="text-muted" style="font-size: small">ID: {{ object.id }}</span>
             {% if user.is_authenticated %}
             <a href="{{ object.get_edit_url }}" title="edit">
               <i data-feather="edit"></i>
