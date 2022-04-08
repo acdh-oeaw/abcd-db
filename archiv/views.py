@@ -249,7 +249,7 @@ class EventListView(GenericListView):
     formhelper_class = EventFilterFormHelper
     table_class = EventTable
     init_columns = [
-        'id', 'main_text'
+        'id', 'date_written', 'main_text'
     ]
     enable_merge = False
     template_name = 'archiv/event_list.html'

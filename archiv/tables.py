@@ -72,7 +72,7 @@ class EventTable(tables.Table):
 
     class Meta:
         model = Event
-        sequence = ('id',)
+        sequence = ('id', 'date_written', 'main_text',)
         attrs = {"class": "table table-responsive table-hover"}
 
 
