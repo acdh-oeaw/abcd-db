@@ -14,7 +14,7 @@ class Command(BaseCommand):
         all_events = Event.objects.all()
         for event in tqdm(all_events, total=len(all_events)):
             try:
-                number = re.findall('([0-9]+)/[0-9]+', event.full_text)
+                number = re.findall('([0-9]+)/', event.notes_lit)
             except TypeError:
                 continue
             works = []

@@ -39,14 +39,14 @@ class Command(BaseCommand):
                             print(ent.text)
                             continue
                         x.person.add(pers)
-                elif ent.label_ == 'LOC':
-                    if len(ent.text) > 3:
-                        try:
-                            loc, _ = Place.objects.get_or_create(title=ent.text)
-                        except Exception as e:
-                            print(e)
-                            print(ent.text)
-                            continue
-                        x.place.add(loc)
-                else:
-                    pass
+                # elif ent.label_ == 'LOC':
+                #     if len(ent.text) > 3:
+                #         try:
+                #             loc, _ = Place.objects.get_or_create(title=ent.text)
+                #         except Exception as e:
+                #             print(e)
+                #             print(ent.text)
+                #             continue
+                #         x.place.add(loc)
+                # else:
+                #     pass
