@@ -460,6 +460,7 @@ class Event(models.Model):
             'notes_facs',
             'notes_archive',
             'notes_text',
+            'date_written',
             'note'
         ]
         return text_fields
@@ -483,7 +484,7 @@ class Event(models.Model):
     def join_search_fields(self):
         full_text = set([getattr(self, x, '') for x in self.search_field_names() if getattr(self, x, None) is not None])
         full_text_str = " ".join([x for x in full_text if isinstance(x, str) and x != 'nan'])
-        return strip_tags(full_text_str).replace('\n', ' ')
+        return " ".join(f"{strip_tags(full_text_str)} {self.id}".split())
 
     def get_absolute_url(self):
         return reverse('archiv:event_detail', kwargs={'pk': self.id})
@@ -542,8 +543,7 @@ class Work(models.Model):
         is_public=True,
         data_lookup="input_Autor",
     )
-    full_quote = models.CharField(
-        max_length=500,
+    full_quote = RichTextField(
         blank=True,
         null=True,
         verbose_name="Langzitat",
