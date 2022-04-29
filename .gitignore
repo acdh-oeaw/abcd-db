@@ -43,3 +43,6 @@ env_production.secret
 media/wab_matching.csv
 key
 key.pub
+bin/
+pg_hba.conf
+lib64
