@@ -19,7 +19,7 @@ class Command(BaseCommand):
         self.stdout.write(f"fetching data from {sheet_id}")
         df = gsheet_to_df(sheet_id)
         fm = field_mapping(Event)
-        for i, row in tqdm(df.iterrows(), total=len(df)):
+        """for i, row in tqdm(df.iterrows(), total=len(df)):
             try:
                 item, _ = Event.objects.get_or_create(
                     id=row['input_Sortiercode']
@@ -50,7 +50,7 @@ class Command(BaseCommand):
             self.style.SUCCESS(
                 "#######################"
             )
-        )
+        )"""
         work_error = []
         sheet_id = settings.LEGACY_DB_LIT_SHEET_ID
         self.stdout.write(f"fetching data from {sheet_id}")

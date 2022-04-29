@@ -4,7 +4,7 @@
 {% load browsing_extras %}
 {% load crispy_forms_field %}
 {% load crispy_forms_tags %}
-{% block title %} Suche {{ class_name }} {% endblock %}
+{% block title %} Browse {{ class_name }} {% endblock %}
 {% block scriptHeader %}
 
 {% endblock %}
@@ -22,7 +22,7 @@
     </script>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <h3 style="margin-bottom:15px;">
@@ -30,7 +30,7 @@
                         </h3>
                         {% if user.is_authenticated %}
                             {% if create_view_link  %}
-                                <a class ="btn btn-outline-secondary"  href="{{ create_view_link }}">Neues {{ class_name }} erstellen</a>
+                                <a class ="btn btn-outline-secondary"  href="{{ create_view_link }}">Neue {{ class_name }} erstellen</a>
                             {% endif %}
                         {% endif %}
                         {% block customView %}{% endblock %}
@@ -50,7 +50,7 @@
                 </div>
             </div>
             </div>
-            <div class="col-md-10" id="results">
+            <div class="col-md-8" id="results">
                 <div class="card">
                     <div class="card-body table-responsive">
                         {% with table.paginator.count as total %}

@@ -40,6 +40,7 @@ class SkosConceptListView(GenericListView):
         'id', 'pref_label', 'collection',
     ]
     enable_merge = False
+    template_name = 'archiv/custom_list.html'
 
 
 class SkosConceptDetailView(BaseDetailView):

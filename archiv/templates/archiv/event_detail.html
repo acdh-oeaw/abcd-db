@@ -108,8 +108,8 @@
               {{ object.note|safe }}
             </div>
             {% endif %}
-            {% if object.work %}
-            <small>Bibliographie</small>
+            {% if object.full_text %}
+            <small>Volltext</small>
             <div class="bibliograhpie">
               <ul>
                 {% for x in object.work.all %}

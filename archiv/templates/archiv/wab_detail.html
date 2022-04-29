@@ -48,23 +48,27 @@
     <div class="row">
         <div class="col-md-8">
            <legend>erwähnt in Ereignissen:</legend>
-           {% for x in object.rvn_person_mentioned_in.all %}
+           {% for x in object.rvn_wab_mentioned_in.all %}
            <li>
              <a href="{{ x.get_absolute_url }}">{{ x.date_written }}</a>
            </li>
            {% endfor %}
         </div>
         <div class="col-md-4">
-          <legend>Normdaten</legend>
+          <legend>Informationen</legend>
           <ul>
-            {% if object.gnd_gnd_id %}
-            <li><a href="{{ object.gnd_gnd_id}}">{{ object.gnd_gnd_id }}</a></li>
+            {% if object.date_written %}
+            <big>Datierung des Werkes:</big>
+            <div class="date_written">
+              {{ object.date_written|safe }}
+            </div>
             {% endif %}
-            {% if object.oeml_uri %}
-            <li><a href="{{ object.oeml_uri}}">{{ object.oeml_uri }}</a></li>
-            {% endif %}
-            {% if object.ablo_uri %}
-            <li><a href="{{ object.ablo_uri}}">{{ object.ablo_uri }}</a></li>
+          </br>
+            {% if object.wab_xml %}
+            <big>XML/MEI des Werkes:</big>
+            <div class="wab_xml">
+              {{ object.wab_xml|safe }}
+            </div>
             {% endif %}
           </ul>
       </div>

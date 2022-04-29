@@ -52,12 +52,13 @@ class WabListView(GenericListView):
         'id', 'title',
     ]
     enable_merge = False
+    template_name = 'archiv/custom_list.html'
 
 
 class WabDetailView(BaseDetailView):
 
     model = Wab
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'archiv/wab_detail.html'
 
 
 class WabCreate(BaseCreateView):
@@ -102,6 +103,7 @@ class PersonListView(GenericListView):
         'id', 'title',
     ]
     enable_merge = True
+    template_name = 'archiv/custom_list.html'
 
 
 class PersonDetailView(BaseDetailView):
@@ -152,6 +154,7 @@ class PlaceListView(GenericListView):
         'id', 'title',
     ]
     enable_merge = True
+    template_name = 'archiv/custom_list.html'
 
 
 class PlaceDetailView(BaseDetailView):
@@ -202,6 +205,7 @@ class InstitutionListView(GenericListView):
         'id', 'title',
     ]
     enable_merge = True
+    template_name = 'archiv/custom_list.html'
 
 
 class InstitutionDetailView(BaseDetailView):
@@ -303,12 +307,13 @@ class WorkListView(GenericListView):
         'id', 'author_name', 'order_code',
     ]
     enable_merge = False
+    template_name = 'archiv/custom_list.html'
 
 
 class WorkDetailView(BaseDetailView):
 
     model = Work
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'archiv/work_detail.html'
 
 
 class WorkCreate(BaseCreateView):

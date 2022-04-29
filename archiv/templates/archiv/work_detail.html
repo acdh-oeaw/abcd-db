@@ -48,23 +48,27 @@
     <div class="row">
         <div class="col-md-8">
            <legend>erwähnt in Ereignissen:</legend>
-           {% for x in object.rvn_person_mentioned_in.all %}
+           {% for x in object.work_referenced_in.all %}
            <li>
              <a href="{{ x.get_absolute_url }}">{{ x.date_written }}</a>
            </li>
            {% endfor %}
         </div>
         <div class="col-md-4">
-          <legend>Normdaten</legend>
+          <legend>Informationen</legend>
           <ul>
-            {% if object.gnd_gnd_id %}
-            <li><a href="{{ object.gnd_gnd_id}}">{{ object.gnd_gnd_id }}</a></li>
+            {% if object.author_name %}
+            <big>Autor:</big>
+            <div class="author_name">
+              {{ object.author_name|safe }}
+            </div>
             {% endif %}
-            {% if object.oeml_uri %}
-            <li><a href="{{ object.oeml_uri}}">{{ object.oeml_uri }}</a></li>
-            {% endif %}
-            {% if object.ablo_uri %}
-            <li><a href="{{ object.ablo_uri}}">{{ object.ablo_uri }}</a></li>
+          </br>
+            {% if object.full_quote %}
+            <big>Langzitat:</big>
+            <div class="full_quote">
+              {{ object.full_quote|safe }}
+            </div>
             {% endif %}
           </ul>
       </div>

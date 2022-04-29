@@ -33,7 +33,8 @@ class SkosCollectionListFilter(django_filters.FilterSet):
 
 class SkosConceptListFilter(django_filters.FilterSet):
     pref_label = django_filters.CharFilter(
-        lookup_expr='icontains'
+        lookup_expr='icontains',
+        label='Titel'
     )
 
     class Meta:

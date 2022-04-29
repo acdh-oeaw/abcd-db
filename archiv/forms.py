@@ -44,13 +44,13 @@ class InstitutionFilterFormHelper(FormHelper):
         self.add_input(Submit('Filter', 'Search'))
         self.layout = Layout(
             Fieldset(
-                'Basic search options',
+                'Suche',
                 'id',
                 css_id="basic_search_fields"
             ),
             Accordion(
                 AccordionGroup(
-                    'Advanced search',
+                    'weitere Suchoptionen',
                     'title',
                     css_id="more"
                 )
@@ -126,13 +126,13 @@ class PersonFilterFormHelper(FormHelper):
         self.add_input(Submit('Filter', 'Search'))
         self.layout = Layout(
             Fieldset(
-                'Basic search options',
+                'Suche',
                 'title',
                 css_id="basic_search_fields"
             ),
             Accordion(
                 AccordionGroup(
-                    'Advanced search',
+                    'weitere Suchoptionen ',
                     'gnd_gnd_id',
                     'ablo_uri',
                     'oeml_uri',
@@ -232,20 +232,20 @@ class WorkFilterFormHelper(FormHelper):
         self.add_input(Submit('Filter', 'Search'))
         self.layout = Layout(
             Fieldset(
-                'Basic search options',
+                'Suche',
                 'id',
                 css_id="basic_search_fields"
             ),
             Accordion(
                 AccordionGroup(
-                    'Advanced search',
+                    'weitere Suchoptionen',
                     'order_code',
                     'author_name',
                     'full_quote',
                     css_id="more"
                 ),
                 AccordionGroup(
-                    'admin',
+                    'Admin-Suche',
                     'legacy_id',
                     css_id="admin_search"
                 ),
@@ -298,7 +298,7 @@ class WabFilterFormHelper(FormHelper):
         self.layout = Layout(
             Accordion(
                 AccordionGroup(
-                    'Advanced search',
+                    'weitere Suchoptionen',
                     'title',
                     css_id="more"
                 )

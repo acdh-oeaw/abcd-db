@@ -14,16 +14,16 @@ from . models import (
 )
 
 NUMBER_LOOKUP_CHOICES = [
-    ('exact', 'Equals'),
-    ('gt', 'Greater than'),
-    ('lt', 'Less than')
+    ('exact', 'Gleich'),
+    ('gt', 'Größer als'),
+    ('lt', 'Kleiner als')
 ]
 
 CHAR_LOOKUP_CHOICES = [
-    ('icontains', 'Contains'),
-    ('iexact', 'Equals'),
-    ('istartswith', 'Starts with'),
-    ('iendswith', 'Ends with')
+    ('icontains', 'Enthält'),
+    ('iexact', 'Gleich'),
+    ('istartswith', 'Beginnt mit'),
+    ('iendswith', 'Endet mit')
 ]
 
 
@@ -245,7 +245,7 @@ class PersonListFilter(django_filters.FilterSet):
     title = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Person._meta.get_field('title').help_text,
-        label=Person._meta.get_field('title').verbose_name
+        label='Name'
     )
     gnd_gnd_id = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
@@ -288,7 +288,7 @@ class WabListFilter(django_filters.FilterSet):
     title = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=Wab._meta.get_field('title').help_text,
-        label=Wab._meta.get_field('title').verbose_name
+        label="Titel"
     )
 
     class Meta:
