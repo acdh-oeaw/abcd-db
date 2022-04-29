@@ -7,28 +7,4 @@
       {% endfor %}
     </ul>
   {% endif %}
-  {% if object.person.all %}
-    <legend>Personen</legend>
-    <ul>
-      {% for x in object.person.all %}
-        <li><a href="{{ x.get_absolute_url }}">{{ x }}</a></li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-  {% if object.place.all %}
-    <legend>Orte</legend>
-    <ul>
-      {% for x in object.place.all %}
-        <li><a href="{{ x.get_absolute_url }}">{{ x }}</a></li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-  {% if object.key_word.all %}
-    <legend>Schlagworte</legend>
-    <ul>
-      {% for x in object.key_word.all %}
-        <li><a href="{% url 'archiv:event_browse' %}?key_word={{ x.id }}&Filter=Search">{{ x }}</a></li>
-      {% endfor %}
-    </ul>
-  {% endif %}
   </div>

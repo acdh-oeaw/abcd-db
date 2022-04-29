@@ -45,16 +45,9 @@ class InstitutionFilterFormHelper(FormHelper):
         self.layout = Layout(
             Fieldset(
                 'Suche',
-                'id',
+                'title',
                 css_id="basic_search_fields"
             ),
-            Accordion(
-                AccordionGroup(
-                    'weitere Suchoptionen',
-                    'title',
-                    css_id="more"
-                )
-            )
         )
 
 
@@ -172,13 +165,11 @@ class EventFilterFormHelper(FormHelper):
                     'notes_facs',
                     'notes_archive',
                     'notes_text',
-                    'key_word',
                     css_id="more"
                 ),
                 AccordionGroup(
                     'admin',
                     'legacy_id',
-                    'note',
                     css_id="admin_search"
                 ),
             )

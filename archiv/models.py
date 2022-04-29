@@ -104,6 +104,12 @@ class Place(models.Model):
     def field_dict(self):
         return model_to_dict(self)
 
+    class Meta:
+
+        ordering = [
+            'title',
+        ]
+
     @classmethod
     def get_listview_url(self):
         return reverse('archiv:place_browse')
@@ -142,6 +148,12 @@ class Place(models.Model):
 
 class Institution(models.Model):
     title = models.CharField(max_length=250, blank=True, null=True)
+
+    class Meta:
+
+        ordering = [
+            'title',
+        ]
 
     def __str__(self):
         return f"{self.title}"
