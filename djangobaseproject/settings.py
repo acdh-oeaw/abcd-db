@@ -201,3 +201,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LEGACY_DB_SHEET_ID = "1TLagwMUVUPjFm_JXmMwS3vy0I3dHs9nMxT6xs9yFHv8"
 LEGACY_DB_LIT_SHEET_ID = "17lfhVUW6RYSdwkSoginK0uKMI_Dn-iGPgAw1wcKgnHI"
 WAB_SEARCH = "1zEL1gn-lcvJL7FUWesNXph6N6Gczk45GVcK9HI1qhdc"
+SPECIAL_CHARS_SHEET_ID = "1RGlec8TtxvX-PxfbCvfwg1kQHh76Oai0VyTYQR_8TTE"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'entities_latin': False
+    }
+}
