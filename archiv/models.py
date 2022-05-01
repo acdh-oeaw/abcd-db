@@ -593,7 +593,10 @@ class Work(models.Model):
         verbose_name = "Literatur"
 
     def __str__(self):
-        return f"{self.author_name}, {self.work_title()}, {self.order_code}"
+        if self.short_quote is None:
+            return f"{self.author_name}, {self.work_title()}, {self.order_code}"
+        else:
+            return f"{self.short_quote}"
 
     def save(self, *args, **kwargs):
         super(Work, self).save(*args, **kwargs)
