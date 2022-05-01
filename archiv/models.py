@@ -46,6 +46,18 @@ class Wab(models.Model):
         null=True,
         verbose_name="XML/MEI des Werkes"
     )
+    note = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Anmerkungen",
+        help_text="Anmerkungen und Erläuterungen"
+    )
+    status = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Berabeitungsstand",
+        help_text="Internes Feld zur Dokumentation der Verknüpfungen von WAB zu Ereignis"
+    )
 
     class Meta:
 
@@ -543,6 +555,19 @@ class Work(models.Model):
         is_public=True,
         data_lookup="input_Autor",
     )
+    year = models.IntegerField(
+        blank=True,
+        null=True,
+        verbose_name="Erscheinungsjahr",
+        help_text="Erscheingungsjahr"
+    )
+    short_quote = models.CharField(
+        max_length=500,
+        blank=True,
+        null=True,
+        verbose_name="Kurzzitat",
+        help_text="Kurzzitat: Autor, Titel, Ornungsnummer (leere Felder werden automatisiert befüllt)"
+    )
     full_quote = RichTextField(
         blank=True,
         null=True,
@@ -569,6 +594,12 @@ class Work(models.Model):
 
     def __str__(self):
         return f"{self.author_name}, {self.work_title()}, {self.order_code}"
+
+    def save(self, *args, **kwargs):
+        super(Work, self).save(*args, **kwargs)
+        if not self.short_quote:
+            self.short_quote = strip_tags(self.__str__())
+        super(Work, self).save(*args, **kwargs)
 
     def field_dict(self):
         return model_to_dict(self)
