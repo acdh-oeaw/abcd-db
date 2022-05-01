@@ -46,7 +46,27 @@
   <div class="card-body" style="padding-left:8em; padding-right: 8em;">
     {% block custom %}
     <div class="row">
-        <div class="col-md-8">
+      <div class="col-md-8">
+        <legend>Informationen</legend>
+
+          {% if object.date_written %}
+          <big>Datierung des Werkes:</big>
+          <div class="date_written">
+            {{ object.date_written|safe }}
+          </div>
+          <big>Anmerkungen zum Werk:</big>
+          {% if object.note %}
+          <p>{{ object.note }}</p>  
+          {% endif %}
+          {% endif %}
+          {% if user.is_authenticated %}
+          {% if object.status %}
+          <big>Stand der Verlinkung zu Ereignissen:</big>
+          <p>{{ object.status }}</p>
+          {% endif %}
+          {% endif %}
+    </div>
+        <div class="col-md-4">
            <legend>erwähnt in Ereignissen:</legend>
            {% for x in object.rvn_wab_mentioned_in.all %}
            <li>
@@ -54,24 +74,7 @@
            </li>
            {% endfor %}
         </div>
-        <div class="col-md-4">
-          <legend>Informationen</legend>
-          <ul>
-            {% if object.date_written %}
-            <big>Datierung des Werkes:</big>
-            <div class="date_written">
-              {{ object.date_written|safe }}
-            </div>
-            {% endif %}
-          </br>
-            {% if object.wab_xml %}
-            <big>XML/MEI des Werkes:</big>
-            <div class="wab_xml">
-              {{ object.wab_xml|safe }}
-            </div>
-            {% endif %}
-          </ul>
-      </div>
+        
     </div>
     {% if user.is_authenticated %}
     <div class="card-footer" style="text-align: right;">
