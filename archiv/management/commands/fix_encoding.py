@@ -19,5 +19,5 @@ class Command(BaseCommand):
                     for i, row in df.iterrows():
                         old = old.replace(row['from'], row['to'])
                 setattr(x, f, old)
-        x.save()
+            x.save()
         print("done")
