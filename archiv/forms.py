@@ -165,6 +165,7 @@ class EventFilterFormHelper(FormHelper):
                     'notes_facs',
                     'notes_archive',
                     'notes_text',
+                    'key_word',
                     css_id="more"
                 ),
                 AccordionGroup(

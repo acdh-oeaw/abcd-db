@@ -7,8 +7,6 @@ from ckeditor.fields import RichTextField
 from next_prev import next_in_order, prev_in_order
 
 from browsing.browsing_utils import model_to_dict
-from vocabs.models import SkosConcept
-
 from gnd.models import GndPersonBase
 
 
@@ -380,12 +378,11 @@ class Event(models.Model):
         is_public=True,
         data_lookup="text_Anmerkung",
     )
-    key_word = models.ManyToManyField(
-        SkosConcept,
-        related_name='rvn_event_key_word_skosconcept',
+    key_word = models.TextField(
         blank=True,
+        null=True,
         verbose_name="Stichwort",
-        help_text="whatever",
+        help_text="Feld für interne Notizen und Stihworte",
     ).set_extra(
         is_public=True,
     )
@@ -473,7 +470,8 @@ class Event(models.Model):
             'notes_archive',
             'notes_text',
             'date_written',
-            'note'
+            'note',
+            'key_word'
         ]
         return text_fields
 
