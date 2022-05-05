@@ -55,19 +55,12 @@
            {% endfor %}
         </div>
         <div class="col-md-4">
-          <legend>Informationen</legend>
           <ul>
             {% if object.date_written %}
+            <br>
             <big>Datierung des Werkes:</big>
             <div class="date_written">
               {{ object.date_written|safe }}
-            </div>
-            {% endif %}
-          </br>
-            {% if object.wab_xml %}
-            <big>XML/MEI des Werkes:</big>
-            <div class="wab_xml">
-              {{ object.wab_xml|safe }}
             </div>
             {% endif %}
           </ul>

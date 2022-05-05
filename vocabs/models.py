@@ -143,7 +143,7 @@ class SkosConcept(MPTTModel):
     """
     pref_label = models.CharField(
         max_length=300,
-        verbose_name="skos:prefLabel",
+        verbose_name="Label",
         help_text="Preferred label for concept"
     )
     definition = models.TextField(
@@ -156,7 +156,7 @@ class SkosConcept(MPTTModel):
         'SkosCollection',
         null=True,
         blank=True,
-        verbose_name="member of skos:Collection",
+        verbose_name="Teil der Skos-Kollektion",
         help_text="Collection that this concept is a member of",
         related_name="has_members",
         on_delete=models.SET_NULL,
