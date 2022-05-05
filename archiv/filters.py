@@ -2,7 +2,6 @@
 import django_filters
 
 from dal import autocomplete
-from vocabs.models import SkosConcept
 from archiv.filter_utils import SchrederFilter
 from . models import (
     Event,
@@ -95,19 +94,10 @@ class EventListFilter(SchrederFilter):
         help_text=Event._meta.get_field('notes_text').help_text,
         label=Event._meta.get_field('notes_text').verbose_name
     )
-    key_word = django_filters.ModelMultipleChoiceFilter(
-        queryset=SkosConcept.objects.filter(
-            tech_collection__pref_label="event__key_word"
-        ),
+    key_word = django_filters.CharFilter(
+        lookup_expr='icontains',
         help_text=Event._meta.get_field('key_word').help_text,
-        label=Event._meta.get_field('key_word').verbose_name,
-        widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/concept/event__key_word",
-            attrs={
-                'data-placeholder': 'Autocomplete ...',
-                'data-minimum-input-length': 2,
-            },
-        )
+        label=Event._meta.get_field('key_word').verbose_name
     )
     work = django_filters.ModelMultipleChoiceFilter(
         queryset=Work.objects.all(),

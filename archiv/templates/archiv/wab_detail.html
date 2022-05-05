@@ -46,25 +46,37 @@
   <div class="card-body" style="padding-left:8em; padding-right: 8em;">
     {% block custom %}
     <div class="row">
-        <div class="col-md-8">
-           <legend>erwähnt in Ereignissen:</legend>
+      <div class="col-md-8">
+        <legend>Informationen</legend>
+          <big>WAB Nummer: <strong>{{ object.wab_id }}</strong></big>
+          <div class="wab_id">
+            <a href="http://www.bruckner-online.at/wab-{{object.wab_id}}" title="Link zu Bruckner-Online-Werkverzeichnis">http://www.bruckner-online.at/wab-{{object.wab_id}}</a><br />
+            Für Informationen zu Änderungen in der WAB-Systematik siehe <a href="http://www.bruckner-online.at/?page_id=1686">Konkordanz zwischen alten und neuen WAB-Nummern</a> auf <a href="http://www.bruckner-online.at">Bruckner-Online</a>
+          </div>
+
+           {% if user.is_authenticated %}
+          <big>Datierung des Werkes:</big>
+          <div class="date_written">
+            <abbr title="{{ object.date }}">{{ object.date_written|safe }}</abbr>
+          </div>
+          {% endif %}
+
+          {% if user.is_authenticated %}
+          <big>Anmerkungen zum Werk:</big>
+          <p>{{ object.note }}</p>  
+          <big>Stand der Verlinkung zu Ereignissen:</big>
+          <p>{{ object.status }}</p>
+          {% endif %}
+    </div>
+        <div class="col-md-4">
+           <legend>erwähnt in <strong>{{ object.rvn_wab_mentioned_in.all|length }}</strong> Ereignissen:</legend>
            {% for x in object.rvn_wab_mentioned_in.all %}
            <li>
              <a href="{{ x.get_absolute_url }}">{{ x.date_written }}</a>
            </li>
            {% endfor %}
         </div>
-        <div class="col-md-4">
-          <ul>
-            {% if object.date_written %}
-            <br>
-            <big>Datierung des Werkes:</big>
-            <div class="date_written">
-              {{ object.date_written|safe }}
-            </div>
-            {% endif %}
-          </ul>
-      </div>
+        
     </div>
     {% if user.is_authenticated %}
     <div class="card-footer" style="text-align: right;">

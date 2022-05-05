@@ -41,20 +41,13 @@ class InstitutionFilterFormHelper(FormHelper):
         self.form_class = 'genericFilterForm'
         self.form_method = 'GET'
         self.helper.form_tag = False
-        self.add_input(Submit('Filter', 'Search'))
+        self.add_input(Submit('Filter', 'Suchen'))
         self.layout = Layout(
             Fieldset(
                 'Suche',
-                'id',
+                'title',
                 css_id="basic_search_fields"
             ),
-            Accordion(
-                AccordionGroup(
-                    'weitere Suchoptionen',
-                    'title',
-                    css_id="more"
-                )
-            )
         )
 
 
@@ -83,7 +76,7 @@ class PlaceFilterFormHelper(FormHelper):
         self.form_class = 'genericFilterForm'
         self.form_method = 'GET'
         self.helper.form_tag = False
-        self.add_input(Submit('Filter', 'Search'))
+        self.add_input(Submit('Filter', 'Suchen'))
         self.layout = Layout(
             Accordion(
                 AccordionGroup(
@@ -123,7 +116,7 @@ class PersonFilterFormHelper(FormHelper):
         self.form_class = 'genericFilterForm'
         self.form_method = 'GET'
         self.helper.form_tag = False
-        self.add_input(Submit('Filter', 'Search'))
+        self.add_input(Submit('Filter', 'Suchen'))
         self.layout = Layout(
             Fieldset(
                 'Suche',
@@ -150,7 +143,7 @@ class EventFilterFormHelper(FormHelper):
         self.form_class = 'genericFilterForm'
         self.form_method = 'GET'
         self.helper.form_tag = False
-        self.add_input(Submit('Filter', 'Search'))
+        self.add_input(Submit('Filter', 'Suchen'))
         self.layout = Layout(
             Accordion(
                 AccordionGroup(
@@ -178,7 +171,6 @@ class EventFilterFormHelper(FormHelper):
                 AccordionGroup(
                     'admin',
                     'legacy_id',
-                    'note',
                     css_id="admin_search"
                 ),
             )
@@ -229,7 +221,7 @@ class WorkFilterFormHelper(FormHelper):
         self.form_class = 'genericFilterForm'
         self.form_method = 'GET'
         self.helper.form_tag = False
-        self.add_input(Submit('Filter', 'Search'))
+        self.add_input(Submit('Filter', 'Suchen'))
         self.layout = Layout(
             Fieldset(
                 'Suche',
@@ -294,7 +286,7 @@ class WabFilterFormHelper(FormHelper):
         self.form_class = 'genericFilterForm'
         self.form_method = 'GET'
         self.helper.form_tag = False
-        self.add_input(Submit('Filter', 'Search'))
+        self.add_input(Submit('Filter', 'Suchen'))
         self.layout = Layout(
             Accordion(
                 AccordionGroup(

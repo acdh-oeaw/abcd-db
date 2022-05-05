@@ -37,13 +37,7 @@
                         {% block create_button %}{% endblock %}
                         <!--Search mask-->
                         {% load django_tables2 crispy_forms_tags %}
-                        <form action="." class="uniForm" method="get">
-                            {% if togglable_colums %}
-                                <legend>Weitere Kolonnen auswählen</legend>
-                                {% column_selector  %}
-                            {% endif %}
-                            <br/>
-                            {% crispy filter.form filter.form.helper %}
+                        {% crispy filter.form filter.form.helper %}
                         </form>
                         <a class ="btn btn-outline-secondary"  href=".">Suche zurücksetzen</a>
                         {% include 'browsing/partials/chart_form.html' %}

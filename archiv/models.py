@@ -7,8 +7,6 @@ from ckeditor.fields import RichTextField
 from next_prev import next_in_order, prev_in_order
 
 from browsing.browsing_utils import model_to_dict
-from vocabs.models import SkosConcept
-
 from gnd.models import GndPersonBase
 
 
@@ -45,6 +43,18 @@ class Wab(models.Model):
         blank=True,
         null=True,
         verbose_name="XML/MEI des Werkes"
+    )
+    note = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Anmerkungen",
+        help_text="Anmerkungen und Erläuterungen"
+    )
+    status = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Berabeitungsstand",
+        help_text="Internes Feld zur Dokumentation der Verknüpfungen von WAB zu Ereignis"
     )
 
     class Meta:
@@ -104,6 +114,12 @@ class Place(models.Model):
     def field_dict(self):
         return model_to_dict(self)
 
+    class Meta:
+
+        ordering = [
+            'title',
+        ]
+
     @classmethod
     def get_listview_url(self):
         return reverse('archiv:place_browse')
@@ -142,6 +158,12 @@ class Place(models.Model):
 
 class Institution(models.Model):
     title = models.CharField(max_length=250, blank=True, null=True)
+
+    class Meta:
+
+        ordering = [
+            'title',
+        ]
 
     def __str__(self):
         return f"{self.title}"
@@ -356,12 +378,11 @@ class Event(models.Model):
         is_public=True,
         data_lookup="text_Anmerkung",
     )
-    key_word = models.ManyToManyField(
-        SkosConcept,
-        related_name='rvn_event_key_word_skosconcept',
+    key_word = models.TextField(
         blank=True,
+        null=True,
         verbose_name="Stichwort",
-        help_text="whatever",
+        help_text="Feld für interne Notizen und Stihworte",
     ).set_extra(
         is_public=True,
     )
@@ -448,7 +469,9 @@ class Event(models.Model):
             'notes_facs',
             'notes_archive',
             'notes_text',
-            'note'
+            'date_written',
+            'note',
+            'key_word'
         ]
         return text_fields
 
@@ -471,7 +494,7 @@ class Event(models.Model):
     def join_search_fields(self):
         full_text = set([getattr(self, x, '') for x in self.search_field_names() if getattr(self, x, None) is not None])
         full_text_str = " ".join([x for x in full_text if isinstance(x, str) and x != 'nan'])
-        return strip_tags(full_text_str).replace('\n', ' ')
+        return " ".join(f"{strip_tags(full_text_str)} {self.id}".split())
 
     def get_absolute_url(self):
         return reverse('archiv:event_detail', kwargs={'pk': self.id})
@@ -530,8 +553,20 @@ class Work(models.Model):
         is_public=True,
         data_lookup="input_Autor",
     )
-    full_quote = models.CharField(
+    year = models.IntegerField(
+        blank=True,
+        null=True,
+        verbose_name="Erscheinungsjahr",
+        help_text="Erscheingungsjahr"
+    )
+    short_quote = models.CharField(
         max_length=500,
+        blank=True,
+        null=True,
+        verbose_name="Kurzzitat",
+        help_text="Kurzzitat: Autor, Titel, Ornungsnummer (leere Felder werden automatisiert befüllt)"
+    )
+    full_quote = RichTextField(
         blank=True,
         null=True,
         verbose_name="Langzitat",
@@ -556,7 +591,16 @@ class Work(models.Model):
         verbose_name = "Literatur"
 
     def __str__(self):
-        return f"{self.author_name}, {self.work_title()}, {self.order_code}"
+        if self.short_quote is None:
+            return f"{self.author_name}, {self.work_title()}, {self.order_code}"
+        else:
+            return f"{self.short_quote}"
+
+    def save(self, *args, **kwargs):
+        super(Work, self).save(*args, **kwargs)
+        if not self.short_quote:
+            self.short_quote = strip_tags(self.__str__())
+        super(Work, self).save(*args, **kwargs)
 
     def field_dict(self):
         return model_to_dict(self)
