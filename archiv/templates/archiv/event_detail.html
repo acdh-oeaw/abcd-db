@@ -73,37 +73,37 @@
           </div>
           <div class="card-footer">
             {% if object.notes_lit %}
-            <small>Literatur</small>
+            <b>Literatur</b>
             <div class="notes_lit">
               {{ object.notes_lit|safe }}
             </div>
             {% endif %}
             {% if object.notes_img %}
-            <small>Abbildung</small>
+            <b>Abbildung</b>
             <div class="notes_img">
               {{ object.notes_img|safe }}
             </div>
             {% endif %}
             {% if object.notes_facs %}
-            <small>Faksimile</small>
+            <b>Faksimile</b>
             <div class="notes_facs">
               {{ object.notes_facs|safe }}
             </div>
             {% endif %}
             {% if object.notes_archive %}
-            <small>Archiv</small>
+            <b>Archiv</b>
             <div class="notes_archive">
               {{ object.notes_archive|safe }}
             </div>
             {% endif %}
             {% if object.notes_text %}
-            <small>Anmerkung</small>
+            <b>Anmerkung</b>
             <div class="notes_text">
               {{ object.notes_text|safe }}
             </div>
             {% endif %}
             {% if object.work.all %}
-            <small>Bibliographie</small>
+            <b>Bibliographie</b>
             <div class="bibliograhpie">
               <ul>
                 {% for x in object.work.all %}

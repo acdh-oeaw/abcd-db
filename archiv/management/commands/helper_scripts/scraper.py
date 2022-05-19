@@ -3,20 +3,20 @@ import requests
 from bs4 import BeautifulSoup
 import traceback
 
-page = 13
+page = 0
 count = 0
 
 while True:
     try:
         page += 1
         # Search result url
-        URL = "https://abcd.acdh-dev.oeaw.ac.at/archiv/event/?main_text=Te+deum&Filter=Suchen&page=" + str(page)
+        URL = "https://abcd.acdh-dev.oeaw.ac.at/archiv/event/?main_text=Ecce+sacerdos&Filter=Suchen&page=" + str(page)
         r = requests.get(URL)
 
         html = r.text
 
         # WAB detail url
-        WabURL = "https://abcd.acdh-dev.oeaw.ac.at/archiv/wab/detail/45"
+        WabURL = "https://abcd.acdh-dev.oeaw.ac.at/archiv/wab/detail/13"
 
         WabR = requests.get(WabURL)
         WabHtml = WabR.text
@@ -33,12 +33,11 @@ while True:
             data.append([ele for ele in cols if ele])
 
         result = pd.DataFrame(data, columns=["ID", "Datum", "Haupttext"])
-        print(result)
         for column in result["Datum"]:
             if column is not None:
                 matches = WabHtml.find('>' + str(column) + '<')
             else:
-                print('HERE NON FOUND: ', column)
+                print('HERE NON FOUND: ', column, page)
                 matches = 0
 
             if matches == -1:

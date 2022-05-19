@@ -14,13 +14,16 @@ class Command(BaseCommand):
         all_events = Event.objects.all()
         for event in tqdm(all_events, total=len(all_events)):
             try:
-                number = re.findall('([0-9]+)/', event.notes_lit)
+                number = re.findall('([0-9]+[a-z]?)/', event.notes_lit)
             except TypeError:
                 continue
             works = []
             for literature in set(number):
-                number_int = int(literature)
+                pieces = re.split(r'(\d+)', literature)
+                number_int = int(pieces[1])
                 lit_string = 'Lit.' + ('%04d' % number_int)
+                if (pieces[2] != ''):
+                    lit_string = lit_string + pieces[2]
                 try:
                     related_work = Work.objects.get(order_code=lit_string)
                 except ObjectDoesNotExist:

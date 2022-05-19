@@ -58,14 +58,14 @@
           <legend>Informationen</legend>
           <ul>
             {% if object.author_name %}
-            <big>Autor:</big>
+            <b>Autor:</b>
             <div class="author_name">
               {{ object.author_name|safe }}
             </div>
             {% endif %}
           </br>
             {% if object.full_quote %}
-            <big>Langzitat:</big>
+            <b>Langzitat:</b>
             <div class="full_quote">
               {{ object.full_quote|safe }}
             </div>
