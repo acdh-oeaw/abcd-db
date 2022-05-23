@@ -10,7 +10,7 @@ while True:
     try:
         page += 1
         # Search result url
-        URL = "https://abcd.acdh-dev.oeaw.ac.at/archiv/event/?main_text=Ecce+sacerdos&Filter=Suchen&page=" + str(page)
+        URL = "https://abcd.acdh-dev.oeaw.ac.at/results?full_text=Erinnerung&Filter=Suchen&page=" + str(page)
         r = requests.get(URL)
 
         html = r.text
@@ -33,6 +33,7 @@ while True:
             data.append([ele for ele in cols if ele])
 
         result = pd.DataFrame(data, columns=["ID", "Datum", "Haupttext"])
+
         for column in result["Datum"]:
             if column is not None:
                 matches = WabHtml.find('>' + str(column) + '<')

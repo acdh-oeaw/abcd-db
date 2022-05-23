@@ -5,7 +5,7 @@
 {% block content %}
 <!-- <div class="container"> -->
 
-  <div class="card">
+  <div class="card" style="margin-right: calc(-1 * (100vw - 100.5%));">
     <div class="card-header">
       <div class="row">
         <div class="col-md-2">
@@ -38,7 +38,7 @@
         <div class="col-md-2">
           <h2>
             {% if object.get_next %}
-            <a href="{{ object.get_next }}" style="float:right" title="next">
+            <a href="{{ object.get_next }}" style="float:right;" title="next">
               <i data-feather="chevron-right"></i>
             </a>
           </h2>
