@@ -18,7 +18,23 @@ def set_extra(self, **kwargs):
 models.Field.set_extra = set_extra
 
 
-class Wab(models.Model):
+class AbcdBase(models.Model):
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Erstellt am",
+        help_text="Zeit der Erstellung des Objektes (ab 2022-05-25)"
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Letzte Änderung",
+        help_text="Zeit der letzten Änderung"
+    )
+
+    class Meta:
+        abstract = True
+
+
+class Wab(AbcdBase):
     title = models.CharField(
         max_length=250, blank=True, null=True
     )
@@ -105,7 +121,7 @@ class Wab(models.Model):
         return False
 
 
-class Place(models.Model):
+class Place(AbcdBase):
     title = models.CharField(max_length=250, blank=True, null=True)
 
     def __str__(self):
@@ -156,7 +172,7 @@ class Place(models.Model):
         return False
 
 
-class Institution(models.Model):
+class Institution(AbcdBase):
     title = models.CharField(max_length=250, blank=True, null=True)
 
     class Meta:
@@ -287,7 +303,7 @@ class Person(GndPersonBase):
         return False
 
 
-class Event(models.Model):
+class Event(AbcdBase):
     """ Ereignis """
     legacy_id = models.CharField(
         max_length=300, blank=True,
@@ -524,7 +540,7 @@ class Event(models.Model):
         return False
 
 
-class Work(models.Model):
+class Work(AbcdBase):
     """ Literatur """
     legacy_id = models.CharField(
         max_length=300, blank=True,

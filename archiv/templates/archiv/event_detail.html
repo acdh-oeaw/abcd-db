@@ -118,6 +118,7 @@
             {% endif %}
             </ul>
           </div>
+          <small>letzte Änderung: {{ object.updated_at|date:"M d, Y" }}</small>
         </div>
 
         {% if user.is_authenticated %}
