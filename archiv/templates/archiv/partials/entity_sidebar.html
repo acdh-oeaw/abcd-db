@@ -7,4 +7,12 @@
       {% endfor %}
     </ul>
   {% endif %}
+  {% if object.person.all %}
+  <legend>Personen</legend>
+  <ul>
+    {% for x in object.person.all %}
+      <li><a href="{{ x.get_absolute_url }}">{{ x }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
   </div>

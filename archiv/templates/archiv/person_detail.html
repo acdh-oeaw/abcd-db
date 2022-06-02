@@ -67,6 +67,12 @@
             <li><a href="{{ object.ablo_uri}}">{{ object.ablo_uri }}</a></li>
             {% endif %}
           </ul>
+          {% if object.remarks %}
+          <legend>Anmerkungen</legend>
+          <div class="remarks">
+            {{ object.remarks|safe }}
+          </div>
+          {% endif %}
       </div>
     </div>
     {% if user.is_authenticated %}

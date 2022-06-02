@@ -250,6 +250,12 @@ class Person(GndPersonBase):
         null=True,
         verbose_name="Link zu ABLO Eintrag"
     )
+    remarks = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Anmerkungen",
+        help_text="Anmerkungen zur Person"
+    )
 
     class Meta:
 
