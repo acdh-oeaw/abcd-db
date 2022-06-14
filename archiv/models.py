@@ -404,7 +404,7 @@ class Event(AbcdBase):
         blank=True,
         null=True,
         verbose_name="Stichwort",
-        help_text="Feld für interne Notizen und Stihworte",
+        help_text="Feld für interne Notizen und Stichworte",
     ).set_extra(
         is_public=True,
     )
