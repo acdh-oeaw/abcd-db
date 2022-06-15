@@ -122,7 +122,36 @@ class Wab(AbcdBase):
 
 
 class Place(AbcdBase):
-    title = models.CharField(max_length=250, blank=True, null=True)
+    title = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name='Ortsname',
+        help_text='z.B. Ansfelden'
+    )
+    remarks = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Anmerkungen",
+        help_text="Anmerkungen zur Person"
+    )
+    geonames_id = models.URLField(
+        max_length=200,
+        blank=True,
+        null=True,
+        verbose_name="GeoNames ID",
+        help_text="z.B. 'https://www.geonames.org/2782480/ansfelden.html'"
+    )
+    long = models.FloatField(
+        blank=True, null=True,
+        verbose_name="Breitengrad",
+        help_text="Breitengrad, z.B. '14.29004'",
+    )
+    lat = models.FloatField(
+        blank=True, null=True,
+        verbose_name="Längengrad",
+        help_text="Längengrad, z.B. '48.20969'",
+    )
 
     def __str__(self):
         return f"{self.title}"

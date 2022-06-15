@@ -55,9 +55,7 @@ class PlaceForm(forms.ModelForm):
 
     class Meta:
         model = Place
-        fields = [
-            'title',
-        ]
+        fields = "__all__"
 
     def __init__(self, *args, **kwargs):
         super(PlaceForm, self).__init__(*args, **kwargs)
