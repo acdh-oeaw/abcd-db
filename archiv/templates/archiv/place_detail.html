@@ -1,0 +1,83 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %}{{ object }}{% endblock %}
+{% block content %}
+<!-- <div class="container"> -->
+<div class="card w-100">
+  <div class="card-header" style="margin-right: calc(-1 * (100vw - 100.5%));">
+    <div class="row">
+      <div class="col-md-2">
+        {% if object.get_prev %}
+        <h2>
+          <a href="{{ object.get_prev }}" title="previous">
+            <i data-feather="chevron-left"></i>
+          </a>
+        </h2>
+        {% endif %}
+      </div>
+      <div class="col-md-8">
+        <h2 style="text-align: center;">
+          <small><a href="{{ object.get_listview_url }}" title="Zurück zur Suche"><small>{{ class_name }}</small></a></small>
+          {{ object }}
+          {% if user.is_authenticated %}
+            <a href="{{ object.get_edit_url }}" title="edit">
+              <i data-feather="edit"></i>
+            </a>
+          {% endif %}
+          {% if 'archeutils' in APPS %}
+          <a href="{% url 'archeutils:res_as_arche_graph' app_name=app_name model_name=class_name|lower pk=object.id %}" title="As ARCHE-RDF">
+            <i data-feather="download"></i>
+          </a>
+          {% endif%}
+        </h2>
+      </div>
+      <div class="col-md-2">
+        <h2>
+          {% if object.get_next %}
+          <a href="{{ object.get_next }}" style="float:right" title="next">
+            <i data-feather="chevron-right"></i>
+          </a>
+        </h2>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="card-body" style="padding-left:8em; padding-right: 8em;">
+    {% block custom %}
+    <div class="row">
+        <div class="col-md-8">
+           <legend>erwähnt in Ereignissen:</legend>
+           {% for x in object.place_mentioned_in.all %}
+           <li>
+             <a href="{{ x.get_absolute_url }}">{{ x.date_written }}</a>
+           </li>
+           {% endfor %}
+        </div>
+        <div class="col-md-4">
+          <legend>Normdaten</legend>
+          <ul>
+            {% if object.geonames_id %}
+            <li><a href="{{ object.geonames_id}}">{{ object.geonames_id }}</a></li>
+            {% endif %}
+          </ul>
+          {% if object.remarks %}
+          <legend>Anmerkungen</legend>
+          <div class="remarks">
+            {{ object.remarks|safe }}
+          </div>
+          {% endif %}
+      </div>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="card-footer" style="text-align: right;">
+      <a href="{{ object.get_delete_url }}" title="delete">
+        <i data-feather="delete"></i>
+      </a>
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock custom %}
+{% endblock %}

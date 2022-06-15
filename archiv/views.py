@@ -160,7 +160,7 @@ class PlaceListView(GenericListView):
 class PlaceDetailView(BaseDetailView):
 
     model = Place
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'archiv/place_detail.html'
 
 
 class PlaceCreate(BaseCreateView):

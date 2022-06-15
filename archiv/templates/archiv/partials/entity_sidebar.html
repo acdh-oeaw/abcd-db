@@ -15,4 +15,12 @@
     {% endfor %}
   </ul>
   {% endif %}
+  {% if object.place.all %}
+  <legend>Orte</legend>
+  <ul>
+    {% for x in object.place.all %}
+      <li><a href="{{ x.get_absolute_url }}">{{ x }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
   </div>
