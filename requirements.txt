@@ -7,6 +7,7 @@ django-mptt==0.11.0
 django-next-prev==1.1.0
 django-spaghetti-and-meatballs==0.4.2
 djangorestframework>=3.13.1,<4
+django-leaflet==0.28.3
 rdflib==6.1.1
 tqdm==4.62.3
 requests>=2.25
