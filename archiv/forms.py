@@ -94,7 +94,9 @@ class PersonForm(GndModelForm):
             'title',
             'gnd_gnd_id',
             'gnd_pref_name',
-            'remarks'
+            'remarks',
+            'notes_lit',
+            'status',
         ]
 
     def __init__(self, *args, **kwargs):

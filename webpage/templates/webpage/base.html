@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load leaflet_tags %}
 {% load webpage_extras %}
 {% load browsing_extras %}
 {% load infos_extras %}
@@ -29,6 +30,8 @@
         type="text/css" />
     <link rel="stylesheet" href="{% static 'webpage/css/style.css' %}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ SHARED_URL }}apis/libraries/scroll-to-top/css/ap-scroll-top.min.css" />
+    {% leaflet_js %}
+    {% leaflet_css %}
     <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
     <script type="text/javascript">
         window.cookieconsent_options = {

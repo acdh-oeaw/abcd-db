@@ -129,11 +129,28 @@ class Place(AbcdBase):
         verbose_name='Ortsname',
         help_text='z.B. Ansfelden'
     )
-    remarks = models.TextField(
+    remarks = RichTextField(
         blank=True,
         null=True,
-        verbose_name="Anmerkungen",
-        help_text="Anmerkungen zur Person"
+        verbose_name="Anmerkungen generell",
+        help_text="Anmerkungen zum Ort"
+    ).set_extra(
+        is_public=True,
+        data_lookup="text_Text1",
+    )
+    status = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Berabeitungsstand",
+        help_text="Internes Feld zur Dokumentation der Verknüpfungen von Ort zu Ereignis"
+    )
+    notes_lit = RichTextField(
+        blank=True, null=True,
+        verbose_name="Anmerkungen Literatur",
+        help_text="Literatur zum Ort",
+    ).set_extra(
+        is_public=True,
+        data_lookup="text_Literatur",
     )
     geonames_id = models.URLField(
         max_length=200,
@@ -279,11 +296,28 @@ class Person(GndPersonBase):
         null=True,
         verbose_name="Link zu ABLO Eintrag"
     )
-    remarks = models.TextField(
+    remarks = RichTextField(
         blank=True,
         null=True,
-        verbose_name="Anmerkungen",
+        verbose_name="Anmerkungen generell",
         help_text="Anmerkungen zur Person"
+    ).set_extra(
+        is_public=True,
+        data_lookup="text_Text1",
+    )
+    notes_lit = RichTextField(
+        blank=True, null=True,
+        verbose_name="Anmerkungen Literatur",
+        help_text="Literatur zur Person",
+    ).set_extra(
+        is_public=True,
+        data_lookup="text_Literatur",
+    )
+    status = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Berabeitungsstand",
+        help_text="Internes Feld zur Dokumentation der Verknüpfungen von Person zu Ereignis"
     )
 
     class Meta:
