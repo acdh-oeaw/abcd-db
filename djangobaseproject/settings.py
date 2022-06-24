@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'vocabs',
     'archiv',
     'gnd',
+    'fixture_magic',
 ]
 
 SPAGHETTI_SAUCE = {
