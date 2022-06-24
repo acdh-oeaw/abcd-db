@@ -33,9 +33,9 @@
           var placeName = "<a href='{{ x.get_absolute_url }}'>{{ x.title }}</a>"
           var lat = "{{ x.lat }}".replace(',', '.');
           var long = "{{ x.long }}".replace(',', '.');
-          const marker = L.marker([parseFloat(lat), parseFloat(long)]);
-          marker.bindPopup(placeName);
-          markers.addLayer(marker);
+          const marker{{ x.id }} = L.marker([parseFloat(lat), parseFloat(long)]);
+          marker{{ x.id }}.bindPopup(placeName);
+          markers.addLayer(marker{{ x.id }});
         {% endif %}
       {% endfor %}
       markers.addTo(map);
