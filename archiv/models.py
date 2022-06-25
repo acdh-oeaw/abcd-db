@@ -8,7 +8,7 @@ from ckeditor.fields import RichTextField
 from typesense import api_call
 from next_prev import next_in_order, prev_in_order
 
-from acdh_cfts_pyutils import TYPESENSE_CLIENT as ts_client
+from acdh_cfts_pyutils import TYPESENSE_CLIENT as ts_client, CFTS_SCHEMA_NAME
 from browsing.browsing_utils import model_to_dict
 from gnd.models import GndPersonBase
 
@@ -667,21 +667,30 @@ class Event(AbcdBase):
 
     @classmethod
     def ts_update_index(self, records):
-        indexed = ts_client.collections[TS_SCHEMA_NAME].documents.import_(
+        ts_client.collections[TS_SCHEMA_NAME].documents.import_(
             records,
             {'action': 'upsert'}
         )
-        return indexed
+        print("Done indexing abcd-db")
+        ts_client.collections[CFTS_SCHEMA_NAME].documents.import_(
+            records,
+            {'action': 'upsert'}
+        )
+        print("Done indexing cfts")
+        return "indexed"
 
     def ts_make_document(self):
         doc = {
             'project': TS_SCHEMA_NAME,
-            'id': str(self.id),
+            'id': f"{TS_SCHEMA_NAME}__{str(self.id)}",
             'rec_id': str(self.id),
-            'resolver': f"{self.get_absolute_url()}",
+            'resolver': f"abcd.acdh-dev.oeaw.ac.at{self.get_absolute_url()}",
             'full_text': self.full_text,
             'year': int(str(self.id)[:4]),
-            'wabs': [f"{x}" for x in self.wab.all()]
+            'wabs': [f"{x}" for x in self.wab.all()],
+            'works': [f"{x}" for x in self.work.all()],
+            'persons': [f"{x}" for x in self.person.all()],
+            'places': [f"{x}" for x in self.place.all()]
         }
         if self.date_written is not None:
             doc['title'] = f"{self.date_written}"
