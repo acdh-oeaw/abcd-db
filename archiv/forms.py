@@ -95,7 +95,18 @@ class PersonForm(GndModelForm):
 
     class Meta:
         model = Person
-        fields = "__all__"
+        fields = [
+            'title',
+            'gnd_gnd_id',
+            'gnd_pref_name',
+            'remarks',
+            'notes_lit',
+            'notes_img',
+            'notes_facs',
+            'notes_archive',
+            'work',
+            'status',
+        ]
         widgets = {
             'work': autocomplete.ModelSelect2Multiple(
                 url='archiv-ac:work-autocomplete'
