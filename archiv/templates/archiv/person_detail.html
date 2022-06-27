@@ -74,6 +74,54 @@
           </div>
           {% endif %}
       </div>
+      <div class="card-footer">
+        {% if object.notes_lit %}
+        <b>Literatur</b>
+        <div class="notes_lit">
+          {{ object.notes_lit|safe }}
+        </div>
+        {% endif %}
+        {% if object.notes_img %}
+        <b>Abbildung</b>
+        <div class="notes_img">
+          {{ object.notes_img|safe }}
+        </div>
+        {% endif %}
+        {% if object.notes_facs %}
+        <b>Faksimile</b>
+        <div class="notes_facs">
+          {{ object.notes_facs|safe }}
+        </div>
+        {% endif %}
+        {% if object.notes_archive %}
+        <b>Archiv</b>
+        <div class="notes_archive">
+          {{ object.notes_archive|safe }}
+        </div>
+        {% endif %}
+        {% if object.notes_text %}
+        <b>Anmerkung</b>
+        <div class="notes_text">
+          {{ object.notes_text|safe }}
+        </div>
+        {% endif %}
+        {% if object.work.all %}
+        <b>Bibliographie</b>
+        <div class="bibliograhpie">
+          <ul>
+            {% for x in object.work.all %}
+            <li>
+              <a href="{{ x.get_absolute_url }}">
+                {{ x|safe }}                    
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        </ul>
+      </div>
+      <small>letzte Änderung: {{ object.updated_at|date:"M d, Y, G:H" }}</small>
     </div>
     {% if user.is_authenticated %}
     <div class="card-footer" style="text-align: right;">

@@ -209,29 +209,6 @@ class Place(AbcdBase):
         verbose_name='Ortsname',
         help_text='z.B. Ansfelden'
     )
-    remarks = RichTextField(
-        blank=True,
-        null=True,
-        verbose_name="Anmerkungen generell",
-        help_text="Anmerkungen zum Ort"
-    ).set_extra(
-        is_public=True,
-        data_lookup="text_Text1",
-    )
-    status = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="Berabeitungsstand",
-        help_text="Internes Feld zur Dokumentation der Verknüpfungen von Ort zu Ereignis"
-    )
-    notes_lit = RichTextField(
-        blank=True, null=True,
-        verbose_name="Anmerkungen Literatur",
-        help_text="Literatur zum Ort",
-    ).set_extra(
-        is_public=True,
-        data_lookup="text_Literatur",
-    )
     geonames_id = models.URLField(
         max_length=200,
         blank=True,
@@ -248,6 +225,60 @@ class Place(AbcdBase):
         blank=True, null=True,
         verbose_name="Längengrad",
         help_text="Längengrad, z.B. '48.20969'",
+    )
+    remarks = RichTextField(
+        blank=True,
+        null=True,
+        verbose_name="Anmerkungen generell",
+        help_text="Anmerkungen zum Ort"
+    ).set_extra(
+        is_public=True,
+        data_lookup="text_Text1",
+    )
+    notes_lit = RichTextField(
+        blank=True, null=True,
+        verbose_name="Anmerkungen Literatur",
+        help_text="Literatur zum Ort",
+    ).set_extra(
+        is_public=True,
+        data_lookup="text_Literatur",
+    )
+    work = models.ManyToManyField(
+        'Work',
+        blank=True,
+        related_name="work_referenced_in_place",
+        verbose_name="Literatur",
+        help_text="Literaturangaben zu diesem Ort"
+    )
+    notes_img = RichTextField(
+        blank=True, null=True,
+        verbose_name="Anmerkungen Abbildungen",
+        help_text="whatever",
+    ).set_extra(
+        is_public=True,
+        data_lookup="text_Abbildung",
+    )
+    notes_facs = RichTextField(
+        blank=True, null=True,
+        verbose_name="Anmerkungen Faksimiles",
+        help_text="whatever",
+    ).set_extra(
+        is_public=True,
+        data_lookup="text_Faksimile",
+    )
+    notes_archive = RichTextField(
+        blank=True, null=True,
+        verbose_name="Anmerkungen Archiv",
+        help_text="whatever",
+    ).set_extra(
+        is_public=True,
+        data_lookup="text_Archiv",
+    )
+    status = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Berabeitungsstand",
+        help_text="Internes Feld zur Dokumentation der Verknüpfungen von Ort zu Ereignis"
     )
 
     def __str__(self):
@@ -392,6 +423,37 @@ class Person(GndPersonBase):
     ).set_extra(
         is_public=True,
         data_lookup="text_Literatur",
+    )
+    work = models.ManyToManyField(
+        'Work',
+        blank=True,
+        related_name="work_referenced_in_person",
+        verbose_name="Literatur",
+        help_text="Literaturangaben zu dieser Person"
+    )
+    notes_img = RichTextField(
+        blank=True, null=True,
+        verbose_name="Anmerkungen Abbildungen",
+        help_text="whatever",
+    ).set_extra(
+        is_public=True,
+        data_lookup="text_Abbildung",
+    )
+    notes_facs = RichTextField(
+        blank=True, null=True,
+        verbose_name="Anmerkungen Faksimiles",
+        help_text="whatever",
+    ).set_extra(
+        is_public=True,
+        data_lookup="text_Faksimile",
+    )
+    notes_archive = RichTextField(
+        blank=True, null=True,
+        verbose_name="Anmerkungen Archiv",
+        help_text="whatever",
+    ).set_extra(
+        is_public=True,
+        data_lookup="text_Archiv",
     )
     status = models.TextField(
         blank=True,

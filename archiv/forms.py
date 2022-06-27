@@ -56,6 +56,11 @@ class PlaceForm(forms.ModelForm):
     class Meta:
         model = Place
         fields = "__all__"
+        widgets = {
+            'work': autocomplete.ModelSelect2Multiple(
+                url='archiv-ac:work-autocomplete'
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         super(PlaceForm, self).__init__(*args, **kwargs)
@@ -90,14 +95,12 @@ class PersonForm(GndModelForm):
 
     class Meta:
         model = Person
-        fields = [
-            'title',
-            'gnd_gnd_id',
-            'gnd_pref_name',
-            'remarks',
-            'notes_lit',
-            'status',
-        ]
+        fields = "__all__"
+        widgets = {
+            'work': autocomplete.ModelSelect2Multiple(
+                url='archiv-ac:work-autocomplete'
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         super(PersonForm, self).__init__(*args, **kwargs)
