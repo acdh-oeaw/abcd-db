@@ -46,7 +46,7 @@ class SkosConceptListView(GenericListView):
 class SkosConceptDetailView(BaseDetailView):
 
     model = SkosConcept
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'archiv/skos_detail.html'
 
 
 class SkosConceptCreate(BaseCreateView):

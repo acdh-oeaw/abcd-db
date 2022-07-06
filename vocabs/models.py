@@ -3,8 +3,17 @@ from django.conf import settings
 from django.urls import reverse
 from next_prev import next_in_order, prev_in_order
 from browsing.browsing_utils import model_to_dict
+from ckeditor.fields import RichTextField
 
 from mptt.models import MPTTModel, TreeForeignKey
+
+
+def set_extra(self, **kwargs):
+    self.extra = kwargs
+    return self
+
+
+models.Field.set_extra = set_extra
 
 
 DEFAULT_LANG = getattr(settings, 'VOCABS_DEFAULT_LANG', 'deu')
@@ -181,6 +190,15 @@ class SkosConcept(MPTTModel):
         verbose_name="member of skos:Collection",
         help_text="Collection that this concept is a member of",
         related_name="has_members",
+    )
+    remarks = RichTextField(
+        blank=True,
+        null=True,
+        verbose_name="Anmerkungen generell",
+        help_text="Anmerkungen"
+    ).set_extra(
+        is_public=True,
+        data_lookup="text_Text1",
     )
 
     class MPTTMeta:

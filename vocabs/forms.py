@@ -17,6 +17,7 @@ class SkosConceptForm(forms.ModelForm):
         fields = [
             'pref_label',
             'collection',
+            'remarks',
         ]
 
     def __init__(self, *args, **kwargs):
