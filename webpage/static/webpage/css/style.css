@@ -24,6 +24,12 @@ header.masthead {
     overflow: inherit !important;
 }
 
+.select2-container--default .select2-selection--multiple .select2-selection__clear {
+  color:#bd0000 !important;
+  margin-top: 0px !important;
+  margin-right: -55px !important;
+}
+
 .showcase .showcase-text {
   padding: 3rem;
 }
