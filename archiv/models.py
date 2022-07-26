@@ -480,7 +480,7 @@ class Person(GndPersonBase):
         ]
 
     def save(self, *args, **kwargs):
-        if self.gnd_pref_name != None:
+        if self.gnd_pref_name is not None:
             name = self.gnd_pref_name.split(', ')
             self.surname = name[0]
         else:
