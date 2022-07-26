@@ -46,15 +46,15 @@
   <div class="card-body" style="padding-left:8em; padding-right: 8em;">
     {% block custom %}
     <div class="row">
-        <div class="col-md-8">
-           <legend>erwähnt in Ereignissen:</legend>
+        <div class="col-md-5">
+          <legend>erwähnt in <strong>{{ object.rvn_person_mentioned_in.all|length }}</strong> Ereignissen:</legend>
            {% for x in object.rvn_person_mentioned_in.all %}
            <li>
              <a href="{{ x.get_absolute_url }}">{{ x.date_written }}</a>
            </li>
            {% endfor %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-7">
           <legend>Normdaten</legend>
           <ul>
             {% if object.gnd_gnd_id %}

@@ -97,6 +97,7 @@ class PersonForm(GndModelForm):
         model = Person
         fields = [
             'title',
+            'surname',
             'gnd_gnd_id',
             'gnd_pref_name',
             'remarks',

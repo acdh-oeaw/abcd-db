@@ -140,7 +140,7 @@ class Wab(AbcdBase):
         null=True,
         verbose_name="XML/MEI des Werkes"
     )
-    note = models.TextField(
+    note = RichTextField(
         blank=True,
         null=True,
         verbose_name="Anmerkungen",
@@ -382,6 +382,7 @@ class Institution(AbcdBase):
 
 class Person(GndPersonBase):
     title = models.CharField(max_length=250, blank=True, null=True)
+    surname = models.CharField(max_length=250, blank=True, null=True)
     bruckner_entity = models.BooleanField(
         default=False,
         verbose_name="Link zu Bruckner XML"
@@ -461,12 +462,31 @@ class Person(GndPersonBase):
         verbose_name="Berabeitungsstand",
         help_text="Internes Feld zur Dokumentation der Verknüpfungen von Person zu Ereignis"
     )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Erstellt am",
+        help_text="Zeit der Erstellung des Objektes (ab 2022-05-25)"
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Letzte Änderung",
+        help_text="Zeit der letzten Änderung"
+    )
 
     class Meta:
 
         ordering = [
-            'id',
+            'surname',
         ]
+
+    def save(self, *args, **kwargs):
+        if self.gnd_pref_name != None:
+            name = self.gnd_pref_name.split(', ')
+            self.surname = name[0]
+        else:
+            name = self.title.split(' ')
+            self.surname = name[len(name) - 1].replace('(', '').replace(')', '')
+        super(GndPersonBase, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.title}"

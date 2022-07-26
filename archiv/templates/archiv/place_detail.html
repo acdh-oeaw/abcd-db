@@ -58,7 +58,7 @@
     {% block custom %}
     <div class="row">
         <div class="col-md-8">
-           <legend>erwähnt in Ereignissen:</legend>
+          <legend>erwähnt in <strong>{{ object.place_mentioned_in.all|length }}</strong> Ereignissen:</legend>
            {% for x in object.place_mentioned_in.all %}
            <li>
              <a href="{{ x.get_absolute_url }}">{{ x.date_written }}</a>

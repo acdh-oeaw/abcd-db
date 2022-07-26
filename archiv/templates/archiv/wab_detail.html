@@ -62,10 +62,10 @@
           {% endif %}
 
           {% if user.is_authenticated %}
-          <big>Anmerkungen zum Werk:</big>
-          <p>{{ object.note }}</p>  
-          <big>Stand der Verlinkung zu Ereignissen:</big>
-          <p>{{ object.status }}</p>
+            <big>Anmerkungen zum Werk:</big>
+              <p>{{ object.note }}</p>  
+            <big>Stand der Verlinkung zu Ereignissen:</big>
+              <p>{{ object.status }}</p>
           {% endif %}
     </div>
         <div class="col-md-4">
@@ -76,7 +76,7 @@
            </li>
            {% endfor %}
         </div>
-        
+        letzte Änderung: {{ object.updated_at|date:"M d, Y, G:H" }}   
     </div>
     {% if user.is_authenticated %}
     <div class="card-footer" style="text-align: right;">
