@@ -766,7 +766,7 @@ class Event(AbcdBase):
             'project': TS_SCHEMA_NAME,
             'id': f"{TS_SCHEMA_NAME}__{str(self.id)}",
             'rec_id': str(self.id),
-            'resolver': f"abcd.acdh-dev.oeaw.ac.at{self.get_absolute_url()}",
+            'resolver': f"https://abcd.acdh-dev.oeaw.ac.at{self.get_absolute_url()}",
             'full_text': self.full_text,
             'year': int(str(self.id)[:4]),
             'wabs': [f"{x}" for x in self.wab.all()],
