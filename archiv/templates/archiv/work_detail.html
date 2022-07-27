@@ -72,7 +72,6 @@
             {% endif %}
           </ul>
       </div>
-      letzte Änderung: {{ object.updated_at|date:"M d, Y, G:H" }}
     </div>
     {% if user.is_authenticated %}
     <div class="card-footer" style="text-align: right;">
@@ -80,6 +79,7 @@
         <i data-feather="delete"></i>
       </a>
     </div>
+    <small>letzte Änderung: {{ object.updated_at|date:"M d, Y, G:H" }}</small>
     {% endif %}
 
   </div>

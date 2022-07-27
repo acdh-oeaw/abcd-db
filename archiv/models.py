@@ -15,7 +15,6 @@ from gnd.models import GndPersonBase
 
 TS_SCHEMA_NAME = 'abcd-db'
 
-
 TS_SCHEMA = {
     'name': TS_SCHEMA_NAME,
     'fields': [

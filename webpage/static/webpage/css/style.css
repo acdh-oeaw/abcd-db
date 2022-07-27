@@ -374,3 +374,8 @@ a:not([href]):not([tabindex]) {
 #sidebar_left.active {
   margin-left: -350px;
 }
+
+.card-footer:empty {
+  grid-area: card-footer; 
+  display: none;
+}
