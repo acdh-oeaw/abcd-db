@@ -63,7 +63,7 @@
 
           {% if user.is_authenticated %}
             <big>Anmerkungen zum Werk:</big>
-              <p>{{ object.note }}</p>  
+              <p>{{ object.note|safe }}</p>  
             <big>Stand der Verlinkung zu Ereignissen:</big>
               <p>{{ object.status }}</p>
           {% endif %}
