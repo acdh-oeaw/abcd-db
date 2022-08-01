@@ -17,6 +17,14 @@
     {% endfor %}
   </ul>
   {% endif %}
+  {% if object.concept.all %}
+    <legend>Schlagworte</legend>
+    <ul>
+      {% for x in object.concept.all %}
+        <li><a href="{{ x.get_absolute_url }}">{{ x }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
   {% if object.place.all %}
   <legend>Orte</legend>
   <ul>
