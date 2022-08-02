@@ -218,6 +218,9 @@ class EventForm(forms.ModelForm):
             'wab': autocomplete.ModelSelect2Multiple(
                 url='archiv-ac:wab-autocomplete'
             ),
+            'concept': autocomplete.ModelSelect2Multiple(
+                url='vocabs-ac:concept-ac'
+            ),
         }
 
     def __init__(self, *args, **kwargs):
