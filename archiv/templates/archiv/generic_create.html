@@ -12,3 +12,45 @@
         {% endif %}
     </h1>
 {% endblock %}
+
+{% block scripts2 %}
+    {{ form.media }}
+    <script type="text/javascript">
+        let formChanged = false;
+
+        myForm = document.getElementsByClassName("form-horizontal")[0];
+        console.log(myForm);
+        myForm.addEventListener('change', () => formChanged = true);
+
+        window.addEventListener('beforeunload', (event) => {
+        if (formChanged) {
+            event.returnValue = 'Changes you made may not be saved.';
+        }
+        });
+
+        function DisableMessage() {
+            document.body.onbeforeunload = null;
+            formChanged = false;
+        }
+
+        $(function(){
+            document.body.onbeforeunload = function() {
+                for(editorName in CKEDITOR.instances) {
+                    if (CKEDITOR.instances[editorName].checkDirty()) {
+                        return 'Changes you made may not be saved.'
+                    }
+                }
+            }
+        });
+
+        $('.custom-select').on('select2:select', function (e) {
+            formChanged = true;
+        });
+
+        $('.custom-select').on('select2:unselecting', function (e) {
+            formChanged = true;
+        });
+
+        document.getElementById('submit-id-submit').addEventListener('click', () => DisableMessage());
+    </script>
+{% endblock scripts2 %}
