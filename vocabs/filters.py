@@ -15,7 +15,8 @@ class SkosTechnicalCollectionListFilter(django_filters.FilterSet):
     class Meta:
         model = SkosTechnicalCollection
         fields = [
-            'pref_label'
+            'pref_label',
+            'id'
         ]
 
 
@@ -27,7 +28,8 @@ class SkosCollectionListFilter(django_filters.FilterSet):
     class Meta:
         model = SkosCollection
         fields = [
-            'pref_label'
+            'pref_label',
+            'id'
         ]
 
 
@@ -40,6 +42,7 @@ class SkosConceptListFilter(django_filters.FilterSet):
     class Meta:
         model = SkosConcept
         fields = [
+            'id',
             'pref_label',
             'collection',
         ]

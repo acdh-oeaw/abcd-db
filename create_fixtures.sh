@@ -5,7 +5,7 @@
 source env/bin/activate
 
 echo "create fixtures_event"
-python manage.py dump_object archiv.event 192704035 192704045 > fixtures_event.json
+python manage.py dump_object archiv.event 174210000 192704035 192704045 > fixtures_event.json
 
 echo "create fixtures_wab"
 python manage.py dump_object archiv.wab 40 41 > fixtures_wab.json

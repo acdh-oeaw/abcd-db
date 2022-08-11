@@ -46,7 +46,7 @@ class SkosConceptListView(GenericListView):
 class SkosConceptDetailView(BaseDetailView):
 
     model = SkosConcept
-    template_name = 'archiv/skos_detail.html'
+    template_name = 'archiv/concept_detail.html'
 
 
 class SkosConceptCreate(BaseCreateView):
@@ -74,7 +74,7 @@ class SkosConceptUpdate(BaseUpdateView):
 class SkosConceptDelete(DeleteView):
     model = SkosConcept
     template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('vocabs:SkosConcept_browse')
+    success_url = reverse_lazy('vocabs:skosconcept_browse')
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -96,7 +96,7 @@ class SkosCollectionListView(GenericListView):
 class SkosCollectionDetailView(BaseDetailView):
 
     model = SkosCollection
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'archiv/concept_detail.html'
 
 
 class SkosCollectionCreate(BaseCreateView):
@@ -174,7 +174,7 @@ class SkosTechnicalCollectionUpdate(BaseUpdateView):
 class SkosTechnicalCollectionDelete(DeleteView):
     model = SkosTechnicalCollection
     template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('vocabs:skosTechnicalcollection_browse')
+    success_url = reverse_lazy('vocabs:skostechnicalcollection_browse')
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):

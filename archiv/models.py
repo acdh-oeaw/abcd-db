@@ -12,6 +12,8 @@ from acdh_cfts_pyutils import TYPESENSE_CLIENT as ts_client, CFTS_SCHEMA_NAME
 from browsing.browsing_utils import model_to_dict
 from gnd.models import GndPersonBase
 
+from vocabs.models import SkosConcept
+
 
 TS_SCHEMA_NAME = 'abcd-db'
 
@@ -670,6 +672,13 @@ class Event(AbcdBase):
         related_name="work_referenced_in",
         verbose_name="Literatur",
         help_text="Literaturangaben zu diesem Event"
+    )
+    concept = models.ManyToManyField(
+        SkosConcept,
+        blank=True,
+        related_name="concept_for_event",
+        verbose_name="Systematisches Schlagwort",
+        help_text="Diese Schlagworte werden in einer eigenen Liste geführt"
     )
     full_text = models.TextField(
         blank=True,
