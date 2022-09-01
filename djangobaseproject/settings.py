@@ -219,7 +219,7 @@ CKEDITOR_CONFIGS = {
             '/',
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
-            {'name': 'tools', 'items': ['ShowBlocks']},
+            {'name': 'tools', 'items': ['ShowBlocks', 'Source']},
         ]
     }
 }
