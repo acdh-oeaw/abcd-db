@@ -207,7 +207,7 @@ SPECIAL_CHARS_SHEET_ID = "1RGlec8TtxvX-PxfbCvfwg1kQHh76Oai0VyTYQR_8TTE"
 
 
 styles = [
-    {"name": 'Gesperrt', "element": 'tt', "styles": {'letter-spacing': '3px'}},
+    {"name": 'Gesperrt', "element": 'span', "styles": {'letter-spacing': '3px'}},
     {"name": 'Italic Title', "element": 'h2', "styles": {'font-style': 'italic'}},
     {"name": 'Subtitle', "element": 'h3', "styles": {"color": '#aaa', 'font-style': 'italic'}},
     {
