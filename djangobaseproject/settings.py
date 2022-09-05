@@ -205,10 +205,43 @@ LEGACY_DB_LIT_SHEET_ID = "17lfhVUW6RYSdwkSoginK0uKMI_Dn-iGPgAw1wcKgnHI"
 WAB_SEARCH = "1zEL1gn-lcvJL7FUWesNXph6N6Gczk45GVcK9HI1qhdc"
 SPECIAL_CHARS_SHEET_ID = "1RGlec8TtxvX-PxfbCvfwg1kQHh76Oai0VyTYQR_8TTE"
 
+
+styles = [
+    {"name": 'Gesperrt', "element": 'tt', "styles": {'letter-spacing': '3px'}},
+    {"name": 'Italic Title', "element": 'h2', "styles": {'font-style': 'italic'}},
+    {"name": 'Subtitle', "element": 'h3', "styles": {"color": '#aaa', 'font-style': 'italic'}},
+    {
+        "name": 'Special Container',
+        "element": 'div',
+        "styles": {
+            "padding": '5px 10px',
+            "background": '#eee',
+            "border": '1px solid #ccc',
+        },
+    },
+    {"name": 'Marker', "element": 'span', "attributes": {"class": 'marker'}},
+
+    {"name": 'Big', "element": 'big'},
+    {"name": 'Small', "element": 'small'},
+    {"name": 'Typewriter', "element": 'tt'},
+
+    {"name": 'Computer Code', "element": 'code'},
+    {"name": 'Keyboard Phrase', "element": 'kbd'},
+    {"name": 'Sample Text', "element": 'samp'},
+    {"name": 'Variable', "element": 'var'},
+
+    {"name": 'Deleted Text', "element": 'del'},
+    {"name": 'Inserted Text', "element": 'ins'},
+
+    {"name": 'Cited Work', "element": 'cite'},
+    {"name": 'Inline Quotation', "element": 'q'}
+]
+
 CKEDITOR_CONFIGS = {
     'default': {
         'entities_latin': False,
         'toolbar': 'Custom',
+        'stylesSet': styles,
         'toolbar_Custom': [
             '/',
             {'name': 'basicstyles',
