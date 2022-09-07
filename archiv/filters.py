@@ -61,7 +61,8 @@ class EventListFilter(SchrederFilter):
         help_text="Beispiel: 'Richard Wagner' findet alle Datensätze,\
             die 'Richard Wagner' im Haupttext enthalten, aber auch z.B.\
                 'Richard Wagners Opern",
-        label="Einfache Suche im Haupttext"
+        label="Einfache Suche im Haupttext",
+        widget=forms.TextInput(attrs={'autofocus': True})
     )
     main_text_scheder = django_filters.CharFilter(
         method='scheder_filtering',
@@ -194,7 +195,8 @@ class WorkListFilter(django_filters.FilterSet):
     order_code = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Work._meta.get_field('order_code').help_text,
-        label=Work._meta.get_field('order_code').verbose_name
+        label=Work._meta.get_field('order_code').verbose_name,
+        widget=forms.TextInput(attrs={'autofocus': True})
     )
     author_name = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
@@ -223,7 +225,8 @@ class PlaceListFilter(django_filters.FilterSet):
     title = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Place._meta.get_field('title').help_text,
-        label=Place._meta.get_field('title').verbose_name
+        label=Place._meta.get_field('title').verbose_name,
+        widget=forms.TextInput(attrs={'autofocus': True})
     )
 
     class Meta:
@@ -236,7 +239,8 @@ class PersonListFilter(django_filters.FilterSet):
     title = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Person._meta.get_field('title').help_text,
-        label='Name'
+        label='Name',
+        widget=forms.TextInput(attrs={'autofocus': True})
     )
     gnd_gnd_id = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
