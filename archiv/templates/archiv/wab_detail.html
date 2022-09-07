@@ -58,11 +58,13 @@
           <big>Anmerkungen zum Werk:</big>
               <p>{{ object.note|safe }}</p> 
           {% endif %}
-           {% if user.is_authenticated %}
+          {% if object.date_written %}
           <big>Datierung des Werkes:</big>
           <div class="date_written">
             <abbr title="{{ object.date }}">{{ object.date_written|safe }}</abbr>
           </div>
+          {% endif %}
+          {% if user.is_authenticated %}
           <big>Stand der Verlinkung zu Ereignissen:</big>
             <p>{{ object.status }}</p>
           {% endif %}
