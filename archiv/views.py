@@ -49,7 +49,7 @@ class WabListView(GenericListView):
     formhelper_class = WabFilterFormHelper
     table_class = WabTable
     init_columns = [
-        'id', 'title',
+        'id', 'title'
     ]
     enable_merge = False
     template_name = 'archiv/custom_list.html'
