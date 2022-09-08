@@ -245,7 +245,7 @@ class PersonListFilter(django_filters.FilterSet):
     gnd_gnd_id = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Person._meta.get_field('gnd_gnd_id').help_text,
-        label=Person._meta.get_field('gnd_gnd_id').verbose_name
+        label='GND-id (Gemeinsame Normdatei, DNB)'
     )
     ablo_uri = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,

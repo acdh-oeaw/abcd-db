@@ -66,4 +66,17 @@
 {% block scripts2 %}
     <script src="{% static 'browsing/js/set-form-attributes.js' %}"></script>
     <script src="{% static 'browsing/js/filter-for-blank-fields.js' %}"></script>
+    <!-- Makes sure that "icontains" (enthält) is set as initial value for lookup filters -->
+    <script>
+        const lookUps = document.getElementsByClassName('select form-control custom-select');
+        for (lookUp in lookUps) {
+            const options = Array.prototype.slice.call(lookUps[lookUp].options, 0);
+            console.log(options)
+            for (let i = 0; i < options.length; ++i) {
+                if (options[i].text === '---------') {
+                    options[i].remove(); 
+                }
+            }
+        }
+    </script>
 {% endblock scripts2 %}
