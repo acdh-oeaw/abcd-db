@@ -47,7 +47,12 @@
     {% block custom %}
     <div class="row">
         <div class="col-md-5">
-          <legend>erwähnt in <strong>{{ object.rvn_person_mentioned_in.all|length }}</strong> Ereignissen:</legend>
+          <legend>erwähnt in <strong>{{ object.rvn_person_mentioned_in.all|length }}</strong> Ereignissen (Auswahl):</legend>
+          <p>
+            <i>
+              Bitte beachten Sie, dass in manchen Fällen die Erwähnungen noch nicht oder nur teilweise verlinkt sind. Erwähnungen (mit einer Art "Inhaltsangabe") sind in vielen Fällen in der rechten Spalte zu finden.
+            </i>
+          </p>
            {% for x in object.rvn_person_mentioned_in.all %}
            <li>
              <a href="{{ x.get_absolute_url }}">{{ x.date_written }}</a>
@@ -128,8 +133,8 @@
         <i data-feather="delete"></i>
       </a>
     </div>
-    <small>letzte Änderung: {{ object.updated_at|date:"M d, Y, G:H" }}</small>
     {% endif %}
+    <small>letzte Änderung: {{ object.updated_at|date:"M d, Y, G:H" }}</small>
 
   </div>
 </div>

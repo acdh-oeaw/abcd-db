@@ -489,6 +489,10 @@ class Person(GndPersonBase):
             self.surname = name[len(name) - 1].replace('(', '').replace(')', '')
         super(GndPersonBase, self).save(*args, **kwargs)
 
+    @classmethod
+    def submit(self, *args, **kwargs):
+        super(GndPersonBase, self).save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.title}"
 

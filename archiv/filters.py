@@ -212,7 +212,6 @@ class WorkListFilter(django_filters.FilterSet):
     class Meta:
         model = Work
         fields = [
-            'id',
             'legacy_id',
             'order_code',
             'author_name',
@@ -241,11 +240,6 @@ class PersonListFilter(django_filters.FilterSet):
         help_text=Person._meta.get_field('title').help_text,
         label='Name',
         widget=forms.TextInput(attrs={'autofocus': True})
-    )
-    gnd_gnd_id = django_filters.LookupChoiceFilter(
-        lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=Person._meta.get_field('gnd_gnd_id').help_text,
-        label='GND-id (Gemeinsame Normdatei, DNB)'
     )
     ablo_uri = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,

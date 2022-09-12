@@ -304,7 +304,7 @@ class WorkListView(GenericListView):
     formhelper_class = WorkFilterFormHelper
     table_class = WorkTable
     init_columns = [
-        'id', 'author_name', 'order_code',
+        'id', 'author_name', 'order_code', 'short_quote'
     ]
     enable_merge = False
     template_name = 'archiv/custom_list.html'

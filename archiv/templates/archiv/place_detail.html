@@ -57,7 +57,7 @@
   <div class="card-body" style="padding-left:8em; padding-right: 8em;">
     {% block custom %}
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-4">
           <legend>erwähnt in <strong>{{ object.place_mentioned_in.all|length }}</strong> Ereignissen:</legend>
            {% for x in object.place_mentioned_in.all %}
            <li>
@@ -65,7 +65,7 @@
            </li>
            {% endfor %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-8">
           <legend>Normdaten</legend>
           <ul>
             {% if object.geonames_id %}
@@ -136,8 +136,8 @@
         <i data-feather="delete"></i>
       </a>
     </div>
-    <small>letzte Änderung: {{ object.updated_at|date:"M d, Y, G:H" }}</small>
     {% endif %}
+    <small>letzte Änderung: {{ object.updated_at|date:"M d, Y, G:H" }}</small>
 
   </div>
 </div>

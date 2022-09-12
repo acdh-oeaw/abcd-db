@@ -123,6 +123,7 @@ class PersonForm(GndModelForm):
         self.helper.label_class = 'col-md-3'
         self.helper.field_class = 'col-md-9'
         self.helper.add_input(Submit('submit', 'save'),)
+        self.helper.add_input(Submit('submit', 'save'),)
 
 
 class PersonFilterFormHelper(FormHelper):
@@ -142,10 +143,8 @@ class PersonFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'weitere Suchoptionen ',
-                    'gnd_gnd_id',
                     'ablo_uri',
                     'oeml_uri',
-                    'bruckner_entity',
                     css_id="more"
                 )
             )
@@ -244,17 +243,12 @@ class WorkFilterFormHelper(FormHelper):
         self.layout = Layout(
             Fieldset(
                 'Suche',
-                'id',
+                'order_code',
+                'author_name',
+                'full_quote',
                 css_id="basic_search_fields"
             ),
             Accordion(
-                AccordionGroup(
-                    'weitere Suchoptionen',
-                    'order_code',
-                    'author_name',
-                    'full_quote',
-                    css_id="more"
-                ),
                 AccordionGroup(
                     'Admin-Suche',
                     'legacy_id',
@@ -295,6 +289,7 @@ class WabForm(forms.ModelForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-md-3'
         self.helper.field_class = 'col-md-9'
+        self.helper.form_id = 'saveButton'
         self.helper.add_input(Submit('submit', 'save'),)
 
 
