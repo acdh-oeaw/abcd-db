@@ -123,7 +123,6 @@ class PersonForm(GndModelForm):
         self.helper.label_class = 'col-md-3'
         self.helper.field_class = 'col-md-9'
         self.helper.add_input(Submit('submit', 'save'),)
-        self.helper.add_input(Submit('submit', 'save'),)
 
 
 class PersonFilterFormHelper(FormHelper):
