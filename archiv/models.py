@@ -2,6 +2,8 @@ import ciso8601
 import time
 from datetime import datetime
 from django.db import models
+from django.contrib.postgres.search import SearchVectorField
+from django.contrib.postgres.indexes import GinIndex
 from django.urls import reverse
 from django.utils.html import strip_tags
 from ckeditor.fields import RichTextField
@@ -690,6 +692,7 @@ class Event(AbcdBase):
         verbose_name="Volltext Feld",
         help_text="Volltext Feld (technisch notwendig)"
     )
+    vector_column = SearchVectorField(null=True)
 
     class Meta:
 
@@ -697,6 +700,7 @@ class Event(AbcdBase):
             'id',
         ]
         verbose_name = "Ereignis"
+        indexes = (GinIndex(fields=["vector_column"]),)
 
     def save(self, *args, **kwargs):
         super(Event, self).save(*args, **kwargs)
