@@ -23,5 +23,5 @@ class EventResultView(ExportMixin, django_tables2.SingleTableView):
 
     def get_context_data(self, **kwargs):
         context = super(EventResultView, self).get_context_data()
-        context['query_string'] = self.request.GET.get('full_text', None)
+        context['query_string'] = self.request.GET.get('ft_search', None)
         return context
