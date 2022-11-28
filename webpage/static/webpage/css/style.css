@@ -12,8 +12,7 @@ body {
 
 header.masthead {
   position: relative;
-  background-color: #343a40;
-  background: url("https://upload.wikimedia.org/wikipedia/commons/6/6d/A-Bruckner_B%C3%BCste.jpg") no-repeat center center;
+  background-color:  #ffffff;
   background-size: cover;
   padding-top: 8rem;
   padding-bottom: 8rem;
