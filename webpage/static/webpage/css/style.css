@@ -1,12 +1,12 @@
 html {
     height: 100%;
+    font-family: 'Open Sans', 'Myriad Pro', 'Helvetica', sans-serif;
 }
 
 body {
     display: flex;
     flex-direction: column;
     height: 100%;
-    font-family: 'Libre Franklin', sans-serif;
     background-color: #ffffff;
 }
 
