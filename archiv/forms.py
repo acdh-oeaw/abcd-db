@@ -166,6 +166,7 @@ class EventFilterFormHelper(FormHelper):
                     'main_text',
                     'main_text_scheder',
                     'wab',
+                    'person',
                     'id',
                     css_id="basic_search_fields"
                 ),
@@ -182,12 +183,7 @@ class EventFilterFormHelper(FormHelper):
                     'notes_text',
                     'key_word',
                     css_id="more"
-                ),
-                AccordionGroup(
-                    'admin',
-                    'legacy_id',
-                    css_id="admin_search"
-                ),
+                )
             )
         )
 
@@ -197,8 +193,6 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         exclude = [
-            'legacy_id',
-            'orig_data_csv',
             'full_text'
         ]
         widgets = {
@@ -247,13 +241,6 @@ class WorkFilterFormHelper(FormHelper):
                 'author_name',
                 'full_quote',
                 css_id="basic_search_fields"
-            ),
-            Accordion(
-                AccordionGroup(
-                    'Admin-Suche',
-                    'legacy_id',
-                    css_id="admin_search"
-                ),
             )
         )
 
