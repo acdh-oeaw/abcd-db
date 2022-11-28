@@ -162,6 +162,7 @@ class EventFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'Suche',
+                    'ft_search',
                     'main_text',
                     'main_text_scheder',
                     'wab',
