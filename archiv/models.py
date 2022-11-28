@@ -543,14 +543,6 @@ class Person(GndPersonBase):
 
 class Event(AbcdBase):
     """ Ereignis """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        db_index=True,
-        verbose_name="Legacy ID"
-    ).set_extra(
-        is_public=True,
-        data_lookup="OF_ID",
-    )
     id = models.IntegerField(
         primary_key=True,
         db_index=True,
@@ -715,10 +707,7 @@ class Event(AbcdBase):
         super(Event, self).save(*args, **kwargs)
 
     def __str__(self):
-        if self.id:
-            return "{}".format(self.id)
-        else:
-            return "{}".format(self.legacy_id)
+        return f"{self.id}"
 
     def field_dict(self):
         return model_to_dict(self)
@@ -837,13 +826,6 @@ class Event(AbcdBase):
 
 class Work(AbcdBase):
     """ Literatur """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-    ).set_extra(
-        is_public=True,
-        data_lookup="OF_ID",
-    )
     order_code = models.CharField(
         max_length=250,
         blank=True,
@@ -885,13 +867,6 @@ class Work(AbcdBase):
     ).set_extra(
         is_public=True,
         data_lookup="text_Titel",
-    )
-    orig_data_csv = RichTextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-    ).set_extra(
-        is_public=True
     )
 
     class Meta:
