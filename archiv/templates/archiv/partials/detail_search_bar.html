@@ -1,13 +1,8 @@
 <form method="get" action="{% url 'archiv:event_browse' %}">
     <div class="form-group">
       <label for="simple_search">Einfache Suche im Haupttext</label>
-      <input type="input" class="form-control" id="simple_search" aria-describedby="emailHelp" placeholder="Richard Wagner" name="main_text">
+      <input type="input" class="form-control" id="simple_search" aria-describedby="emailHelp" placeholder="Richard Wagner" name="ft_search">
       <small id="simple_searchHelp" class="form-text text-muted">Beispiel: 'Richard Wagner' findet alle Datensätze, die 'Richard Wagner' im Haupttext enthalten, aber auch z.B. 'Richard Wagners Opern</small>
     </div>
-    <div class="form-group">
-        <label for="scheder_search">Erweiterte Suche im Haupttext </label>
-        <input type="input" class="form-control" id="scheder_search" aria-describedby="emailHelp" placeholder="+Richard +Wagner -Verein" name="main_text_scheder">
-        <small id="scheder_searchHelp" class="form-text text-muted">Beispiel: +Richard +Wagner -Verein = alle Datensätze, die Richard UND Wagner aber NICHT Verein enthalten, werden angezeigt</small>
-      </div>
     <button type="submit" class="btn btn-primary">Suchen</button>
   </form>

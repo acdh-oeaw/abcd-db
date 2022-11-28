@@ -2,7 +2,7 @@
     <form method="get" action="{% url 'webpage:results' %}" style="margin: 2em">
       <div class="form-row">
         <div class="col-md-10">
-          <input type="search" class="form-control form-control-lg" placeholder="z.B. 'Te deum'" required name="full_text" {% if query_string %} value="{{ query_string }}" {% endif %} autofocus>
+          <input type="search" class="form-control form-control-lg" placeholder="z.B. 'Te deum'" required name="ft_search" {% if query_string %} value="{{ query_string }}" {% endif %} autofocus>
         </div>
         <div class="col-md-2">
           <button type="submit" class="btn btn-block btn-lg btn-primary" style="background-color:#1d82dcb8; border-color:#1d82dcb8;">Los!</button>
