@@ -22,7 +22,8 @@ CHAR_LOOKUP_CHOICES = [
 
 FT_HELPTEXT = """
 Beispiel: '"Richard Wagner" -Verein' zeigt alle Datensätze, die "Richard Wagner"\
-    aber NICHT Verein enthalten, werden angezeigt
+    aber NICHT Verein enthalten, werden angezeigt.\
+        Wortteile können mit "*" gesucht werden. Zum Beispiel "Tschai*"
 """
 
 
