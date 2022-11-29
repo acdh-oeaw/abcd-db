@@ -1,12 +1,60 @@
 <div class="col-md-12 mx-auto">
-    <form method="get" action="{% url 'webpage:results' %}" style="margin: 2em">
-      <div class="form-row">
-        <div class="col-md-10">
-          <input type="search" class="form-control form-control-lg" placeholder="z.B. 'Te deum'" required name="ft_search" {% if query_string %} value="{{ query_string }}" {% endif %} autofocus>
-        </div>
-        <div class="col-md-2">
-          <button type="submit" class="btn btn-block btn-lg btn-primary" style="background-color:#1d82dcb8; border-color:#1d82dcb8;">Los!</button>
-        </div>
+  <form method="get" action="{% url 'webpage:results' %}" style="margin: 2em">
+    <div class="form-row">
+      <div class="col-md-9">
+        <input type="search" class="form-control form-control-lg" placeholder="z.B. 'Te deum'" required name="ft_search"
+          {% if query_string %} value="{{ query_string }}" {% endif %} autofocus>
       </div>
-    </form>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-block btn-lg btn-primary"
+          style="background-color:#1d82dcb8; border-color:#1d82dcb8;">Los!</button>
+      </div>
+      <div class="col-md-1" data-toggle="modal" data-target="#exampleModal">
+        <i class="bi bi-info-square" style="font-size: 3rem; color: cornflowerblue; display:flex; cursor: pointer;"></i>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" style="color: black">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Informationen zur Suche</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align: justify;">
+        <p>
+          Mit dieser Suche können die Felder <strong>Haupttext</strong> sowie die diversen Anmerkungsfelder der
+          <strong>Ereignisse</strong> gemeinsam durchsucht werden. Um die Suche performant zu halten, wurden die
+          entsprechenden Felder mittels eigenem <strong>Suchindex</strong> indexiert. Für diesen Index werden die
+          einzelnen Texte normalisiert auf ihre Stammformen zurückgeführt. Dies trifft auch auf den eingebenen
+          Suchbegriff zu. Dadurch kann beispielweise ein Text wie <i>Die Mäuse kommen ins Haus</i> mit dem Suchbegriff
+          <i>Maus</i> gefunden werden. Ein solcher Suchindex erlaubt außerdem komplexere Sucheanfragen wie
+          beispielsweise:
+        <ul>
+          <li>Phrasensuche: Begriffe in Anführungszeichen werden gemeinsam gesucht: <strong>"Richard Wagner"</strong>
+          </li>
+          <li><strong>Richard Wagner</strong> findet alle Dokumente in denen entweder Richard oder Wagner vorkommen</li>
+          <li>Mit einem <strong>-</strong> for einem Suchbegriff können Wörter ausgeschlossen werden. Zum Beipiel
+            <strong>"Richard Wagner" -Verein</strong> findet alle Einträge mit "Richard Wagner" aber ohne Verein</li>
+          <li>Ein <strong>*</strong> am <strong>Ende</strong> eines Suchbegriffes dient als Wildcard.
+            <strong>Kracko*</strong> findet etwa Einträge mit <strong>Krackowitzer</strong> als auch
+            <strong>Krackowizer</strong></li>
+        </ul>
+        <strong>Invalide</strong> Suchanfragen geben aus technischen Gründen das ungefilterte Datenset zurück.
+        </p>
+        <p>Differenzierte Suchanfragen, wie etwa die Suche Ereignissen, die mit ausgwählten Personen, Werken oder
+          Literatur verknüpft sind, sind mit der <strong><a href="{%url 'archiv:event_browse' %}">erweiterten Suche</a>
+          </strong>möglich.</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+      </div>
+    </div>
   </div>
+</div>
