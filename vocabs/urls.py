@@ -1,79 +1,80 @@
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
 
-app_name = 'vocabs'
+app_name = "vocabs"
 urlpatterns = [
-    url(
-        r'^skosconcept/$',
-        views.SkosConceptListView.as_view(),
-        name='skosconcept_browse'
+    path(
+        "skosconcept/", views.SkosConceptListView.as_view(), name="skosconcept_browse"
     ),
-    url(
-        r'^skosconcept/detail/(?P<pk>[0-9]+)$',
+    path(
+        "skosconcept/detail/<int:pk>/",
         views.SkosConceptDetailView.as_view(),
-        name='skosconcept_detail'
+        name="skosconcept_detail",
     ),
-    url(
-        r'^skosconcept/create/$',
+    path(
+        "skosconcept/create/",
         views.SkosConceptCreate.as_view(),
-        name='skosconcept_create'
+        name="skosconcept_create",
     ),
-    url(
-        r'^skosconcept/edit/(?P<pk>[0-9]+)$',
+    path(
+        "skosconcept/edit/<int:pk>/",
         views.SkosConceptUpdate.as_view(),
-        name='skosconcept_edit'
+        name="skosconcept_edit",
     ),
-    url(
-        r'^skosconcept/delete/(?P<pk>[0-9]+)$',
+    path(
+        "skosconcept/delete/<int:pk>/",
         views.SkosConceptDelete.as_view(),
-        name='skosconcept_delete'),
-    url(
-        r'^skoscollection/$',
+        name="skosconcept_delete",
+    ),
+    path(
+        "skoscollection/",
         views.SkosCollectionListView.as_view(),
-        name='skoscollection_browse'
+        name="skoscollection_browse",
     ),
-    url(
-        r'^skoscollection/detail/(?P<pk>[0-9]+)$',
+    path(
+        "skoscollection/detail/<int:pk>/",
         views.SkosCollectionDetailView.as_view(),
-        name='skoscollection_detail'
+        name="skoscollection_detail",
     ),
-    url(
-        r'^skoscollection/create/$',
+    path(
+        "skoscollection/create/",
         views.SkosCollectionCreate.as_view(),
-        name='skoscollection_create'
+        name="skoscollection_create",
     ),
-    url(
-        r'^skoscollection/edit/(?P<pk>[0-9]+)$',
+    path(
+        "skoscollection/edit/<int:pk>/",
         views.SkosCollectionUpdate.as_view(),
-        name='skoscollection_edit'
+        name="skoscollection_edit",
     ),
-    url(
-        r'^skoscollection/delete/(?P<pk>[0-9]+)$',
+    path(
+        "skoscollection/delete/<int:pk>/",
         views.SkosCollectionDelete.as_view(),
-        name='skoscollection_delete'),
-    url(
-        r'^skostechnicalcollection/$',
+        name="skoscollection_delete",
+    ),
+    path(
+        "skostechnicalcollection/",
         views.SkosTechnicalCollectionListView.as_view(),
-        name='skostechnicalcollection_browse'
+        name="skostechnicalcollection_browse",
     ),
-    url(
-        r'^skostechnicalcollection/detail/(?P<pk>[0-9]+)$',
+    path(
+        "skostechnicalcollection/detail/<int:pk>/",
         views.SkosTechnicalCollectionDetailView.as_view(),
-        name='skostechnicalcollection_detail'
+        name="skostechnicalcollection_detail",
     ),
-    url(
-        r'^skostechnicalcollection/create/$',
+    path(
+        "skostechnicalcollection/create/",
         views.SkosTechnicalCollectionCreate.as_view(),
-        name='skostechnicalcollection_create'
+        name="skostechnicalcollection_create",
     ),
-    url(
-        r'^skostechnicalcollection/edit/(?P<pk>[0-9]+)$',
+    path(
+        "skostechnicalcollection/edit/<int:pk>/",
         views.SkosTechnicalCollectionUpdate.as_view(),
-        name='skostechnicalcollection_edit'
+        name="skostechnicalcollection_edit",
     ),
-    url(
-        r'^skostechnicalcollection/delete/(?P<pk>[0-9]+)$',
+    path(
+        "skostechnicalcollection/delete/<int:pk>/",
         views.SkosTechnicalCollectionDelete.as_view(),
-        name='skostechnicalcollection_delete'),
+        name="skostechnicalcollection_delete",
+    ),
 ]
