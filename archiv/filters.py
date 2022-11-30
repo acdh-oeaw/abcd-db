@@ -209,7 +209,7 @@ class WorkListFilter(django_filters.FilterSet):
 
 class PlaceListFilter(django_filters.FilterSet):
 
-    title = django_filters.LookupChoiceFilter(
+    wab_id = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Place._meta.get_field("title").help_text,
         label=Place._meta.get_field("title").verbose_name,
@@ -263,8 +263,18 @@ class WabListFilter(django_filters.FilterSet):
     title = django_filters.CharFilter(
         lookup_expr="icontains",
         help_text=Wab._meta.get_field("title").help_text,
-        label="Titel",
+        label=Wab._meta.get_field("title").verbose_name,
         widget=forms.TextInput(attrs={"autofocus": True}),
+    )
+    wab_id = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=Wab._meta.get_field("wab_id").help_text,
+        label=Wab._meta.get_field("wab_id").verbose_name,
+    )
+    date = django_filters.DateFromToRangeFilter(
+        help_text="z.B. '1843-01-01' bis '1844-12-31'\
+            um alle Werke der Jahre 1843-1844 zu erhalten",
+        label=Wab._meta.get_field("date").verbose_name,
     )
 
     class Meta:

@@ -118,8 +118,11 @@ class AbcdBase(models.Model):
 
 
 class Wab(AbcdBase):
+    """ Titel aus dem Bruckner Werkverzeichnis """
     title = models.CharField(
-        max_length=250, blank=True, null=True
+        max_length=250, blank=True, null=True,
+        verbose_name="Kanonischer Titel",
+        help_text="Werkstitel und WAB Nummer"
     )
     wab_id = models.CharField(
         max_length=3, unique=True,
@@ -157,7 +160,7 @@ class Wab(AbcdBase):
     )
 
     class Meta:
-
+        verbose_name = "Werke Bruckners"
         ordering = [
             'wab_id',
         ]
