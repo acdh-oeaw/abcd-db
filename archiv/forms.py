@@ -144,7 +144,6 @@ class EventFilterFormHelper(FormHelper):
                     "ft_search",
                     "wab",
                     "person",
-                    "id",
                     css_id="basic_search_fields",
                 ),
                 AccordionGroup(
@@ -159,6 +158,7 @@ class EventFilterFormHelper(FormHelper):
                     "notes_archive",
                     "notes_text",
                     "key_word",
+                    "id",
                     css_id="more",
                 ),
             )
