@@ -259,9 +259,20 @@ class EventListView(GenericListView):
     filter_class = EventListFilter
     formhelper_class = EventFilterFormHelper
     table_class = EventTable
-    init_columns = ["id", "date_written", "main_text", "updated_at"]
+    init_columns = [
+        "id",
+        "date_written",
+        "main_text",
+        "updated_at",
+    ]
+    exclude_columns = [
+        "not_after",
+        "vector_column",
+        "full_text",
+        "key_word",
+    ]
     enable_merge = False
-    template_name = "archiv/event_list.html"
+    template_name = "archiv/custom_list.html"
 
 
 class EventDetailView(BaseDetailView):
@@ -309,7 +320,6 @@ class WorkListView(GenericListView):
     formhelper_class = WorkFilterFormHelper
     table_class = WorkTable
     init_columns = ["id", "author_name", "order_code", "short_quote"]
-    enable_merge = False
     template_name = "archiv/custom_list.html"
 
 

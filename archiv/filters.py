@@ -167,15 +167,15 @@ class EventListFilter(SchrederFilter):
             "id",
             "ft_search",
             "date_written",
-            "not_before",
-            "not_after",
+            # "not_before",
+            # "not_after",
             "main_text",
             "notes_lit",
             "notes_img",
             "notes_facs",
             "notes_archive",
             "notes_text",
-            "key_word",
+            # "key_word",
             "note",
         ]
 

@@ -58,15 +58,42 @@ class PlaceTable(tables.Table):
 class EventTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name="ID")
-    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
-    person = tables.columns.ManyToManyColumn()
-    place = tables.columns.ManyToManyColumn()
-    institution = tables.columns.ManyToManyColumn()
-    key_word = tables.columns.ManyToManyColumn()
-    work = tables.columns.ManyToManyColumn()
-    wab = tables.columns.ManyToManyColumn()
+    person = tables.columns.ManyToManyColumn(verbose_name="Erwähnte Personen")
+    # place = tables.columns.ManyToManyColumn(
+    #     verbose_name="Erwähnte Orte"
+    # )
+    # institution = tables.columns.ManyToManyColumn()
+    # key_word = tables.columns.ManyToManyColumn(
+    #     verbose_name="Schalgwörter"
+    # )
+    work = tables.columns.ManyToManyColumn(verbose_name="referenzierte Literatur")
+    wab = tables.columns.ManyToManyColumn(verbose_name="Erwähnte Bruckner Werke")
     main_text = tables.columns.TemplateColumn(
         template_code="{{ record.main_text|safe }}"
+    )
+    notes_lit = tables.columns.TemplateColumn(
+        template_code="{{ record.notes_lit|safe }}",
+        verbose_name="Anmerkungen Literatur"
+    )
+    notes_img = tables.columns.TemplateColumn(
+        template_code="{{ record.notes_img|safe }}",
+        verbose_name="Anmerkungen Abbildungen"
+    )
+    notes_facs = tables.columns.TemplateColumn(
+        template_code="{{ record.notes_facs|safe }}",
+        verbose_name="Anmerkungen Faksimiles"
+    )
+    notes_archive = tables.columns.TemplateColumn(
+        template_code="{{ record.notes_archive|safe }}",
+        verbose_name="Anmerkungen Archiv"
+    )
+    notes_text = tables.columns.TemplateColumn(
+        template_code="{{ record.notes_text|safe }}",
+        verbose_name="Anmerkungen Text"
+    )
+    note = tables.columns.TemplateColumn(
+        template_code="{{ record.note|safe }}",
+        verbose_name="Anmerkungen Text"
     )
 
     class Meta:
@@ -82,7 +109,9 @@ class EventTable(tables.Table):
 class WorkTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name="ID")
-    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
+    full_quote = tables.columns.TemplateColumn(
+        template_code="{{ record.full_quote|safe }}", verbose_name="Langzitat"
+    )
 
     class Meta:
         model = Work
