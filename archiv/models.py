@@ -157,6 +157,7 @@ class Wab(AbcdBase):
 
 
 class Place(AbcdBase):
+    "Orte, die in den Ereignissen erwähnt werden"
     title = models.CharField(
         max_length=250,
         blank=True,
@@ -330,6 +331,7 @@ class Institution(AbcdBase):
 
 
 class Person(GndPersonBase):
+    "Personen (und Personengruppen), die in den Ereignissen erwähnt werden"
     title = models.CharField(max_length=250, blank=True, null=True)
     surname = models.CharField(max_length=250, blank=True, null=True)
     bruckner_entity = models.BooleanField(
@@ -479,7 +481,7 @@ class Person(GndPersonBase):
 
 
 class Event(AbcdBase):
-    """Ereignis"""
+    """Ereignisse aus und um das Leben und Werk Anton Bruckners"""
 
     id = models.IntegerField(
         primary_key=True,
