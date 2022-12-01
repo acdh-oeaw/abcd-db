@@ -4,10 +4,21 @@
 {% block title %} Datenmodell {% endblock %}
 {% block content %}
 <div class="container">
+    <div class="card" style="text-align: center;">
+        <div class="card-header"><h1>Datenmodell der ABCD-Datenbank</h1></div>
+        <div class="card-body">
+            {% include 'django_spaghetti/plate.html' %}
+        </div>
+        <div class="card-footer">
+            <p>Schematische Darstellung der Klassen und Eigenschaften, die das <a href="https://de.wikipedia.org/wiki/Datenmodell">Datenmodell</a> der ABCD-Datenbank konstituieren.</p>
+            <p>Erstellt mit <a href="https://github.com/LegoStormtroopr/django-spaghetti-and-meatballs">django-spaghetti-and-meatballs</a></p>
+        </div>
+    </div>
+    
     <style>
         #visualization {
-            height: 800px;
+            height: 900px;
         }
     </style>
-    {% include 'django_spaghetti/plate.html' %}
+    
 {% endblock %}

@@ -5,40 +5,42 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
 
 
-from . filters import (
+from .filters import (
     EventListFilter,
     WorkListFilter,
     PersonListFilter,
     PlaceListFilter,
     InstitutionListFilter,
-    WabListFilter
+    WabListFilter,
 )
-from . forms import (
-    EventForm, EventFilterFormHelper,
-    WorkForm, WorkFilterFormHelper,
-    PersonForm, PersonFilterFormHelper,
-    PlaceForm, PlaceFilterFormHelper,
-    InstitutionForm, InstitutionFilterFormHelper,
-    WabForm, WabFilterFormHelper
+from .forms import (
+    EventForm,
+    EventFilterFormHelper,
+    WorkForm,
+    WorkFilterFormHelper,
+    PersonForm,
+    PersonFilterFormHelper,
+    PlaceForm,
+    PlaceFilterFormHelper,
+    InstitutionForm,
+    InstitutionFilterFormHelper,
+    WabForm,
+    WabFilterFormHelper,
 )
-from . tables import (
+from .tables import (
     EventTable,
     WorkTable,
     PersonTable,
     PlaceTable,
     InstitutionTable,
-    WabTable
+    WabTable,
 )
-from . models import (
-    Event,
-    Work,
-    Person,
-    Place,
-    Institution,
-    Wab
-)
+from .models import Event, Work, Person, Place, Institution, Wab
 from browsing.browsing_utils import (
-    GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
+    GenericListView,
+    BaseCreateView,
+    BaseUpdateView,
+    BaseDetailView,
 )
 
 
@@ -48,24 +50,26 @@ class WabListView(GenericListView):
     filter_class = WabListFilter
     formhelper_class = WabFilterFormHelper
     table_class = WabTable
-    init_columns = [
-        'id', 'title'
-    ]
+    init_columns = ["id", "wab_id", "title"]
     enable_merge = False
-    template_name = 'archiv/custom_list.html'
+    template_name = "archiv/custom_list.html"
+    exclude_columns = [
+        "wab_xml",
+        "status",
+    ]
 
 
 class WabDetailView(BaseDetailView):
 
     model = Wab
-    template_name = 'archiv/wab_detail.html'
+    template_name = "archiv/wab_detail.html"
 
 
 class WabCreate(BaseCreateView):
 
     model = Wab
     form_class = WabForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -76,7 +80,7 @@ class WabUpdate(BaseUpdateView):
 
     model = Wab
     form_class = WabForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -85,8 +89,8 @@ class WabUpdate(BaseUpdateView):
 
 class WabDelete(DeleteView):
     model = Wab
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:wab_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:wab_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -100,23 +104,24 @@ class PersonListView(GenericListView):
     formhelper_class = PersonFilterFormHelper
     table_class = PersonTable
     init_columns = [
-        'id', 'title',
+        "id",
+        "title",
     ]
     enable_merge = True
-    template_name = 'archiv/custom_list.html'
+    template_name = "archiv/custom_list.html"
 
 
 class PersonDetailView(BaseDetailView):
 
     model = Person
-    template_name = 'archiv/person_detail.html'
+    template_name = "archiv/person_detail.html"
 
 
 class PersonCreate(BaseCreateView):
 
     model = Person
     form_class = PersonForm
-    template_name = 'archiv/person_create.html'
+    template_name = "archiv/person_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -127,7 +132,7 @@ class PersonUpdate(BaseUpdateView):
 
     model = Person
     form_class = PersonForm
-    template_name = 'archiv/person_create.html'
+    template_name = "archiv/person_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -136,8 +141,8 @@ class PersonUpdate(BaseUpdateView):
 
 class PersonDelete(DeleteView):
     model = Person
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:person_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:person_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -151,23 +156,24 @@ class PlaceListView(GenericListView):
     formhelper_class = PlaceFilterFormHelper
     table_class = PlaceTable
     init_columns = [
-        'id', 'title',
+        "id",
+        "title",
     ]
     enable_merge = True
-    template_name = 'archiv/custom_list.html'
+    template_name = "archiv/custom_list.html"
 
 
 class PlaceDetailView(BaseDetailView):
 
     model = Place
-    template_name = 'archiv/place_detail.html'
+    template_name = "archiv/place_detail.html"
 
 
 class PlaceCreate(BaseCreateView):
 
     model = Place
     form_class = PlaceForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -178,7 +184,7 @@ class PlaceUpdate(BaseUpdateView):
 
     model = Place
     form_class = PlaceForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -187,8 +193,8 @@ class PlaceUpdate(BaseUpdateView):
 
 class PlaceDelete(DeleteView):
     model = Place
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:place_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:place_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -202,23 +208,24 @@ class InstitutionListView(GenericListView):
     formhelper_class = InstitutionFilterFormHelper
     table_class = InstitutionTable
     init_columns = [
-        'id', 'title',
+        "id",
+        "title",
     ]
     enable_merge = True
-    template_name = 'archiv/custom_list.html'
+    template_name = "archiv/custom_list.html"
 
 
 class InstitutionDetailView(BaseDetailView):
 
     model = Institution
-    template_name = 'archiv/generic_detail.html'
+    template_name = "archiv/generic_detail.html"
 
 
 class InstitutionCreate(BaseCreateView):
 
     model = Institution
     form_class = InstitutionForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -229,7 +236,7 @@ class InstitutionUpdate(BaseUpdateView):
 
     model = Institution
     form_class = InstitutionForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -238,8 +245,8 @@ class InstitutionUpdate(BaseUpdateView):
 
 class InstitutionDelete(DeleteView):
     model = Institution
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:institution_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:institution_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -252,24 +259,22 @@ class EventListView(GenericListView):
     filter_class = EventListFilter
     formhelper_class = EventFilterFormHelper
     table_class = EventTable
-    init_columns = [
-        'id', 'date_written', 'main_text', 'updated_at'
-    ]
+    init_columns = ["id", "date_written", "main_text", "updated_at"]
     enable_merge = False
-    template_name = 'archiv/event_list.html'
+    template_name = "archiv/event_list.html"
 
 
 class EventDetailView(BaseDetailView):
 
     model = Event
-    template_name = 'archiv/event_detail.html'
+    template_name = "archiv/event_detail.html"
 
 
 class EventCreate(BaseCreateView):
 
     model = Event
     form_class = EventForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -280,7 +285,7 @@ class EventUpdate(BaseUpdateView):
 
     model = Event
     form_class = EventForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -289,8 +294,8 @@ class EventUpdate(BaseUpdateView):
 
 class EventDelete(DeleteView):
     model = Event
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:event_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:event_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -303,24 +308,22 @@ class WorkListView(GenericListView):
     filter_class = WorkListFilter
     formhelper_class = WorkFilterFormHelper
     table_class = WorkTable
-    init_columns = [
-        'id', 'author_name', 'order_code', 'short_quote'
-    ]
+    init_columns = ["id", "author_name", "order_code", "short_quote"]
     enable_merge = False
-    template_name = 'archiv/custom_list.html'
+    template_name = "archiv/custom_list.html"
 
 
 class WorkDetailView(BaseDetailView):
 
     model = Work
-    template_name = 'archiv/work_detail.html'
+    template_name = "archiv/work_detail.html"
 
 
 class WorkCreate(BaseCreateView):
 
     model = Work
     form_class = WorkForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -331,7 +334,7 @@ class WorkUpdate(BaseUpdateView):
 
     model = Work
     form_class = WorkForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -340,8 +343,8 @@ class WorkUpdate(BaseUpdateView):
 
 class WorkDelete(DeleteView):
     model = Work
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:work_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:work_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
