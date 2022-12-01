@@ -276,6 +276,12 @@ class WabListFilter(django_filters.FilterSet):
             um alle Werke der Jahre 1843-1844 zu erhalten",
         label=Wab._meta.get_field("date").verbose_name,
     )
+    note = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=Wab._meta.get_field("note").help_text,
+        label=Wab._meta.get_field("note").verbose_name,
+        widget=forms.TextInput(attrs={"autofocus": True}),
+    )
 
     class Meta:
         model = Wab

@@ -249,9 +249,7 @@ class WabForm(forms.ModelForm):
         self.helper.label_class = "col-md-3"
         self.helper.field_class = "col-md-9"
         self.helper.form_id = "saveButton"
-        self.helper.add_input(
-            Submit("submit", "save"),
-        )
+        self.helper.add_input(Submit("submit", "save"))
 
 
 class WabFilterFormHelper(FormHelper):
@@ -262,4 +260,12 @@ class WabFilterFormHelper(FormHelper):
         self.form_method = "GET"
         self.helper.form_tag = False
         self.add_input(Submit("Filter", "Suchen"))
-        self.layout = Layout(Fieldset("Suche", "title", "wab_id", "date"))
+        self.layout = Layout(
+            Fieldset(
+                "Suche",
+                "title",
+                "wab_id",
+                "date",
+                "note",
+            )
+        )
