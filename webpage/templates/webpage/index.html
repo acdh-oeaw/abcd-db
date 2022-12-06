@@ -3,19 +3,12 @@
 {% load webpage_extras %}
 {% block content %}
 
-<header class="masthead text-white text-center">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-9 mx-auto" style="background-color: rgba(29, 130, 220, 0.722); padding-top:3em">
-        <h1 class="mb-5">A B C D</h1>
-        <h1 class="mb-5">{% projects_metadata 'title' %}</h1>
-        <br/>
-      </div>
+<div style="padding-top: 2em;">
+  <h1 style="text-align: center;">{% projects_metadata 'title' %}</h1>
       {% include "archiv/search_form.html" %}
     </div>
-  </div>
-</header>
+
+
 
 
 
