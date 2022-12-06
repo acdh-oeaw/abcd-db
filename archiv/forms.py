@@ -168,7 +168,10 @@ class EventFilterFormHelper(FormHelper):
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        exclude = ["full_text"]
+        exclude = [
+            "full_text",
+            "vector_column",
+        ]
         widgets = {
             "work": autocomplete.ModelSelect2Multiple(
                 url="archiv-ac:work-autocomplete"
