@@ -1,6 +1,5 @@
 html {
     height: 100%;
-    font-family: 'Open Sans', 'Myriad Pro', 'Helvetica', sans-serif;
 }
 
 body {
@@ -8,6 +7,8 @@ body {
     flex-direction: column;
     height: 100%;
     background-color: #ffffff;
+    font-family: 'Open Sans', 'Myriad Pro', 'Helvetica', sans-serif;
+    background: url(http://www.bruckner-online.at/wp-content/themes/buntington-child/public/img/bg_1.jpg) 0 0 repeat;
 }
 
 header.masthead {
@@ -38,14 +39,9 @@ header.masthead {
   background-size: cover;
 }
 
-@media (min-width: 768px) {
-  .showcase .showcase-text {
-    padding: 7rem;
-  }
-}
 
 .navbar {
-	border-bottom: 5px solid #1d82dcb8;
+	border-bottom: 5px solid #efefef;
 }
 
 .navbar .navbar-brand img {
@@ -88,7 +84,7 @@ span.select2-container--default .select2-selection--single .select2-selection__r
 }
 
 a {
-    color: #1d82dcb8;
+    color: #ab1923;
 }
 
 header {
@@ -285,48 +281,17 @@ a > .fa-2x {
 
 .btn {
   color: white;
-  background-color:#1d82dcb8;
-  border-color:#1d82dcb8;
+  background-color:#918f8f;
+  border-color:#918f8f;
 }
 
 .filter-option {
   color:white
 }
 
-
-/* Modifikations of Transkribus-App */
-.transkribus_collection-description {
-  display:none;
-}
-
-.transkibus_search-button {
-  background-color:#1d82dcb8;
-  border-color:#1d82dcb8;
-}
-
-.transkibus_search-button:hover {
-  background-color:#1d82dcb8;
-  border-color:#1d82dcb8;
-}
-
-.transkibus_search-button:active {
-  background-color:#1d82dcb8;
-  border-color:#1d82dcb8;
-}
-
-.breadcrumb {
-  /* background-color: #1d82dcb869; */
-  background-color:white;
-  font-weight: bolder;
-}
-
 .card {
     overflow: visible;
     margin-bottom: 20px;
-}
-
-a {
-    color: #1d82dcb8;
 }
 
 a:not([href]):not([tabindex]) {
