@@ -125,6 +125,20 @@
                                 </div>
                             </li>
                         </ul>
+                        <ul class="navbar-nav justify-content-end">
+                            {% if user.is_authenticated %}
+                            <li class="nav-item dropdown ml-auto">
+                                <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    {{ user.get_username }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="nav-link" href="{% url 'webpage:user_logout' %}">log out <i
+                                            class="feather-32" data-feather="log-out"></i></a>
+                                </div>
+                            </li>
+                            {% endif %}
+                        </ul>
                     </div>
                     <!-- .collapse navbar-collapse -->
                 </div>
