@@ -432,8 +432,12 @@ class Person(GndPersonBase):
             name = self.gnd_pref_name.split(", ")
             self.surname = name[0]
         else:
-            name = self.title.split(" ")
-            self.surname = name[len(name) - 1].replace("(", "").replace(")", "")
+            try:
+                name = self.title.split(" ")
+            except AttributeError:
+                name = False
+            if name:
+                self.surname = name[len(name) - 1].replace("(", "").replace(")", "")
         super(GndPersonBase, self).save(*args, **kwargs)
 
     @classmethod
@@ -468,13 +472,19 @@ class Person(GndPersonBase):
         return reverse("archiv:person_edit", kwargs={"pk": self.id})
 
     def get_next(self):
-        next = next_in_order(self)
+        try:
+            next = next_in_order(self)
+        except ValueError:
+            next = False
         if next:
             return reverse("archiv:person_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):
-        prev = prev_in_order(self)
+        try:
+            prev = prev_in_order(self)
+        except ValueError:
+            prev = False
         if prev:
             return reverse("archiv:person_detail", kwargs={"pk": prev.id})
         return False
