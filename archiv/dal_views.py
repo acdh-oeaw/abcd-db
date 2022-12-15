@@ -75,7 +75,6 @@ class WorkAC(autocomplete.Select2QuerySetView):
 
         if self.q:
             qs = qs.filter(
-                Q(legacy_id__icontains=self.q) |
                 Q(order_code__icontains=self.q) |
                 Q(full_quote__icontains=self.q)
             )
