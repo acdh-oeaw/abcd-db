@@ -63,8 +63,8 @@ class EventAC(autocomplete.Select2QuerySetView):
 
         if self.q:
             qs = qs.filter(
-                Q(legacy_id__icontains=self.q) |
-                Q(order_code__icontains=self.q)
+                Q(id__icontains=self.q) |
+                Q(full_text__icontains=self.q)
             )
         return qs
 

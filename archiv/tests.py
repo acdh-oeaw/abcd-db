@@ -3,7 +3,10 @@
 # Create your tests here.
 from django.apps import apps
 from django.test import TestCase, Client
+from django.urls import reverse
 from django.contrib.auth.models import User
+
+from archiv.dal_urls import urlpatterns
 
 
 MODELS = list(apps.all_models['archiv'].values())
@@ -77,3 +80,12 @@ class ArchivTestCase(TestCase):
             if url:
                 response = client.get(url, {'pk': item.id})
                 self.assertEqual(response.status_code, 200)
+
+    def test_016_ac_views(self):
+        ns = "archiv-ac"
+        for x in urlpatterns:
+            url_name = f"{ns}:{x.name}"
+            url = f"{reverse(url_name)}?q=hansi"
+            response = client.get(url)
+            self.assertEqual(response.status_code, 200)
+            self.assertTrue("results" in response.json().keys())
