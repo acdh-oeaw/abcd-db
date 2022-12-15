@@ -60,7 +60,14 @@
            {% endfor %}
         </div>
         <div class="col-md-7">
-          <legend>Normdaten</legend>
+          
+          {% if object.remarks %}
+          <legend>Anmerkungen</legend>
+          <div class="remarks">
+            {{ object.remarks|safe }}
+          </div>
+          {% endif %}
+          <legend>Links zu Normdaten und Lexika</legend>
           <ul>
             {% if object.gnd_gnd_id %}
             <li><a href="{{ object.gnd_gnd_id}}">{{ object.gnd_gnd_id }}</a></li>
@@ -72,12 +79,6 @@
             <li><a href="{{ object.ablo_uri}}">{{ object.ablo_uri }}</a></li>
             {% endif %}
           </ul>
-          {% if object.remarks %}
-          <legend>Anmerkungen</legend>
-          <div class="remarks">
-            {{ object.remarks|safe }}
-          </div>
-          {% endif %}
       </div>
       <div class="card-footer">
         {% if object.notes_lit %}

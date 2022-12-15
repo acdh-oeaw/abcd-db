@@ -78,7 +78,7 @@ class Wab(AbcdBase):
         max_length=250,
         blank=True,
         null=True,
-        verbose_name="Kanonischer Titel",
+        verbose_name="Werk",
         help_text="Werkstitel und WAB Nummer",
     )
     wab_id = models.CharField(
@@ -90,7 +90,7 @@ class Wab(AbcdBase):
     date = models.DateField(
         blank=True,
         null=True,
-        verbose_name="Maschinenlesbare Datierung",
+        verbose_name="Datierung",
         help_text="z.B. 1874-12-24",
     )
     date_written = models.CharField(
