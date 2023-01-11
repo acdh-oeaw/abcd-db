@@ -46,3 +46,4 @@ key.pub
 bin/
 pg_hba.conf
 lib64
+*sql
