@@ -633,7 +633,7 @@ class Event(AbcdBase):
         "Work",
         blank=True,
         related_name="work_referenced_in",
-        verbose_name="Literatur",
+        verbose_name="Bibliographie",
         help_text="Literaturangaben zu diesem Ereignis",
     )
     concept = models.ManyToManyField(
