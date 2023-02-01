@@ -73,7 +73,8 @@ class PlaceFilterFormHelper(FormHelper):
         self.layout = Layout(
             Fieldset("", "title"),
             Fieldset(
-                "weitere Suchoptionen ",
+                "weitere Suchoptionen",
+                "work",
                 "notes_lit",
                 "notes_img",
                 "notes_facs",
@@ -90,6 +91,8 @@ class PersonForm(GndModelForm):
             "surname",
             "gnd_gnd_id",
             "gnd_pref_name",
+            "ablo_uri",
+            "oeml_uri",
             "remarks",
             "notes_lit",
             "notes_img",
@@ -128,6 +131,7 @@ class PersonFilterFormHelper(FormHelper):
             Fieldset("", "title", "surname"),
             Fieldset(
                 "weitere Suchoptionen ",
+                "work",
                 "notes_lit",
                 "notes_img",
                 "notes_facs",

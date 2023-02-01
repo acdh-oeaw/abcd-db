@@ -235,6 +235,18 @@ class PlaceListFilter(django_filters.FilterSet):
         help_text=Place._meta.get_field("notes_archive").help_text,
         label=Place._meta.get_field("notes_archive").verbose_name,
     )
+    work = django_filters.ModelMultipleChoiceFilter(
+        queryset=Work.objects.all(),
+        help_text=Place._meta.get_field("work").help_text,
+        label=Place._meta.get_field("work").verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="/archiv-ac/work-autocomplete",
+            attrs={
+                "data-placeholder": "Autocomplete ...",
+                "data-minimum-input-length": 2,
+            },
+        ),
+    )
 
     class Meta:
         model = Place
@@ -289,6 +301,18 @@ class PersonListFilter(django_filters.FilterSet):
         lookup_expr="icontains",
         help_text=Person._meta.get_field("notes_archive").help_text,
         label=Person._meta.get_field("notes_archive").verbose_name,
+    )
+    work = django_filters.ModelMultipleChoiceFilter(
+        queryset=Work.objects.all(),
+        help_text=Person._meta.get_field("work").help_text,
+        label=Person._meta.get_field("work").verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="/archiv-ac/work-autocomplete",
+            attrs={
+                "data-placeholder": "Autocomplete ...",
+                "data-minimum-input-length": 2,
+            },
+        ),
     )
 
     class Meta:
