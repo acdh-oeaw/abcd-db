@@ -101,13 +101,17 @@
                                 Alle Treffer: {{ total }}
                             </legend>
                         {% endwith %}
-                        {% include "browsing/partials/download_menu.html" %}
+                        
                         {% block table %}
                             {% include "browsing/partials/table.html" %}
                         {% endblock table %}
                         {% block pagination.allpages %}
                             {% include "browsing/partials/pagination.html" %}
                         {% endblock pagination.allpages %}
+                        <div style="float: right;">
+                            {% include "browsing/partials/download_menu.html" %}
+                        </div>
+                        
                     </div>
                 </div>
             </div>
