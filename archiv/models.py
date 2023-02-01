@@ -213,7 +213,7 @@ class Place(AbcdBase):
         blank=True,
         null=True,
         verbose_name="Anmerkungen Abbildungen",
-        help_text="whatever",
+        help_text="Anmerkungen zum Abschnitt Abbildungen",
     ).set_extra(
         is_public=True,
         data_lookup="text_Abbildung",
@@ -222,7 +222,7 @@ class Place(AbcdBase):
         blank=True,
         null=True,
         verbose_name="Anmerkungen Faksimiles",
-        help_text="whatever",
+        help_text="Anmerkungen zum Abschnitt Faksimiles",
     ).set_extra(
         is_public=True,
         data_lookup="text_Faksimile",
@@ -231,7 +231,7 @@ class Place(AbcdBase):
         blank=True,
         null=True,
         verbose_name="Anmerkungen Archiv",
-        help_text="whatever",
+        help_text="Anmerkungen zum Abschnitt Archiv",
     ).set_extra(
         is_public=True,
         data_lookup="text_Archiv",
@@ -332,8 +332,16 @@ class Institution(AbcdBase):
 
 class Person(GndPersonBase):
     "Personen (und Personengruppen), die in den Ereignissen erwähnt werden"
-    title = models.CharField(max_length=250, blank=True, null=True)
-    surname = models.CharField(max_length=250, blank=True, null=True)
+    title = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name="Voller Name",
+        help_text="Vorname Nachname",
+    )
+    surname = models.CharField(
+        max_length=250, blank=True, null=True, verbose_name="Nachname"
+    )
     bruckner_entity = models.BooleanField(
         default=False, verbose_name="Link zu Bruckner XML"
     )
@@ -381,7 +389,7 @@ class Person(GndPersonBase):
         blank=True,
         null=True,
         verbose_name="Anmerkungen Abbildungen",
-        help_text="whatever",
+        help_text="Anmerkungen zum Abschnitt Abbildungen",
     ).set_extra(
         is_public=True,
         data_lookup="text_Abbildung",
@@ -390,7 +398,7 @@ class Person(GndPersonBase):
         blank=True,
         null=True,
         verbose_name="Anmerkungen Faksimiles",
-        help_text="whatever",
+        help_text="Anmerkungen zum Abschnitt Faksimiles",
     ).set_extra(
         is_public=True,
         data_lookup="text_Faksimile",
@@ -399,7 +407,7 @@ class Person(GndPersonBase):
         blank=True,
         null=True,
         verbose_name="Anmerkungen Archiv",
-        help_text="whatever",
+        help_text="Anmerkungen zum Abschnitt Archiv",
     ).set_extra(
         is_public=True,
         data_lookup="text_Archiv",

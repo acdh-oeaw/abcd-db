@@ -226,8 +226,13 @@ class PersonListFilter(django_filters.FilterSet):
     title = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Person._meta.get_field("title").help_text,
-        label="Name",
+        label=Person._meta.get_field("title").verbose_name,
         widget=forms.TextInput(attrs={"autofocus": True}),
+    )
+    surname = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
+        help_text=Person._meta.get_field("surname").help_text,
+        label=Person._meta.get_field("surname").verbose_name,
     )
     ablo_uri = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
@@ -239,10 +244,40 @@ class PersonListFilter(django_filters.FilterSet):
         help_text=Person._meta.get_field("oeml_uri").help_text,
         label=Person._meta.get_field("oeml_uri").verbose_name,
     )
+    notes_lit = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=Person._meta.get_field("notes_lit").help_text,
+        label=Person._meta.get_field("notes_lit").verbose_name,
+    )
+    notes_img = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=Person._meta.get_field("notes_img").help_text,
+        label=Person._meta.get_field("notes_img").verbose_name,
+    )
+    notes_facs = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=Person._meta.get_field("notes_facs").help_text,
+        label=Person._meta.get_field("notes_facs").verbose_name,
+    )
+    notes_archive = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=Person._meta.get_field("notes_archive").help_text,
+        label=Person._meta.get_field("notes_archive").verbose_name,
+    )
 
     class Meta:
         model = Person
-        exclude = ["gnd_payload"]
+        fields = [
+            "id",
+            "title",
+            "surname",
+            "ablo_uri",
+            "oeml_uri",
+            "notes_lit",
+            "notes_img",
+            "notes_facs",
+            "notes_archive",
+        ]
 
 
 class InstitutionListFilter(django_filters.FilterSet):

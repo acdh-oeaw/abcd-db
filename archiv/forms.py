@@ -119,8 +119,16 @@ class PersonFilterFormHelper(FormHelper):
         self.form_method = "GET"
         self.form_tag = False
         self.layout = Layout(
-            Fieldset("", "title"),
-            Fieldset("weitere Suchoptionen ", "ablo_uri", "oeml_uri"),
+            Fieldset("", "title", "surname"),
+            Fieldset(
+                "weitere Suchoptionen ",
+                "notes_lit",
+                "notes_img",
+                "notes_facs",
+                "notes_archive",
+                "ablo_uri",
+                "oeml_uri",
+            ),
         )
 
 
