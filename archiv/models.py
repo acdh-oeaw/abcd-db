@@ -497,6 +497,12 @@ class Person(GndPersonBase):
             return reverse("archiv:person_detail", kwargs={"pk": prev.id})
         return False
 
+    def check_normdata(self):
+        if self.gnd_gnd_id or self.oeml_uri or self.ablo_uri:
+            return True
+        else:
+            return False
+
 
 class Event(AbcdBase):
     """Ereignisse aus und um das Leben und Werk Anton Bruckners"""
