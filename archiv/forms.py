@@ -34,7 +34,7 @@ class InstitutionFilterFormHelper(FormHelper):
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
-        self.helper.form_tag = False
+        self.form_tag = False
         self.add_input(Submit("Filter", "Suchen"))
         self.layout = Layout(
             Fieldset("Suche", "title", css_id="basic_search_fields"),
@@ -69,7 +69,7 @@ class PlaceFilterFormHelper(FormHelper):
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
-        self.helper.form_tag = False
+        self.form_tag = False
         self.add_input(Submit("Filter", "Suchen"))
         self.layout = Layout(
             Accordion(AccordionGroup("Advanced search", "title", css_id="more"))
@@ -117,15 +117,10 @@ class PersonFilterFormHelper(FormHelper):
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
-        self.helper.form_tag = False
-        self.add_input(Submit("Filter", "Suchen"))
+        self.form_tag = False
         self.layout = Layout(
-            Fieldset("Suche", "title", css_id="basic_search_fields"),
-            Accordion(
-                AccordionGroup(
-                    "weitere Suchoptionen ", "ablo_uri", "oeml_uri", css_id="more"
-                )
-            ),
+            Fieldset("", "title"),
+            Fieldset("weitere Suchoptionen ", "ablo_uri", "oeml_uri"),
         )
 
 
@@ -135,33 +130,24 @@ class EventFilterFormHelper(FormHelper):
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
-        self.helper.form_tag = False
-        self.add_input(Submit("Filter", "Suchen"))
+        self.form_tag = False
         self.layout = Layout(
-            Accordion(
-                AccordionGroup(
-                    "Suche",
-                    "ft_search",
-                    "wab",
-                    "person",
-                    css_id="basic_search_fields",
-                ),
-                AccordionGroup(
-                    "weitere Suchoptionen",
-                    "work",
-                    "date_written",
-                    # "not_before",
-                    # "not_after",
-                    "notes_lit",
-                    "notes_img",
-                    "notes_facs",
-                    "notes_archive",
-                    "notes_text",
-                    # "key_word",
-                    "id",
-                    css_id="more",
-                ),
-            )
+            Fieldset("", "ft_search", "wab", "person"),
+            Fieldset(
+                "weitere Suchoptionen",
+                "work",
+                "date_written",
+                # "not_before",
+                # "not_after",
+                "notes_lit",
+                "notes_img",
+                "notes_facs",
+                "notes_archive",
+                "notes_text",
+                # "key_word",
+                "id",
+                css_id="more",
+            ),
         )
 
 
@@ -207,11 +193,10 @@ class WorkFilterFormHelper(FormHelper):
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
-        self.helper.form_tag = False
-        self.add_input(Submit("Filter", "Suchen"))
+        self.form_tag = False
         self.layout = Layout(
             Fieldset(
-                "Suche",
+                "",
                 "order_code",
                 "author_name",
                 "full_quote",
@@ -261,11 +246,10 @@ class WabFilterFormHelper(FormHelper):
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
-        self.helper.form_tag = False
-        self.add_input(Submit("Filter", "Suchen"))
+        self.form_tag = False
         self.layout = Layout(
             Fieldset(
-                "Suche",
+                "",
                 "title",
                 "wab_id",
                 "date",
