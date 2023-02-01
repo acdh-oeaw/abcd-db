@@ -209,16 +209,42 @@ class WorkListFilter(django_filters.FilterSet):
 
 class PlaceListFilter(django_filters.FilterSet):
 
-    wab_id = django_filters.LookupChoiceFilter(
+    title = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Place._meta.get_field("title").help_text,
         label=Place._meta.get_field("title").verbose_name,
         widget=forms.TextInput(attrs={"autofocus": True}),
     )
+    notes_lit = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=Place._meta.get_field("notes_lit").help_text,
+        label=Place._meta.get_field("notes_lit").verbose_name,
+    )
+    notes_img = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=Place._meta.get_field("notes_img").help_text,
+        label=Place._meta.get_field("notes_img").verbose_name,
+    )
+    notes_facs = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=Place._meta.get_field("notes_facs").help_text,
+        label=Place._meta.get_field("notes_facs").verbose_name,
+    )
+    notes_archive = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=Place._meta.get_field("notes_archive").help_text,
+        label=Place._meta.get_field("notes_archive").verbose_name,
+    )
 
     class Meta:
         model = Place
-        fields = "__all__"
+        fields = [
+            "title",
+            "notes_lit",
+            "notes_img",
+            "notes_facs",
+            "notes_archive",
+        ]
 
 
 class PersonListFilter(django_filters.FilterSet):

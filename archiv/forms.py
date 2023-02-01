@@ -2,7 +2,6 @@
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Fieldset
-from crispy_forms.bootstrap import Accordion, AccordionGroup
 from dal import autocomplete
 from gnd.forms import GndModelForm
 
@@ -72,7 +71,14 @@ class PlaceFilterFormHelper(FormHelper):
         self.form_tag = False
         self.add_input(Submit("Filter", "Suchen"))
         self.layout = Layout(
-            Accordion(AccordionGroup("Advanced search", "title", css_id="more"))
+            Fieldset("", "title"),
+            Fieldset(
+                "weitere Suchoptionen ",
+                "notes_lit",
+                "notes_img",
+                "notes_facs",
+                "notes_archive",
+            ),
         )
 
 
