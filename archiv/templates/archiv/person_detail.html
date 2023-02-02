@@ -71,13 +71,13 @@
             <legend>Links zu Normdaten und Lexika</legend>
             <ul>
               {% if object.gnd_gnd_id %}
-              <li><a href="{{ object.gnd_gnd_id}}">{{ object.gnd_gnd_id }}</a></li>
+              <li><a target="_blank" href="{{ object.gnd_gnd_id}}">{{ object.gnd_gnd_id }}</a></li>
               {% endif %}
               {% if object.oeml_uri %}
-              <li><a href="{{ object.oeml_uri}}">{{ object.oeml_uri }}</a></li>
+              <li><a target="_blank" href="{{ object.oeml_uri}}">{{ object.oeml_uri }}</a></li>
               {% endif %}
               {% if object.ablo_uri %}
-              <li><a href="{{ object.ablo_uri}}">{{ object.ablo_uri }}</a></li>
+              <li><a target="_blank" href="{{ object.ablo_uri}}">{{ object.ablo_uri }}</a></li>
               {% endif %}
             </ul>
           {% endif %}
