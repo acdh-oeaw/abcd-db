@@ -36,8 +36,7 @@ class SkosConceptFilterFormHelper(FormHelper):
         self.helper = FormHelper()
         self.form_class = 'genericFilterForm'
         self.form_method = 'GET'
-        self.helper.form_tag = False
-        self.add_input(Submit('Filter', 'Search'))
+        self.form_tag = False
         self.layout = Layout(
             Fieldset(
                 'Suche',
@@ -45,13 +44,6 @@ class SkosConceptFilterFormHelper(FormHelper):
                 'pref_label',
                 css_id="basic_search_fields"
             ),
-            Accordion(
-                AccordionGroup(
-                    'erweiterte Suchoptionen',
-                    'collection',
-                    css_id="more"
-                )
-            )
         )
 
 

@@ -5,28 +5,26 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
 
 from browsing.browsing_utils import (
-    GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
+    GenericListView,
+    BaseCreateView,
+    BaseUpdateView,
+    BaseDetailView,
 )
 
-from . models import (
-    SkosCollection,
-    SkosConcept,
-    SkosTechnicalCollection
+from .models import SkosCollection, SkosConcept, SkosTechnicalCollection
+from .tables import SkosCollectionTable, SkosConceptTable, SkosTechnicalCollectionTable
+from .forms import (
+    SkosCollectionForm,
+    SkosCollectionFilterFormHelper,
+    SkosConceptForm,
+    SkosConceptFilterFormHelper,
+    SkosTechnicalCollectionForm,
+    SkosTechnicalCollectionFilterFormHelper,
 )
-from . tables import (
-    SkosCollectionTable,
-    SkosConceptTable,
-    SkosTechnicalCollectionTable
-)
-from . forms import (
-    SkosCollectionForm, SkosCollectionFilterFormHelper,
-    SkosConceptForm, SkosConceptFilterFormHelper,
-    SkosTechnicalCollectionForm, SkosTechnicalCollectionFilterFormHelper
-)
-from . filters import (
+from .filters import (
     SkosCollectionListFilter,
     SkosConceptListFilter,
-    SkosTechnicalCollectionListFilter
+    SkosTechnicalCollectionListFilter,
 )
 
 
@@ -37,23 +35,35 @@ class SkosConceptListView(GenericListView):
     formhelper_class = SkosConceptFilterFormHelper
     table_class = SkosConceptTable
     init_columns = [
-        'id', 'pref_label', 'collection',
+        "id",
+        "pref_label",
     ]
     enable_merge = False
-    template_name = 'archiv/custom_list.html'
+    template_name = "archiv/custom_list.html"
+    exclude_columns = [
+        "definition",
+        "collection",
+        "broader_concept",
+        "source_uri",
+        "tech_collection",
+        "rght",
+        "tree_id",
+        "lft",
+        "level",
+    ]
 
 
 class SkosConceptDetailView(BaseDetailView):
 
     model = SkosConcept
-    template_name = 'archiv/concept_detail.html'
+    template_name = "archiv/concept_detail.html"
 
 
 class SkosConceptCreate(BaseCreateView):
 
     model = SkosConcept
     form_class = SkosConceptForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -64,7 +74,7 @@ class SkosConceptUpdate(BaseUpdateView):
 
     model = SkosConcept
     form_class = SkosConceptForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -73,8 +83,8 @@ class SkosConceptUpdate(BaseUpdateView):
 
 class SkosConceptDelete(DeleteView):
     model = SkosConcept
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('vocabs:skosconcept_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("vocabs:skosconcept_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -88,7 +98,8 @@ class SkosCollectionListView(GenericListView):
     formhelper_class = SkosCollectionFilterFormHelper
     table_class = SkosCollectionTable
     init_columns = [
-        'id', 'pref_label',
+        "id",
+        "pref_label",
     ]
     enable_merge = False
 
@@ -96,14 +107,14 @@ class SkosCollectionListView(GenericListView):
 class SkosCollectionDetailView(BaseDetailView):
 
     model = SkosCollection
-    template_name = 'archiv/concept_detail.html'
+    template_name = "archiv/concept_detail.html"
 
 
 class SkosCollectionCreate(BaseCreateView):
 
     model = SkosCollection
     form_class = SkosCollectionForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -114,7 +125,7 @@ class SkosCollectionUpdate(BaseUpdateView):
 
     model = SkosCollection
     form_class = SkosCollectionForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -123,8 +134,8 @@ class SkosCollectionUpdate(BaseUpdateView):
 
 class SkosCollectionDelete(DeleteView):
     model = SkosCollection
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('vocabs:skoscollection_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("vocabs:skoscollection_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -138,7 +149,8 @@ class SkosTechnicalCollectionListView(GenericListView):
     formhelper_class = SkosTechnicalCollectionFilterFormHelper
     table_class = SkosTechnicalCollectionTable
     init_columns = [
-        'id', 'pref_label',
+        "id",
+        "pref_label",
     ]
     enable_merge = False
 
@@ -146,14 +158,14 @@ class SkosTechnicalCollectionListView(GenericListView):
 class SkosTechnicalCollectionDetailView(BaseDetailView):
 
     model = SkosTechnicalCollection
-    template_name = 'archiv/generic_detail.html'
+    template_name = "archiv/generic_detail.html"
 
 
 class SkosTechnicalCollectionCreate(BaseCreateView):
 
     model = SkosTechnicalCollection
     form_class = SkosTechnicalCollectionForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -164,7 +176,7 @@ class SkosTechnicalCollectionUpdate(BaseUpdateView):
 
     model = SkosTechnicalCollection
     form_class = SkosTechnicalCollectionForm
-    template_name = 'archiv/generic_create.html'
+    template_name = "archiv/generic_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -173,8 +185,8 @@ class SkosTechnicalCollectionUpdate(BaseUpdateView):
 
 class SkosTechnicalCollectionDelete(DeleteView):
     model = SkosTechnicalCollection
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('vocabs:skostechnicalcollection_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("vocabs:skostechnicalcollection_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
