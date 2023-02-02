@@ -8,7 +8,7 @@ from archiv.api_serializers import (
     PersonSerializer,
     PlaceSerializer,
     InstitutionSerializer,
-    WabSerializer
+    WabSerializer,
 )
 from archiv.filters import EventListFilter
 
@@ -18,7 +18,7 @@ class EventViewSet(viewsets.ModelViewSet):
     serializer_class = EventSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
     filter_class = EventListFilter
 
@@ -28,7 +28,7 @@ class WorkViewSet(viewsets.ModelViewSet):
     serializer_class = WorkSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
 
 
@@ -37,7 +37,7 @@ class PersonViewSet(viewsets.ModelViewSet):
     serializer_class = PersonSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
 
 
@@ -46,7 +46,7 @@ class PlaceViewSet(viewsets.ModelViewSet):
     serializer_class = PlaceSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
 
 
@@ -55,7 +55,7 @@ class InstitutionViewSet(viewsets.ModelViewSet):
     serializer_class = InstitutionSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
 
 
@@ -64,5 +64,5 @@ class WabViewSet(viewsets.ModelViewSet):
     serializer_class = WabSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
