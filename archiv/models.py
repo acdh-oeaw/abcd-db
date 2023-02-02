@@ -13,8 +13,8 @@ from next_prev import next_in_order, prev_in_order
 from acdh_cfts_pyutils import TYPESENSE_CLIENT as ts_client, CFTS_SCHEMA_NAME
 from browsing.browsing_utils import model_to_dict
 from gnd.models import GndPersonBase
-
 from vocabs.models import SkosConcept
+from .utils import fix_hrefs
 
 
 TS_SCHEMA_NAME = "abcd-db"
@@ -435,6 +435,17 @@ class Person(GndPersonBase):
             "surname",
         ]
 
+    @classmethod
+    def search_field_names(self):
+        text_fields = [
+            "remarks",
+            "notes_lit",
+            "notes_img",
+            "notes_facs",
+            "notes_archive",
+        ]
+        return text_fields
+
     def save(self, *args, **kwargs):
         if self.gnd_pref_name is not None:
             name = self.gnd_pref_name.split(", ")
@@ -446,6 +457,7 @@ class Person(GndPersonBase):
                 name = False
             if name:
                 self.surname = name[len(name) - 1].replace("(", "").replace(")", "")
+        fix_hrefs(self)
         super(GndPersonBase, self).save(*args, **kwargs)
 
     @classmethod
@@ -683,6 +695,7 @@ class Event(AbcdBase):
             self.not_before = dto
         if self.main_text:
             self.full_text = self.join_search_fields()
+        fix_hrefs(self)
         super(Event, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -856,6 +869,12 @@ class Work(AbcdBase):
         ]
         verbose_name = "Literatur"
 
+    def search_field_names(self):
+        text_fields = [
+            "full_quote",
+        ]
+        return text_fields
+
     def __str__(self):
         if self.short_quote is None:
             return f"{self.author_name}, {self.work_title()}, {self.order_code}"
@@ -866,6 +885,7 @@ class Work(AbcdBase):
         super(Work, self).save(*args, **kwargs)
         if not self.short_quote:
             self.short_quote = strip_tags(self.__str__())
+        fix_hrefs(self)
         super(Work, self).save(*args, **kwargs)
 
     def field_dict(self):
