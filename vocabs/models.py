@@ -16,7 +16,7 @@ def set_extra(self, **kwargs):
 models.Field.set_extra = set_extra
 
 
-DEFAULT_LANG = getattr(settings, 'VOCABS_DEFAULT_LANG', 'deu')
+DEFAULT_LANG = getattr(settings, "VOCABS_DEFAULT_LANG", "deu")
 
 
 class SkosTechnicalCollection(models.Model):
@@ -24,6 +24,7 @@ class SkosTechnicalCollection(models.Model):
     Class to link SkosConcepts to properties where they are used in.
     Needed for e.g. autocompletes, showing only Concepts matching the current property
     """
+
     pref_label = models.CharField(
         blank=True,
         null=True,
@@ -40,20 +41,20 @@ class SkosTechnicalCollection(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('vocabs:skostechnicalcollection_browse')
+        return reverse("vocabs:skostechnicalcollection_browse")
 
     @classmethod
     def get_createview_url(self):
-        return reverse('vocabs:skostechnicalcollection_create')
+        return reverse("vocabs:skostechnicalcollection_create")
 
     def get_absolute_url(self):
-        return reverse('vocabs:skostechnicalcollection_detail', kwargs={'pk': self.id})
+        return reverse("vocabs:skostechnicalcollection_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('vocabs:skostechnicalcollection_delete', kwargs={'pk': self.id})
+        return reverse("vocabs:skostechnicalcollection_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('vocabs:skostechnicalcollection_edit', kwargs={'pk': self.id})
+        return reverse("vocabs:skostechnicalcollection_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         next = next_in_order(self)
@@ -89,14 +90,14 @@ class SkosCollection(models.Model):
         blank=True,
         null=True,
         verbose_name="elaborate definition of the collection",
-        help_text="definition"
+        help_text="definition",
     )
     source_uri = models.CharField(
         null=True,
         blank=True,
         max_length=300,
         verbose_name="source URI",
-        help_text="URI of the Resource"
+        help_text="URI of the Resource",
     )
 
     def __str__(self):
@@ -114,20 +115,20 @@ class SkosCollection(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('vocabs:skoscollection_browse')
+        return reverse("vocabs:skoscollection_browse")
 
     @classmethod
     def get_createview_url(self):
-        return reverse('vocabs:skoscollection_create')
+        return reverse("vocabs:skoscollection_create")
 
     def get_absolute_url(self):
-        return reverse('vocabs:skoscollection_detail', kwargs={'pk': self.id})
+        return reverse("vocabs:skoscollection_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('vocabs:skoscollection_delete', kwargs={'pk': self.id})
+        return reverse("vocabs:skoscollection_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('vocabs:skoscollection_edit', kwargs={'pk': self.id})
+        return reverse("vocabs:skoscollection_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         next = next_in_order(self)
@@ -150,19 +151,18 @@ class SkosConcept(MPTTModel):
     Miles, Alistair, and Sean Bechhofer. "SKOS simple knowledge
     organization system reference. W3C recommendation (2009)."
     """
+
     pref_label = models.CharField(
-        max_length=300,
-        verbose_name="Label",
-        help_text="Preferred label for concept"
+        max_length=300, verbose_name="Titel", help_text="Titel des Schlagwortes"
     )
     definition = models.TextField(
         blank=True,
         null=True,
         verbose_name="elaborate definition of the concept",
-        help_text="skos:definition"
+        help_text="skos:definition",
     )
     collection = models.ForeignKey(
-        'SkosCollection',
+        "SkosCollection",
         null=True,
         blank=True,
         verbose_name="Teil der Skos-Kollektion",
@@ -171,21 +171,23 @@ class SkosConcept(MPTTModel):
         on_delete=models.SET_NULL,
     )
     broader_concept = TreeForeignKey(
-        'self',
+        "self",
         verbose_name="skos:broader",
-        blank=True, null=True, on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
         related_name="narrower_concepts",
-        help_text="Concept with a broader meaning that this concept inherits from"
+        help_text="Concept with a broader meaning that this concept inherits from",
     )
     source_uri = models.CharField(
         null=True,
         blank=True,
         max_length=300,
         verbose_name="source URI",
-        help_text="URI of the Resource"
+        help_text="URI of the Resource",
     )
     tech_collection = models.ManyToManyField(
-        'SkosTechnicalCollection',
+        "SkosTechnicalCollection",
         blank=True,
         verbose_name="member of skos:Collection",
         help_text="Collection that this concept is a member of",
@@ -195,14 +197,14 @@ class SkosConcept(MPTTModel):
         blank=True,
         null=True,
         verbose_name="Anmerkungen generell",
-        help_text="Anmerkungen"
+        help_text="Anmerkungen",
     ).set_extra(
         is_public=True,
         data_lookup="text_Text1",
     )
 
     class MPTTMeta:
-        parent_attr = 'broader_concept'
+        parent_attr = "broader_concept"
 
     def __str__(self):
         return f"{self.pref_label}"
@@ -216,20 +218,20 @@ class SkosConcept(MPTTModel):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('vocabs:skosconcept_browse')
+        return reverse("vocabs:skosconcept_browse")
 
     @classmethod
     def get_createview_url(self):
-        return reverse('vocabs:skosconcept_create')
+        return reverse("vocabs:skosconcept_create")
 
     def get_absolute_url(self):
-        return reverse('vocabs:skosconcept_detail', kwargs={'pk': self.id})
+        return reverse("vocabs:skosconcept_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('vocabs:skosconcept_delete', kwargs={'pk': self.id})
+        return reverse("vocabs:skosconcept_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('vocabs:skosconcept_edit', kwargs={'pk': self.id})
+        return reverse("vocabs:skosconcept_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         next = next_in_order(self)
