@@ -121,20 +121,9 @@
 {% block scripts2 %}
     <script src="{% static "browsing/js/set-form-attributes.js" %}"></script>
     <script src="{% static "browsing/js/filter-for-blank-fields.js" %}"></script>
-    <!-- Remove "Note" and "Status" columns from selectable columns if user not authenticated -->
-    {% if user.is_authenticated %}
-    {% else %}
-        <script>
-            const selector = Array.prototype.slice.call(document.getElementById('column_selector').options, 0);
-            for (let i = 0; i < selector.length; ++i) {
-                if (selector[i].text === 'Status' || selector[i].text === 'Note') {
-                selector[i].remove(); 
-                }
-            }
-        </script>
-    {% endif %}
+  
     <!-- Makes sure that "icontains" (enthält) is set as initial value for lookup filters -->
-    <script>
+    <!-- <script>
         const lookUps = document.getElementsByClassName('select form-control custom-select');
         for (lookUp in lookUps) {
             const options = Array.prototype.slice.call(lookUps[lookUp].options, 0);
@@ -145,5 +134,5 @@
                 }
             }
         }
-    </script>
+    </script> -->
 {% endblock scripts2 %}
