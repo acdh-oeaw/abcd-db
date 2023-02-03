@@ -3,18 +3,17 @@
 {% load webpage_extras %}
 {% block title %}{{ object }}{% endblock %}
 {% block content %}
-<!-- <div class="container"> -->
-
+  <!-- <div class="container"> -->
   <div class="card" style="margin-right: calc(-1 * (100vw - 100.5%));">
     <div class="card-header">
       <div class="row">
         <div class="col-md-2">
           {% if object.get_prev %}
-          <h2>
-            <a href="{{ object.get_prev }}" title="previous">
-              <i data-feather="chevron-left"></i>
-            </a>
-          </h2>
+            <h2>
+              <a href="{{ object.get_prev }}" title="previous">
+                <i data-feather="chevron-left"></i>
+              </a>
+            </h2>
           {% endif %}
         </div>
         <div class="col-md-8">
@@ -23,25 +22,25 @@
             {{ object.date_written }}
             <span class="text-muted" style="font-size: small">ID: {{ object.id }}</span>
             {% if user.is_authenticated %}
-            <a href="{{ object.get_edit_url }}" title="edit">
-              <i data-feather="edit"></i>
-            </a>
+              <a href="{{ object.get_edit_url }}" title="edit">
+                <i data-feather="edit"></i>
+              </a>
             {% endif %}
             {% if 'archeutils' in APPS %}
-            <a href="{% url 'archeutils:res_as_arche_graph' app_name=app_name model_name=class_name|lower pk=object.id %}"
-              title="As ARCHE-RDF">
-              <i data-feather="download"></i>
-            </a>
-            {% endif%}
+              <a href="{% url 'archeutils:res_as_arche_graph' app_name=app_name model_name=class_name|lower pk=object.id %}"
+                 title="As ARCHE-RDF">
+                <i data-feather="download"></i>
+              </a>
+            {% endif %}
           </h2>
         </div>
         <div class="col-md-2">
           <h2>
             {% if object.get_next %}
-            <a href="{{ object.get_next }}" style="float:right;" title="next">
-              <i data-feather="chevron-right"></i>
-            </a>
-          </h2>
+              <a href="{{ object.get_next }}" style="float:right;" title="next">
+                <i data-feather="chevron-right"></i>
+              </a>
+            </h2>
           {% endif %}
         </div>
       </div>
@@ -49,102 +48,98 @@
     <div class="wrapper">
       <nav id="sidebar_left" class="active">
         <div>
-            <legend>Suche</legend>
-            {% include 'archiv/partials/detail_search_bar.html' %}
+          <legend>
+            Suche
+          </legend>
+          {% include "archiv/partials/detail_search_bar.html" %}
         </div>
       </nav>
       <div class="card-body">
-        
-        
         {% block custom %}
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div style="width: 20px;">
-                <h3 id="sidebarCollapseLeft" style="text-align: left;" title="Suchfenster einblenden"><i data-feather="search"></i></h3>
-              </div>
-              <div class="col" style="font-size: larger;">
-                {{ object.main_text|safe }}
-              </div>
-              <div style="width: 20px;">
-                <h3 id="sidebarCollapseRight" style="text-align: right;" title="Zeige mit diesem Eintrag verbundene Bruckner Werke und Personen"><i data-feather="users"></i></h3>
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div style="width: 20px;">
+                  <h3 id="sidebarCollapseLeft"
+                      style="text-align: left"
+                      title="Suchfenster einblenden">
+                    <i data-feather="search"></i>
+                  </h3>
+                </div>
+                <div class="col" style="font-size: larger;">{{ object.main_text|safe }}</div>
+                <div style="width: 20px;">
+                  <h3 id="sidebarCollapseRight"
+                      style="text-align: right"
+                      title="Zeige mit diesem Eintrag verbundene Bruckner Werke und Personen">
+                    <i data-feather="users"></i>
+                  </h3>
+                </div>
               </div>
             </div>
+            <div class="card-footer">
+              {% if object.notes_lit %}
+                <b>Literatur</b>
+                <div class="notes_lit">{{ object.notes_lit|safe }}</div>
+              {% endif %}
+              {% if object.notes_img %}
+                <b>Abbildung</b>
+                <div class="notes_img">{{ object.notes_img|safe }}</div>
+              {% endif %}
+              {% if object.notes_facs %}
+                <b>Faksimile</b>
+                <div class="notes_facs">{{ object.notes_facs|safe }}</div>
+              {% endif %}
+              {% if object.notes_archive %}
+                <b>Archiv</b>
+                <div class="notes_archive">{{ object.notes_archive|safe }}</div>
+              {% endif %}
+              {% if object.notes_text %}
+                <b>Anmerkung</b>
+                <div class="notes_text">{{ object.notes_text|safe }}</div>
+              {% endif %}
+              {% if object.work.all %}
+                <b>Bibliographie</b>
+                <div class="bibliograhpie">
+                  <ul>
+                    {% for x in object.work.all %}
+                      <li>
+                        <a href="{{ x.get_absolute_url }}">{{ x|safe }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            </div>
+            <hr />
+            <h3>Zitierhinweis:</h3>
+            <blockquote class="blockquote">
+              <cite>
+              Franz Scheder, Anton Bruckner Chronologie Datenbank, Eintrag Nr.: {{ object.id }}, URL: <a href="https://www.bruckner-online.at/abcd-{{ object.id }}"
+    target="_blank"
+    title="Permalink">www.bruckner-online.at/abcd-{{ object.id }}</a></cite>
+            </blockquote>
+            <small>letzte Änderung: {{ object.updated_at|date:"M d, Y, G:H" }}</small>
           </div>
-          <div class="card-footer">
-            {% if object.notes_lit %}
-            <b>Literatur</b>
-            <div class="notes_lit">
-              {{ object.notes_lit|safe }}
+          {% if user.is_authenticated %}
+            <div class="card-footer" style="text-align: right;">
+              <a href="{{ object.get_delete_url }}" title="delete">
+                <i data-feather="delete"></i>
+              </a>
             </div>
-            {% endif %}
-            {% if object.notes_img %}
-            <b>Abbildung</b>
-            <div class="notes_img">
-              {{ object.notes_img|safe }}
-            </div>
-            {% endif %}
-            {% if object.notes_facs %}
-            <b>Faksimile</b>
-            <div class="notes_facs">
-              {{ object.notes_facs|safe }}
-            </div>
-            {% endif %}
-            {% if object.notes_archive %}
-            <b>Archiv</b>
-            <div class="notes_archive">
-              {{ object.notes_archive|safe }}
-            </div>
-            {% endif %}
-            {% if object.notes_text %}
-            <b>Anmerkung</b>
-            <div class="notes_text">
-              {{ object.notes_text|safe }}
-            </div>
-            {% endif %}
-            {% if object.work.all %}
-            <b>Bibliographie</b>
-            <div class="bibliograhpie">
-              <ul>
-                {% for x in object.work.all %}
-                <li>
-                  <a href="{{ x.get_absolute_url }}">
-                    {{ x|safe }}                    
-                  </a>
-                </li>
-                {% endfor %}
-              </ul>
-            </div>
-            {% endif %}
-            </ul>
-          </div>
-          <small>letzte Änderung: {{ object.updated_at|date:"M d, Y, G:H" }}</small>
+          {% endif %}
         </div>
-
-        {% if user.is_authenticated %}
-        <div class="card-footer" style="text-align: right;">
-          <a href="{{ object.get_delete_url }}" title="delete">
-            <i data-feather="delete"></i>
-          </a>
-        </div>
-        {% endif %}
-
+        <nav id="sidebar_right" class="active">
+          <div>{% include "archiv/partials/entity_sidebar.html" %}</div>
+        </nav>
       </div>
-      
-      <nav id="sidebar_right" class="active">
-        <div>
-            {% include 'archiv/partials/entity_sidebar.html' %}
-        </div>
-      </nav>
     </div>
-  </div>
-{% endblock custom %}
-<script>
+  {% endblock custom %}
+  <script>
   $('#sidebarCollapseLeft').on('click', function () {
-      $('#sidebar_left').toggleClass('active');
+    $('#sidebar_left').toggleClass('active');
   });
   $('#sidebarCollapseRight').on('click', function () {
-      $('#sidebar_right').toggleClass('active');
+    $('#sidebar_right').toggleClass('active');
   });
-</script>
-{% endblock %}
+  </script>
+{% endblock content %}

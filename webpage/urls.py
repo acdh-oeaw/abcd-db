@@ -3,6 +3,7 @@ from django.views.generic.base import RedirectView
 from . import views
 from archiv import search_result_views
 from django_spaghetti.views import Plate
+from archiv.views import EventDetailView 
 
 app_name = "webpage"
 
@@ -16,6 +17,8 @@ urlpatterns = [
         name="data_model",
     ),
     path("", views.GenericWebpageView.as_view(), name="start"),
+    path("<int:pk>", EventDetailView.as_view(), name="event_pid"),
+    path("<int:pk>/", EventDetailView.as_view(), name="event_pid_slash"),
     path("results/", search_result_views.EventResultView.as_view(), name="results"),
     path("accounts/login/", views.user_login, name="user_login"),
     path("logout/", views.user_logout, name="user_logout"),
