@@ -206,7 +206,7 @@ class Place(AbcdBase):
         "Work",
         blank=True,
         related_name="work_referenced_in_place",
-        verbose_name="Literatur",
+        verbose_name="Bibliograhpie",
         help_text="Literaturangaben zu diesem Ort",
     )
     notes_img = RichTextField(
@@ -382,7 +382,7 @@ class Person(GndPersonBase):
         "Work",
         blank=True,
         related_name="work_referenced_in_person",
-        verbose_name="Literatur",
+        verbose_name="Bibliograhpie",
         help_text="Literaturangaben zu dieser Person",
     )
     notes_img = RichTextField(
@@ -604,8 +604,8 @@ class Event(AbcdBase):
     notes_text = RichTextField(
         blank=True,
         null=True,
-        verbose_name="Text",
-        help_text="Anmerkungen zum Abschnitt Text",
+        verbose_name="Anmerkungen",
+        help_text="Anmerkungen zum Abschnitt Anmerkung",
     ).set_extra(
         is_public=True,
         data_lookup="text_Anmerkung",
@@ -659,7 +659,7 @@ class Event(AbcdBase):
         "Work",
         blank=True,
         related_name="work_referenced_in",
-        verbose_name="Literatur",
+        verbose_name="Bibliograhpie",
         help_text="Literaturangaben zu diesem Ereignis",
     )
     concept = models.ManyToManyField(

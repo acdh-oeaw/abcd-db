@@ -30,7 +30,10 @@ class SkosTechnicalCollectionTable(tables.Table):
 class SkosConceptTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name="ID")
-    remarks = tables.columns.TemplateColumn(template_code="{{ record.remarks|safe }}", verbose_name="Anmerkungen generell")
+    remarks = tables.columns.TemplateColumn(
+        template_code="{{ record.remarks|safe }}",
+        verbose_name="Anmerkungen generell"
+    )
 
     class Meta:
         model = SkosConcept
