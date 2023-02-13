@@ -10,6 +10,9 @@ body {
     background: url(http://www.bruckner-online.at/wp-content/themes/buntington-child/public/img/bg_1.jpg) 0 0 repeat;
 }
 
+cite {
+  font-size: smaller;
+}
 header.masthead {
   position: relative;
   background-color:  #ffffff;
