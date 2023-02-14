@@ -55,27 +55,22 @@ class EventListFilter(SchrederFilter):
     )
     notes_lit = django_filters.CharFilter(
         lookup_expr="icontains",
-        help_text=Event._meta.get_field("notes_lit").help_text,
         label=Event._meta.get_field("notes_lit").verbose_name,
     )
     notes_img = django_filters.CharFilter(
         lookup_expr="icontains",
-        help_text=Event._meta.get_field("notes_img").help_text,
         label=Event._meta.get_field("notes_img").verbose_name,
     )
     notes_facs = django_filters.CharFilter(
         lookup_expr="icontains",
-        help_text=Event._meta.get_field("notes_facs").help_text,
         label=Event._meta.get_field("notes_facs").verbose_name,
     )
     notes_archive = django_filters.CharFilter(
         lookup_expr="icontains",
-        help_text=Event._meta.get_field("notes_archive").help_text,
         label=Event._meta.get_field("notes_archive").verbose_name,
     )
     notes_text = django_filters.CharFilter(
         lookup_expr="icontains",
-        help_text=Event._meta.get_field("notes_text").help_text,
         label=Event._meta.get_field("notes_text").verbose_name,
     )
     key_word = django_filters.CharFilter(
@@ -217,22 +212,18 @@ class PlaceListFilter(django_filters.FilterSet):
     )
     notes_lit = django_filters.CharFilter(
         lookup_expr="icontains",
-        help_text=Place._meta.get_field("notes_lit").help_text,
         label=Place._meta.get_field("notes_lit").verbose_name,
     )
     notes_img = django_filters.CharFilter(
         lookup_expr="icontains",
-        help_text=Place._meta.get_field("notes_img").help_text,
         label=Place._meta.get_field("notes_img").verbose_name,
     )
     notes_facs = django_filters.CharFilter(
         lookup_expr="icontains",
-        help_text=Place._meta.get_field("notes_facs").help_text,
         label=Place._meta.get_field("notes_facs").verbose_name,
     )
     notes_archive = django_filters.CharFilter(
         lookup_expr="icontains",
-        help_text=Place._meta.get_field("notes_archive").help_text,
         label=Place._meta.get_field("notes_archive").verbose_name,
     )
     work = django_filters.ModelMultipleChoiceFilter(
@@ -284,22 +275,18 @@ class PersonListFilter(django_filters.FilterSet):
     )
     notes_lit = django_filters.CharFilter(
         lookup_expr="icontains",
-        help_text=Person._meta.get_field("notes_lit").help_text,
         label=Person._meta.get_field("notes_lit").verbose_name,
     )
     notes_img = django_filters.CharFilter(
         lookup_expr="icontains",
-        help_text=Person._meta.get_field("notes_img").help_text,
         label=Person._meta.get_field("notes_img").verbose_name,
     )
     notes_facs = django_filters.CharFilter(
         lookup_expr="icontains",
-        help_text=Person._meta.get_field("notes_facs").help_text,
         label=Person._meta.get_field("notes_facs").verbose_name,
     )
     notes_archive = django_filters.CharFilter(
         lookup_expr="icontains",
-        help_text=Person._meta.get_field("notes_archive").help_text,
         label=Person._meta.get_field("notes_archive").verbose_name,
     )
     work = django_filters.ModelMultipleChoiceFilter(

@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "leaflet",
     "rest_framework",
     "crispy_forms",
+    "crispy_bootstrap4",
     "django_filters",
     "django_tables2",
     "ckeditor",
@@ -84,6 +85,7 @@ SPAGHETTI_SAUCE = {
 }
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

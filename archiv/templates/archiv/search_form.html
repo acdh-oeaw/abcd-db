@@ -28,29 +28,18 @@
       </div>
       <div class="modal-body" style="text-align: justify;">
         <p>
-          Mit dieser Suche können die Felder <strong>Haupttext</strong> sowie die diversen Anmerkungsfelder der
-          <strong>Ereignisse</strong> gemeinsam durchsucht werden. Um die Suche performant zu halten, wurden die
-          entsprechenden Felder mittels eigenem <strong>Suchindex</strong> indexiert. Für diesen Index werden die
-          einzelnen Texte normalisiert auf ihre Stammformen zurückgeführt. Dies trifft auch auf den eingebenen
-          Suchbegriff zu. Dadurch kann beispielweise ein Text wie <i>Die Mäuse kommen ins Haus</i> mit dem Suchbegriff
-          <i>Maus</i> gefunden werden. Ein solcher Suchindex erlaubt außerdem komplexere Sucheanfragen wie
-          beispielsweise:
+          Mit dieser Suche können die Felder <em>Haupttext</em> sowie die diversen Anmerkungsfelder der Ereignisse gemeinsam durchsucht werden. Um die Suche leistungsfähig zu halten, wurden die entsprechenden Felder indexiert. Für diesen Index werden die einzelnen Texte normalisiert auf ihre Stammformen zurückgeführt. Dies trifft auch auf den eingegebenen Suchbegriff zu. Ein solcher Suchindex erlaubt außerdem komplexere Suchanfragen wie beispielsweise:
         <ul>
-          <li>Phrasensuche: Begriffe in Anführungszeichen werden gemeinsam gesucht: <strong>"Richard Wagner"</strong>
+          <li>Phrasensuche: Begriffe in Anführungszeichen werden gemeinsam gesucht: "Richard Wagner".
           </li>
-          <li><strong>Richard Wagner</strong> findet alle Dokumente in denen entweder Richard oder Wagner vorkommen</li>
-          <li>Mit einem <strong>-</strong> for einem Suchbegriff können Wörter ausgeschlossen werden. Zum Beipiel
-            <strong>"Richard Wagner" -Verein</strong> findet alle Einträge mit "Richard Wagner" aber ohne Verein</li>
-          <li>Ein <strong>*</strong> am <strong>Ende</strong> eines Suchbegriffes dient als Wildcard.
-            <strong>Kracko*</strong> findet etwa Einträge mit <strong>Krackowitzer</strong> als auch
-            <strong>Krackowizer</strong></li>
+          <li><em>Richard Wagner</em> findet alle Dokumente in denen entweder Richard oder Wagner vorkommen</li>
+          <li><em>Richard Wagner</em> findet alle Dokumente, in denen entweder <em>Richard</em> oder <emph>Wagner</emph> vorkommen.</li>
+          <li>Mit einem <em>„-“</em> vor einem Suchbegriff können Wörter ausgeschlossen werden. Ein Beispiel: <em>„Richard Wagner“ -Verein</em> findet alle Einträge mit <em>„Richard Wagner“</em> aber ohne <em>Verein</em>.</li>
+          <li>Ein <em>*</em> am Ende eines Suchbegriffes dient als Wildcard. <em>Kracko*</em> findet etwa Einträge mit Krackowitzer als auch Krackowizer.</li>
         </ul>
-        <strong>Invalide</strong> Suchanfragen geben aus technischen Gründen das ungefilterte Datenset zurück.
+        <em>Ungültige Suchanfragen</em> geben aus technischen Gründen das ungefilterte Datenset zurück.
         </p>
-        <p>Differenzierte Suchanfragen, wie etwa die Suche Ereignissen, die mit ausgwählten Personen, Werken oder
-          Literatur verknüpft sind, sind mit der <strong><a href="{%url 'archiv:event_browse' %}">erweiterten Suche</a>
-          </strong>möglich.</p>
-
+        <p>Differenzierte Suchanfragen, wie etwa die Suche in Ereignissen, die mit ausgewählten Personen, Werken oder Literatur verknüpft sind, sind mit der <a href="{%url 'archiv:event_browse' %}"><em>Erweiterten Suche</em></a> möglich.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>

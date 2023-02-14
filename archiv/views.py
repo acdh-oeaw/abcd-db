@@ -270,6 +270,7 @@ class EventListView(GenericListView):
         "vector_column",
         "full_text",
         "key_word",
+        "note",
     ]
     enable_merge = False
     template_name = "archiv/custom_list.html"
