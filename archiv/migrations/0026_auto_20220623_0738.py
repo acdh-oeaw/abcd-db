@@ -6,18 +6,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0025_alter_place_remarks'),
+        ("archiv", "0025_alter_place_remarks"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='person',
-            name='status',
-            field=models.TextField(blank=True, help_text='Internes Feld zur Dokumentation der Verknüpfungen von Person zu Ereignis', null=True, verbose_name='Berabeitungsstand'),
+            model_name="person",
+            name="status",
+            field=models.TextField(
+                blank=True,
+                help_text="Internes Feld zur Dokumentation der Verknüpfungen von Person zu Ereignis",
+                null=True,
+                verbose_name="Berabeitungsstand",
+            ),
         ),
         migrations.AddField(
-            model_name='place',
-            name='status',
-            field=models.TextField(blank=True, help_text='Internes Feld zur Dokumentation der Verknüpfungen von Ort zu Ereignis', null=True, verbose_name='Berabeitungsstand'),
+            model_name="place",
+            name="status",
+            field=models.TextField(
+                blank=True,
+                help_text="Internes Feld zur Dokumentation der Verknüpfungen von Ort zu Ereignis",
+                null=True,
+                verbose_name="Berabeitungsstand",
+            ),
         ),
     ]

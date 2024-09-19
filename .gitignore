@@ -47,3 +47,4 @@ bin/
 pg_hba.conf
 lib64
 *sql
+/venv

@@ -6,13 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0026_auto_20220623_0738'),
+        ("archiv", "0026_auto_20220623_0738"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='person',
-            name='work',
-            field=models.ManyToManyField(blank=True, help_text='Literaturangaben zu dieser Person', related_name='work_referenced_in_person', to='archiv.Work', verbose_name='Literatur'),
+            model_name="person",
+            name="work",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="Literaturangaben zu dieser Person",
+                related_name="work_referenced_in_person",
+                to="archiv.Work",
+                verbose_name="Literatur",
+            ),
         ),
     ]

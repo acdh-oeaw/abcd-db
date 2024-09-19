@@ -6,7 +6,7 @@ from archiv.import_utils import gsheet_to_df
 
 
 class Command(BaseCommand):
-    help = 'Fix wrong encoding of latin chars'
+    help = "Fix wrong encoding of latin chars"
 
     def handle(self, *args, **kwargs):
         fields = Event.search_field_names()
@@ -17,7 +17,7 @@ class Command(BaseCommand):
                 old = getattr(x, f)
                 if old is not None:
                     for i, row in df.iterrows():
-                        old = old.replace(row['from'], row['to'])
+                        old = old.replace(row["from"], row["to"])
                 setattr(x, f, old)
             x.save()
         print("done")

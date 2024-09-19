@@ -7,21 +7,23 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0013_auto_20220419_1159'),
+        ("archiv", "0013_auto_20220419_1159"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='institution',
-            options={'ordering': ['title']},
+            name="institution",
+            options={"ordering": ["title"]},
         ),
         migrations.AlterModelOptions(
-            name='place',
-            options={'ordering': ['title']},
+            name="place",
+            options={"ordering": ["title"]},
         ),
         migrations.AlterField(
-            model_name='work',
-            name='full_quote',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='whatever', null=True, verbose_name='Langzitat'),
+            model_name="work",
+            name="full_quote",
+            field=ckeditor.fields.RichTextField(
+                blank=True, help_text="whatever", null=True, verbose_name="Langzitat"
+            ),
         ),
     ]

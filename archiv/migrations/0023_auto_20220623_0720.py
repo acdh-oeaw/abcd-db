@@ -7,28 +7,48 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0022_auto_20220615_0924'),
+        ("archiv", "0022_auto_20220615_0924"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='person',
-            name='notes_lit',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='whatever', null=True, verbose_name='Anmerkungen Literatur'),
+            model_name="person",
+            name="notes_lit",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="whatever",
+                null=True,
+                verbose_name="Anmerkungen Literatur",
+            ),
         ),
         migrations.AddField(
-            model_name='place',
-            name='notes_lit',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='whatever', null=True, verbose_name='Anmerkungen Literatur'),
+            model_name="place",
+            name="notes_lit",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="whatever",
+                null=True,
+                verbose_name="Anmerkungen Literatur",
+            ),
         ),
         migrations.AlterField(
-            model_name='person',
-            name='remarks',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='Anmerkungen zur Person', null=True, verbose_name='Anmerkungen generell'),
+            model_name="person",
+            name="remarks",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="Anmerkungen zur Person",
+                null=True,
+                verbose_name="Anmerkungen generell",
+            ),
         ),
         migrations.AlterField(
-            model_name='place',
-            name='remarks',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='Anmerkungen zur Person', null=True, verbose_name='Anmerkungen generell'),
+            model_name="place",
+            name="remarks",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="Anmerkungen zur Person",
+                null=True,
+                verbose_name="Anmerkungen generell",
+            ),
         ),
     ]

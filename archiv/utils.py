@@ -11,8 +11,8 @@ def fix_hrefs(item):
         data = getattr(item, x)
         if data:
             soup = BeautifulSoup(data, "html.parser")
-            for link in soup.find_all('a'):
-                href = link.get('href')
+            for link in soup.find_all("a"):
+                href = link.get("href")
                 if href is not None:
                     if "abcd.acdh" in href:
                         pass

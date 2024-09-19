@@ -108,7 +108,7 @@ class PersonListView(GenericListView):
         "title",
     ]
     enable_merge = True
-    template_name = "archiv/custom_list.html"
+    template_name = "archiv/person_list.html"
 
 
 class PersonDetailView(BaseDetailView):

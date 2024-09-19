@@ -1,4 +1,3 @@
-{% load leaflet_tags %}
 
 <div style="padding-left: 10px;">
   {% if object.wab.all %}
@@ -10,7 +9,7 @@
     </ul>
   {% endif %}
   {% if object.person.all %}
-  <legend>Personen</legend>
+  <legend>Personen und Institutionen</legend>
   <ul>
     {% for x in object.person.all %}
       <li><a href="{{ x.get_absolute_url }}">{{ x }}</a></li>
@@ -32,34 +31,5 @@
       <li><a href="{{ x.get_absolute_url }}">{{ x }}</a></li>
     {% endfor %}
   </ul>
-  <script type="text/javascript">
-
-    function map_init_basic (map, options) {
-      const markers = new L.featureGroup;
-      {% for x in object.place.all %}
-        {% if x.lat %}
-          var placeName = "<a href='{{ x.get_absolute_url }}'>{{ x.title }}</a>"
-          var lat = "{{ x.lat }}".replace(',', '.');
-          var long = "{{ x.long }}".replace(',', '.');
-          const marker{{ x.id }} = L.marker([parseFloat(lat), parseFloat(long)]);
-          marker{{ x.id }}.bindPopup(placeName);
-          markers.addLayer(marker{{ x.id }});
-        {% endif %}
-      {% endfor %}
-      markers.addTo(map);
-      console.log(Object.keys(markers._layers).length);
-      if (Object.keys(markers._layers).length === 1) {
-        map.setView(markers.getBounds().getCenter(), 12);
-      } else {
-        map.fitBounds(markers.getBounds());
-      }
-    };
-
-  </script>
-  <div style="padding:0;">
-
-    {% leaflet_map "yourmap" callback="window.map_init_basic" %}
-
-  </div>
   {% endif %}
 </div>

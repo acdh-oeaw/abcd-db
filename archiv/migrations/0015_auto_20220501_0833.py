@@ -6,23 +6,39 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0014_auto_20220429_1058'),
+        ("archiv", "0014_auto_20220429_1058"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='wab',
-            name='status',
-            field=models.TextField(blank=True, help_text='Internes Feld zur Dokumentation der Verknüpfungen von WAB zu Ereignis', null=True, verbose_name='Berabeitungsstand'),
+            model_name="wab",
+            name="status",
+            field=models.TextField(
+                blank=True,
+                help_text="Internes Feld zur Dokumentation der Verknüpfungen von WAB zu Ereignis",
+                null=True,
+                verbose_name="Berabeitungsstand",
+            ),
         ),
         migrations.AddField(
-            model_name='work',
-            name='short_quote',
-            field=models.CharField(blank=True, help_text='Kurzzitat: Autor, Titel, Ornungsnummer', max_length=500, null=True, verbose_name='Kurzzitat'),
+            model_name="work",
+            name="short_quote",
+            field=models.CharField(
+                blank=True,
+                help_text="Kurzzitat: Autor, Titel, Ornungsnummer",
+                max_length=500,
+                null=True,
+                verbose_name="Kurzzitat",
+            ),
         ),
         migrations.AddField(
-            model_name='work',
-            name='year',
-            field=models.IntegerField(blank=True, help_text='Erscheingungsjahr', null=True, verbose_name='Erscheinungsjahr'),
+            model_name="work",
+            name="year",
+            field=models.IntegerField(
+                blank=True,
+                help_text="Erscheingungsjahr",
+                null=True,
+                verbose_name="Erscheinungsjahr",
+            ),
         ),
     ]

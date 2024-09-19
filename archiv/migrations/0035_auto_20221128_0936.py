@@ -8,17 +8,19 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0034_merge_0033_alter_wab_note_0033_auto_20220801_0828'),
+        ("archiv", "0034_merge_0033_alter_wab_note_0033_auto_20220801_0828"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='event',
-            name='vector_column',
+            model_name="event",
+            name="vector_column",
             field=django.contrib.postgres.search.SearchVectorField(null=True),
         ),
         migrations.AddIndex(
-            model_name='event',
-            index=django.contrib.postgres.indexes.GinIndex(fields=['vector_column'], name='archiv_even_vector__799b44_gin'),
+            model_name="event",
+            index=django.contrib.postgres.indexes.GinIndex(
+                fields=["vector_column"], name="archiv_even_vector__799b44_gin"
+            ),
         ),
     ]

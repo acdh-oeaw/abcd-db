@@ -7,63 +7,73 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0017_auto_20220504_0635'),
+        ("archiv", "0017_auto_20220504_0635"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='event',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="event",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='event',
-            name='updated_at',
+            model_name="event",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AddField(
-            model_name='institution',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="institution",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='institution',
-            name='updated_at',
+            model_name="institution",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AddField(
-            model_name='place',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="place",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='place',
-            name='updated_at',
+            model_name="place",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AddField(
-            model_name='wab',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="wab",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='wab',
-            name='updated_at',
+            model_name="wab",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AddField(
-            model_name='work',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="work",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='work',
-            name='updated_at',
+            model_name="work",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
     ]

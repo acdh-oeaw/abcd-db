@@ -6,13 +6,13 @@ from tqdm import tqdm
 from archiv.models import Place, Institution, Person, Event
 
 PERS_TO_EXLUDE = [
-    'Anton Bruckner',
-    'Anton Bruckners',
+    "Anton Bruckner",
+    "Anton Bruckners",
 ]
 
 
 class Command(BaseCommand):
-    help = 'NER things'
+    help = "NER things"
 
     def handle(self, *args, **kwargs):
 
@@ -23,15 +23,19 @@ class Command(BaseCommand):
 
         for x in tqdm(Event.objects.all(), total=Event.objects.all().count()):
             orig_text = x.main_text
-            text = strip_tags(orig_text).replace('\n', ' ')
+            text = strip_tags(orig_text).replace("\n", " ")
             doc = nlp(text)
             for ent in doc.ents:
                 if not ent.text[0].isalpha():
                     continue
                 if ent.text[0].islower():
                     continue
-                if ent.label_ == 'PER':
-                    if ' ' in ent.text and ent.text not in PERS_TO_EXLUDE and len(ent.text) > 7:
+                if ent.label_ == "PER":
+                    if (
+                        " " in ent.text
+                        and ent.text not in PERS_TO_EXLUDE
+                        and len(ent.text) > 7
+                    ):
                         try:
                             pers, _ = Person.objects.get_or_create(title=ent.text)
                         except Exception as e:

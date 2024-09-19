@@ -6,13 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0027_person_work'),
+        ("archiv", "0027_person_work"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='place',
-            name='work',
-            field=models.ManyToManyField(blank=True, help_text='Literaturangaben zu diesem Ort', related_name='work_referenced_in_place', to='archiv.Work', verbose_name='Literatur'),
+            model_name="place",
+            name="work",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="Literaturangaben zu diesem Ort",
+                related_name="work_referenced_in_place",
+                to="archiv.Work",
+                verbose_name="Literatur",
+            ),
         ),
     ]

@@ -52,7 +52,9 @@ urlpatterns = [
     path("place/create/", views.PlaceCreate.as_view(), name="place_create"),
     path("place/edit/<int:pk>/", views.PlaceUpdate.as_view(), name="place_edit"),
     path("place/delete/<int:pk>/", views.PlaceDelete.as_view(), name="place_delete"),
-    path("institution/", views.InstitutionListView.as_view(), name="institution_browse"),
+    path(
+        "institution/", views.InstitutionListView.as_view(), name="institution_browse"
+    ),
     path(
         "institution/detail/<int:pk>/",
         views.InstitutionDetailView.as_view(),

@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0020_person_remarks'),
+        ("archiv", "0020_person_remarks"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='event',
-            name='key_word',
-            field=models.TextField(blank=True, help_text='Feld für interne Notizen und Stichworte', null=True, verbose_name='Stichwort'),
+            model_name="event",
+            name="key_word",
+            field=models.TextField(
+                blank=True,
+                help_text="Feld für interne Notizen und Stichworte",
+                null=True,
+                verbose_name="Stichwort",
+            ),
         ),
     ]

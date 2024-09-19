@@ -9,7 +9,7 @@ from archiv.import_utils import gsheet_to_df
 
 
 class Command(BaseCommand):
-    help = 'Links WAB to Events based on Wab-Titles'
+    help = "Links WAB to Events based on Wab-Titles"
 
     def handle(self, *args, **kwargs):
         sheet_id = settings.WAB_SEARCH
@@ -20,10 +20,10 @@ class Command(BaseCommand):
             try:
                 wab = Wab.objects.get(wab_id=wab_id)
             except ObjectDoesNotExist:
-                data.append([wab_id, row['match_str'], 0])
+                data.append([wab_id, row["match_str"], 0])
                 continue
-            matches = Event.objects.filter(main_text__contains=row['match_str'])
+            matches = Event.objects.filter(main_text__contains=row["match_str"])
             wab.rvn_wab_mentioned_in.add(*matches)
-            data.append([wab_id, row['match_str'], matches.count()])
-        out_df = pd.DataFrame(data, columns=['wab', 'search_str', 'matches'])
-        out_df.to_csv('./media/wab_matching.csv', index=False)
+            data.append([wab_id, row["match_str"], matches.count()])
+        out_df = pd.DataFrame(data, columns=["wab", "search_str", "matches"])
+        out_df.to_csv("./media/wab_matching.csv", index=False)

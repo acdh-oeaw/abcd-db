@@ -7,13 +7,18 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('vocabs', '0002_auto_20220504_1140'),
+        ("vocabs", "0002_auto_20220504_1140"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='skoscollection',
-            name='remarks',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='Anmerkungen', null=True, verbose_name='Anmerkungen generell'),
+            model_name="skoscollection",
+            name="remarks",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="Anmerkungen",
+                null=True,
+                verbose_name="Anmerkungen generell",
+            ),
         ),
     ]

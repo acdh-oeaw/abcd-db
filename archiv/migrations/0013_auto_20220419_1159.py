@@ -7,23 +7,39 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0012_event_wab'),
+        ("archiv", "0012_event_wab"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='event',
-            name='main_text',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='Beschreibung des Ereignis', null=True, verbose_name='Haupttext'),
+            model_name="event",
+            name="main_text",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="Beschreibung des Ereignis",
+                null=True,
+                verbose_name="Haupttext",
+            ),
         ),
         migrations.AlterField(
-            model_name='event',
-            name='note',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='whatever', null=True, verbose_name='Allgemeine Anmerkungen'),
+            model_name="event",
+            name="note",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="whatever",
+                null=True,
+                verbose_name="Allgemeine Anmerkungen",
+            ),
         ),
         migrations.AlterField(
-            model_name='event',
-            name='work',
-            field=models.ManyToManyField(blank=True, help_text='Literaturangaben zu diesem Event', related_name='work_referenced_in', to='archiv.Work', verbose_name='Literatur'),
+            model_name="event",
+            name="work",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="Literaturangaben zu diesem Event",
+                related_name="work_referenced_in",
+                to="archiv.Work",
+                verbose_name="Literatur",
+            ),
         ),
     ]

@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0030_auto_20220726_0839'),
+        ("archiv", "0030_auto_20220726_0839"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='person',
-            options={'ordering': ['title']},
+            name="person",
+            options={"ordering": ["title"]},
         ),
         migrations.AddField(
-            model_name='person',
-            name='surname',
+            model_name="person",
+            name="surname",
             field=models.CharField(blank=True, max_length=250, null=True),
         ),
     ]

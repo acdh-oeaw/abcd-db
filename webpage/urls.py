@@ -3,7 +3,7 @@ from django.views.generic.base import RedirectView
 from . import views
 from archiv import search_result_views
 from django_spaghetti.views import Plate
-from archiv.views import EventDetailView 
+from archiv.views import EventDetailView
 
 app_name = "webpage"
 

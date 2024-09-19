@@ -4,34 +4,22 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView
-from . filters import (
+from .filters import (
     AboutTheProjectListFilter,
     ProjectInstListFilter,
     TeamMemberListFilter,
 )
-from . forms import (
+from .forms import (
     AboutTheProjectForm,
     AboutTheProjectFilterFormHelper,
     ProjectInstForm,
     ProjectInstFilterFormHelper,
     TeamMemberForm,
-    TeamMemberFilterFormHelper
+    TeamMemberFilterFormHelper,
 )
-from . tables import (
-    AboutTheProjectTable,
-    ProjectInstTable,
-    TeamMemberTable
-)
-from . models import (
-    AboutTheProject,
-    ProjectInst,
-    TeamMember
-)
-from browsing.browsing_utils import (
-    GenericListView,
-    BaseCreateView,
-    BaseUpdateView
-)
+from .tables import AboutTheProjectTable, ProjectInstTable, TeamMemberTable
+from .models import AboutTheProject, ProjectInst, TeamMember
+from browsing.browsing_utils import GenericListView, BaseCreateView, BaseUpdateView
 
 
 class TeamMemberListView(GenericListView):
@@ -41,14 +29,15 @@ class TeamMemberListView(GenericListView):
     formhelper_class = TeamMemberFilterFormHelper
     table_class = TeamMemberTable
     init_columns = [
-        'id', 'description',
+        "id",
+        "description",
     ]
 
 
 class TeamMemberDetailView(DetailView):
 
     model = TeamMember
-    template_name = 'browsing/generic_detail.html'
+    template_name = "browsing/generic_detail.html"
 
 
 class TeamMemberCreate(BaseCreateView):
@@ -73,8 +62,8 @@ class TeamMemberUpdate(BaseUpdateView):
 
 class TeamMemberDelete(DeleteView):
     model = TeamMember
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('info:teammember_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("info:teammember_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -88,14 +77,15 @@ class AboutTheProjectListView(GenericListView):
     formhelper_class = AboutTheProjectFilterFormHelper
     table_class = AboutTheProjectTable
     init_columns = [
-        'id', 'description',
+        "id",
+        "description",
     ]
 
 
 class AboutTheProjectDetailView(DetailView):
 
     model = AboutTheProject
-    template_name = 'browsing/generic_detail.html'
+    template_name = "browsing/generic_detail.html"
 
 
 class AboutTheProjectCreate(BaseCreateView):
@@ -120,8 +110,8 @@ class AboutTheProjectUpdate(BaseUpdateView):
 
 class AboutTheProjectDelete(DeleteView):
     model = AboutTheProject
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('info:about_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("info:about_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -135,14 +125,15 @@ class ProjectInstListView(GenericListView):
     formhelper_class = ProjectInstFilterFormHelper
     table_class = ProjectInstTable
     init_columns = [
-        'id', 'description',
+        "id",
+        "description",
     ]
 
 
 class ProjectInstDetailView(DetailView):
 
     model = ProjectInst
-    template_name = 'browsing/generic_detail.html'
+    template_name = "browsing/generic_detail.html"
 
 
 class ProjectInstCreate(BaseCreateView):
@@ -167,8 +158,8 @@ class ProjectInstUpdate(BaseUpdateView):
 
 class ProjectInstDelete(DeleteView):
     model = ProjectInst
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('info:projectinst_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("info:projectinst_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):

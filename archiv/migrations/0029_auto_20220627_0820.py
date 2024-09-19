@@ -7,38 +7,68 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0028_place_work'),
+        ("archiv", "0028_place_work"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='person',
-            name='notes_archive',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='whatever', null=True, verbose_name='Anmerkungen Archiv'),
+            model_name="person",
+            name="notes_archive",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="whatever",
+                null=True,
+                verbose_name="Anmerkungen Archiv",
+            ),
         ),
         migrations.AddField(
-            model_name='person',
-            name='notes_facs',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='whatever', null=True, verbose_name='Anmerkungen Faksimiles'),
+            model_name="person",
+            name="notes_facs",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="whatever",
+                null=True,
+                verbose_name="Anmerkungen Faksimiles",
+            ),
         ),
         migrations.AddField(
-            model_name='person',
-            name='notes_img',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='whatever', null=True, verbose_name='Anmerkungen Abbildungen'),
+            model_name="person",
+            name="notes_img",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="whatever",
+                null=True,
+                verbose_name="Anmerkungen Abbildungen",
+            ),
         ),
         migrations.AddField(
-            model_name='place',
-            name='notes_archive',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='whatever', null=True, verbose_name='Anmerkungen Archiv'),
+            model_name="place",
+            name="notes_archive",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="whatever",
+                null=True,
+                verbose_name="Anmerkungen Archiv",
+            ),
         ),
         migrations.AddField(
-            model_name='place',
-            name='notes_facs',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='whatever', null=True, verbose_name='Anmerkungen Faksimiles'),
+            model_name="place",
+            name="notes_facs",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="whatever",
+                null=True,
+                verbose_name="Anmerkungen Faksimiles",
+            ),
         ),
         migrations.AddField(
-            model_name='place',
-            name='notes_img',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='whatever', null=True, verbose_name='Anmerkungen Abbildungen'),
+            model_name="place",
+            name="notes_img",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="whatever",
+                null=True,
+                verbose_name="Anmerkungen Abbildungen",
+            ),
         ),
     ]
