@@ -33,7 +33,7 @@ node_modules
 
 # other things
 .env
-*.ipynb
+Untitled*.ipynb
 env.secret
 staticfiles
 media/event_error.csv
