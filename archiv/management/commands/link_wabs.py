@@ -6,7 +6,7 @@ from archiv.models import Event, Wab
 
 
 class Command(BaseCommand):
-    help = 'Links WAB to Events'
+    help = "Links WAB to Events"
 
     def handle(self, *args, **kwargs):
         regex = r"WAB\s?\d\d*"
@@ -16,7 +16,7 @@ class Command(BaseCommand):
             wab_ids = set()
             text = x.full_text
             for m in re.findall(regex, text, re.MULTILINE):
-                wab_nr = m.replace('WAB', '').strip()
+                wab_nr = m.replace("WAB", "").strip()
                 wab_id = wab_nr.zfill(3)
                 wab_ids.add(wab_id)
             for w in wab_ids:

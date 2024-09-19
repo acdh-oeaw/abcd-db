@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0011_wab'),
+        ("archiv", "0011_wab"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='event',
-            name='wab',
-            field=models.ManyToManyField(blank=True, related_name='rvn_wab_mentioned_in', to='archiv.Wab', verbose_name='erwähnte Bruckner Werke (WAB)'),
+            model_name="event",
+            name="wab",
+            field=models.ManyToManyField(
+                blank=True,
+                related_name="rvn_wab_mentioned_in",
+                to="archiv.Wab",
+                verbose_name="erwähnte Bruckner Werke (WAB)",
+            ),
         ),
     ]

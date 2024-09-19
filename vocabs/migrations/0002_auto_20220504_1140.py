@@ -7,18 +7,30 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('vocabs', '0001_initial'),
+        ("vocabs", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='skosconcept',
-            name='collection',
-            field=models.ForeignKey(blank=True, help_text='Collection that this concept is a member of', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='has_members', to='vocabs.skoscollection', verbose_name='Teil der Skos-Kollektion'),
+            model_name="skosconcept",
+            name="collection",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="Collection that this concept is a member of",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="has_members",
+                to="vocabs.skoscollection",
+                verbose_name="Teil der Skos-Kollektion",
+            ),
         ),
         migrations.AlterField(
-            model_name='skosconcept',
-            name='pref_label',
-            field=models.CharField(help_text='Preferred label for concept', max_length=300, verbose_name='Label'),
+            model_name="skosconcept",
+            name="pref_label",
+            field=models.CharField(
+                help_text="Preferred label for concept",
+                max_length=300,
+                verbose_name="Label",
+            ),
         ),
     ]

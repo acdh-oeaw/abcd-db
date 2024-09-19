@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0019_auto_20220525_0935'),
+        ("archiv", "0019_auto_20220525_0935"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='person',
-            name='remarks',
-            field=models.TextField(blank=True, help_text='Anmerkungen zur Person', null=True, verbose_name='Anmerkungen'),
+            model_name="person",
+            name="remarks",
+            field=models.TextField(
+                blank=True,
+                help_text="Anmerkungen zur Person",
+                null=True,
+                verbose_name="Anmerkungen",
+            ),
         ),
     ]

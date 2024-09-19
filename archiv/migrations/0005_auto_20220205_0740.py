@@ -6,32 +6,54 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0004_event_person'),
+        ("archiv", "0004_event_person"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Institution',
+            name="Institution",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(blank=True, max_length=250, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(blank=True, max_length=250, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Place',
+            name="Place",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(blank=True, max_length=250, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(blank=True, max_length=250, null=True)),
             ],
         ),
         migrations.AddField(
-            model_name='event',
-            name='institution',
-            field=models.ManyToManyField(blank=True, related_name='institution_mentioned_in', to='archiv.Institution'),
+            model_name="event",
+            name="institution",
+            field=models.ManyToManyField(
+                blank=True,
+                related_name="institution_mentioned_in",
+                to="archiv.Institution",
+            ),
         ),
         migrations.AddField(
-            model_name='event',
-            name='place',
-            field=models.ManyToManyField(blank=True, related_name='place_mentioned_in', to='archiv.Place'),
+            model_name="event",
+            name="place",
+            field=models.ManyToManyField(
+                blank=True, related_name="place_mentioned_in", to="archiv.Place"
+            ),
         ),
     ]

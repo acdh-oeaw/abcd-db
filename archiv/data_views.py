@@ -9,10 +9,10 @@ def event_calendar_data(request):
     data = []
     for x in Event.objects.exclude(not_before__isnull=True):
         item = {
-            'id': x.date_written,
-            'name': f"{x}",
-            'startDate': f"{x.not_before}",
-            'linkId': x.get_absolute_url()
+            "id": x.date_written,
+            "name": f"{x}",
+            "startDate": f"{x.not_before}",
+            "linkId": x.get_absolute_url(),
         }
         data.append(item)
     var_data = f"var calendarData = {json.dumps(data, ensure_ascii=False)}"
@@ -20,4 +20,4 @@ def event_calendar_data(request):
 
 
 class EventCalendarView(TemplateView):
-    template_name = 'archiv/event_calendar.html'
+    template_name = "archiv/event_calendar.html"

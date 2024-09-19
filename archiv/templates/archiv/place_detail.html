@@ -1,20 +1,10 @@
 {% extends "webpage/base.html" %}
 {% load static %}
 {% load webpage_extras %}
-{% load leaflet_tags %}
 {% block title %}{{ object }}{% endblock %}
 {% block content %}
 
-<script>
-  function map_init_basic (map, options) {
-      const lat = "{{ object.lat}}".replace(',', '.');
-      const long = "{{ object.long}}".replace(',', '.');
-      const marker = L.marker([lat, long]);
-      marker.addTo(map);
-      map.setView([lat, long], 12);
-  }
-</script>
-<!-- <div class="container"> -->
+
 <div class="card w-100">
   <div class="card-header" style="margin-right: calc(-1 * (100vw - 100.5%));">
     <div class="row">
@@ -77,9 +67,6 @@
           <div class="remarks">
             {{ object.remarks|safe }}
           </div>
-          {% endif %}
-          {% if object.lat %}
-          {% leaflet_map "yourmap" callback="window.map_init_basic" %}
           {% endif %}
       </div>
       <div class="card-footer">

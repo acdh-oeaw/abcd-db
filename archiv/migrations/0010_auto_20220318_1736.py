@@ -6,33 +6,41 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0009_remove_event_orig_data_csv'),
+        ("archiv", "0009_remove_event_orig_data_csv"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='person',
-            name='ablo_uri',
-            field=models.URLField(blank=True, null=True, verbose_name='Link zu ABLO Eintrag'),
+            model_name="person",
+            name="ablo_uri",
+            field=models.URLField(
+                blank=True, null=True, verbose_name="Link zu ABLO Eintrag"
+            ),
         ),
         migrations.AddField(
-            model_name='person',
-            name='bruckner_entity',
-            field=models.BooleanField(default=False, verbose_name='Link zu Bruckner XML'),
+            model_name="person",
+            name="bruckner_entity",
+            field=models.BooleanField(
+                default=False, verbose_name="Link zu Bruckner XML"
+            ),
         ),
         migrations.AddField(
-            model_name='person',
-            name='bruckner_entity_id',
-            field=models.CharField(blank=True, max_length=50, null=True, verbose_name='Bruckner-Entity-ID'),
+            model_name="person",
+            name="bruckner_entity_id",
+            field=models.CharField(
+                blank=True, max_length=50, null=True, verbose_name="Bruckner-Entity-ID"
+            ),
         ),
         migrations.AddField(
-            model_name='person',
-            name='bruckner_entity_xml',
-            field=models.TextField(blank=True, null=True, verbose_name='MEI:XML'),
+            model_name="person",
+            name="bruckner_entity_xml",
+            field=models.TextField(blank=True, null=True, verbose_name="MEI:XML"),
         ),
         migrations.AddField(
-            model_name='person',
-            name='oeml_uri',
-            field=models.URLField(blank=True, null=True, verbose_name='Link zu ÖML Eintrag'),
+            model_name="person",
+            name="oeml_uri",
+            field=models.URLField(
+                blank=True, null=True, verbose_name="Link zu ÖML Eintrag"
+            ),
         ),
     ]

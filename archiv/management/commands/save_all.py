@@ -5,7 +5,7 @@ from archiv.models import Event, Person, Work
 
 
 class Command(BaseCommand):
-    help = 'Saves all Work, Persons and Events'
+    help = "Saves all Work, Persons and Events"
 
     def handle(self, *args, **kwargs):
         for item in [Work, Person, Event]:

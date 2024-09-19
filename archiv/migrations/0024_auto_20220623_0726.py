@@ -7,18 +7,28 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0023_auto_20220623_0720'),
+        ("archiv", "0023_auto_20220623_0720"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='person',
-            name='notes_lit',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='Literatur zur Person', null=True, verbose_name='Anmerkungen Literatur'),
+            model_name="person",
+            name="notes_lit",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="Literatur zur Person",
+                null=True,
+                verbose_name="Anmerkungen Literatur",
+            ),
         ),
         migrations.AlterField(
-            model_name='place',
-            name='notes_lit',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='Literatur zum Ort', null=True, verbose_name='Anmerkungen Literatur'),
+            model_name="place",
+            name="notes_lit",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="Literatur zum Ort",
+                null=True,
+                verbose_name="Anmerkungen Literatur",
+            ),
         ),
     ]

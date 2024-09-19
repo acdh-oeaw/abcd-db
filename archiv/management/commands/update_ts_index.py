@@ -5,7 +5,7 @@ from archiv.models import Event
 
 
 class Command(BaseCommand):
-    help = 'Updates Typesense Index'
+    help = "Updates Typesense Index"
 
     def handle(self, *args, **kwargs):
         Event.ts_recreate_schema()

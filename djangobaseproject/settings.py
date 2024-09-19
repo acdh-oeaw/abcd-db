@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
-    "leaflet",
+    # "leaflet",
     "rest_framework",
     "crispy_forms",
     "crispy_bootstrap4",

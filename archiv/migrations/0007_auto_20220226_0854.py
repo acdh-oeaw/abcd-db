@@ -6,20 +6,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0006_auto_20220216_1157'),
+        ("archiv", "0006_auto_20220216_1157"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='event',
-            name='reference',
+            model_name="event",
+            name="reference",
         ),
         migrations.AddField(
-            model_name='event',
-            name='full_text',
-            field=models.TextField(blank=True, help_text='Volltext Feld (technisch notwendig)', null=True, verbose_name='Volltext Feld'),
+            model_name="event",
+            name="full_text",
+            field=models.TextField(
+                blank=True,
+                help_text="Volltext Feld (technisch notwendig)",
+                null=True,
+                verbose_name="Volltext Feld",
+            ),
         ),
         migrations.DeleteModel(
-            name='Reference',
+            name="Reference",
         ),
     ]

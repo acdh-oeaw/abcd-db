@@ -7,27 +7,44 @@ import gnd.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0002_alter_work_full_quote'),
+        ("archiv", "0002_alter_work_full_quote"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Person',
+            name="Person",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('gnd_gnd_id', gnd.fields.GndField(blank=True, null=True, unique=True)),
-                ('gnd_pref_name', models.CharField(blank=True, max_length=250, null=True)),
-                ('gnd_payload', models.JSONField(blank=True, null=True)),
-                ('gnd_created', models.DateTimeField(blank=True, null=True)),
-                ('gnd_gender', models.CharField(blank=True, max_length=250, null=True)),
-                ('gnd_birth_date_written', models.CharField(blank=True, max_length=250, null=True)),
-                ('gnd_death_date_written', models.CharField(blank=True, max_length=250, null=True)),
-                ('gnd_birth_date', models.DateField(blank=True, null=True)),
-                ('gnd_death_date', models.DateField(blank=True, null=True)),
-                ('title', models.CharField(blank=True, max_length=250, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("gnd_gnd_id", gnd.fields.GndField(blank=True, null=True, unique=True)),
+                (
+                    "gnd_pref_name",
+                    models.CharField(blank=True, max_length=250, null=True),
+                ),
+                ("gnd_payload", models.JSONField(blank=True, null=True)),
+                ("gnd_created", models.DateTimeField(blank=True, null=True)),
+                ("gnd_gender", models.CharField(blank=True, max_length=250, null=True)),
+                (
+                    "gnd_birth_date_written",
+                    models.CharField(blank=True, max_length=250, null=True),
+                ),
+                (
+                    "gnd_death_date_written",
+                    models.CharField(blank=True, max_length=250, null=True),
+                ),
+                ("gnd_birth_date", models.DateField(blank=True, null=True)),
+                ("gnd_death_date", models.DateField(blank=True, null=True)),
+                ("title", models.CharField(blank=True, max_length=250, null=True)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

@@ -6,17 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0016_auto_20220501_0841'),
+        ("archiv", "0016_auto_20220501_0841"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='event',
-            name='key_word',
+            model_name="event",
+            name="key_word",
         ),
         migrations.AddField(
-            model_name='event',
-            name='key_word',
-            field=models.TextField(blank=True, help_text='Feld für interne Notizen und Stihworte', null=True, verbose_name='Stichwort'),
+            model_name="event",
+            name="key_word",
+            field=models.TextField(
+                blank=True,
+                help_text="Feld für interne Notizen und Stihworte",
+                null=True,
+                verbose_name="Stichwort",
+            ),
         ),
     ]

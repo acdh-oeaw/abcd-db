@@ -6,13 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0001_initial'),
+        ("archiv", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='work',
-            name='full_quote',
-            field=models.CharField(blank=True, help_text='whatever', max_length=500, null=True, verbose_name='Langzitat'),
+            model_name="work",
+            name="full_quote",
+            field=models.CharField(
+                blank=True,
+                help_text="whatever",
+                max_length=500,
+                null=True,
+                verbose_name="Langzitat",
+            ),
         ),
     ]

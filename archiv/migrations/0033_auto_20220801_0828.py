@@ -7,19 +7,30 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('vocabs', '0004_auto_20220704_0714'),
-        ('archiv', '0032_alter_person_options'),
+        ("vocabs", "0004_auto_20220704_0714"),
+        ("archiv", "0032_alter_person_options"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='event',
-            name='concept',
-            field=models.ManyToManyField(blank=True, help_text='Diese Schlagworte werden in einer eigenen Liste geführt', related_name='concept_for_event', to='vocabs.SkosConcept', verbose_name='Systematisches Schlagwort'),
+            model_name="event",
+            name="concept",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="Diese Schlagworte werden in einer eigenen Liste geführt",
+                related_name="concept_for_event",
+                to="vocabs.SkosConcept",
+                verbose_name="Systematisches Schlagwort",
+            ),
         ),
         migrations.AlterField(
-            model_name='wab',
-            name='note',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='Anmerkungen und Erläuterungen', null=True, verbose_name='Anmerkungen'),
+            model_name="wab",
+            name="note",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="Anmerkungen und Erläuterungen",
+                null=True,
+                verbose_name="Anmerkungen",
+            ),
         ),
     ]

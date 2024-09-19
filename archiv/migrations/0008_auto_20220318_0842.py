@@ -6,33 +6,56 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0007_auto_20220226_0854'),
+        ("archiv", "0007_auto_20220226_0854"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='event',
-            name='id',
-            field=models.IntegerField(db_index=True, help_text='YYYYMMDD+curnr', primary_key=True, serialize=False, verbose_name='Ordnungsnummer'),
+            model_name="event",
+            name="id",
+            field=models.IntegerField(
+                db_index=True,
+                help_text="YYYYMMDD+curnr",
+                primary_key=True,
+                serialize=False,
+                verbose_name="Ordnungsnummer",
+            ),
         ),
         migrations.AlterField(
-            model_name='event',
-            name='institution',
-            field=models.ManyToManyField(blank=True, related_name='institution_mentioned_in', to='archiv.Institution', verbose_name='erwähnte Institutionen'),
+            model_name="event",
+            name="institution",
+            field=models.ManyToManyField(
+                blank=True,
+                related_name="institution_mentioned_in",
+                to="archiv.Institution",
+                verbose_name="erwähnte Institutionen",
+            ),
         ),
         migrations.AlterField(
-            model_name='event',
-            name='legacy_id',
-            field=models.CharField(blank=True, db_index=True, max_length=300, verbose_name='Legacy ID'),
+            model_name="event",
+            name="legacy_id",
+            field=models.CharField(
+                blank=True, db_index=True, max_length=300, verbose_name="Legacy ID"
+            ),
         ),
         migrations.AlterField(
-            model_name='event',
-            name='person',
-            field=models.ManyToManyField(blank=True, related_name='rvn_person_mentioned_in', to='archiv.Person', verbose_name='erwähnte Personen'),
+            model_name="event",
+            name="person",
+            field=models.ManyToManyField(
+                blank=True,
+                related_name="rvn_person_mentioned_in",
+                to="archiv.Person",
+                verbose_name="erwähnte Personen",
+            ),
         ),
         migrations.AlterField(
-            model_name='event',
-            name='place',
-            field=models.ManyToManyField(blank=True, related_name='place_mentioned_in', to='archiv.Place', verbose_name='erwähnte Orte'),
+            model_name="event",
+            name="place",
+            field=models.ManyToManyField(
+                blank=True,
+                related_name="place_mentioned_in",
+                to="archiv.Place",
+                verbose_name="erwähnte Orte",
+            ),
         ),
     ]

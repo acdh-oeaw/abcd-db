@@ -6,58 +6,98 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0018_auto_20220525_0931'),
+        ("archiv", "0018_auto_20220525_0931"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='event',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, help_text='Zeit der Erstellung des Objektes (ab 2022-05-25)', verbose_name='Erstellt am'),
+            model_name="event",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                help_text="Zeit der Erstellung des Objektes (ab 2022-05-25)",
+                verbose_name="Erstellt am",
+            ),
         ),
         migrations.AlterField(
-            model_name='event',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, help_text='Zeit der letzten Änderung', verbose_name='Letzte Änderung'),
+            model_name="event",
+            name="updated_at",
+            field=models.DateTimeField(
+                auto_now=True,
+                help_text="Zeit der letzten Änderung",
+                verbose_name="Letzte Änderung",
+            ),
         ),
         migrations.AlterField(
-            model_name='institution',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, help_text='Zeit der Erstellung des Objektes (ab 2022-05-25)', verbose_name='Erstellt am'),
+            model_name="institution",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                help_text="Zeit der Erstellung des Objektes (ab 2022-05-25)",
+                verbose_name="Erstellt am",
+            ),
         ),
         migrations.AlterField(
-            model_name='institution',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, help_text='Zeit der letzten Änderung', verbose_name='Letzte Änderung'),
+            model_name="institution",
+            name="updated_at",
+            field=models.DateTimeField(
+                auto_now=True,
+                help_text="Zeit der letzten Änderung",
+                verbose_name="Letzte Änderung",
+            ),
         ),
         migrations.AlterField(
-            model_name='place',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, help_text='Zeit der Erstellung des Objektes (ab 2022-05-25)', verbose_name='Erstellt am'),
+            model_name="place",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                help_text="Zeit der Erstellung des Objektes (ab 2022-05-25)",
+                verbose_name="Erstellt am",
+            ),
         ),
         migrations.AlterField(
-            model_name='place',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, help_text='Zeit der letzten Änderung', verbose_name='Letzte Änderung'),
+            model_name="place",
+            name="updated_at",
+            field=models.DateTimeField(
+                auto_now=True,
+                help_text="Zeit der letzten Änderung",
+                verbose_name="Letzte Änderung",
+            ),
         ),
         migrations.AlterField(
-            model_name='wab',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, help_text='Zeit der Erstellung des Objektes (ab 2022-05-25)', verbose_name='Erstellt am'),
+            model_name="wab",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                help_text="Zeit der Erstellung des Objektes (ab 2022-05-25)",
+                verbose_name="Erstellt am",
+            ),
         ),
         migrations.AlterField(
-            model_name='wab',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, help_text='Zeit der letzten Änderung', verbose_name='Letzte Änderung'),
+            model_name="wab",
+            name="updated_at",
+            field=models.DateTimeField(
+                auto_now=True,
+                help_text="Zeit der letzten Änderung",
+                verbose_name="Letzte Änderung",
+            ),
         ),
         migrations.AlterField(
-            model_name='work',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, help_text='Zeit der Erstellung des Objektes (ab 2022-05-25)', verbose_name='Erstellt am'),
+            model_name="work",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                help_text="Zeit der Erstellung des Objektes (ab 2022-05-25)",
+                verbose_name="Erstellt am",
+            ),
         ),
         migrations.AlterField(
-            model_name='work',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, help_text='Zeit der letzten Änderung', verbose_name='Letzte Änderung'),
+            model_name="work",
+            name="updated_at",
+            field=models.DateTimeField(
+                auto_now=True,
+                help_text="Zeit der letzten Änderung",
+                verbose_name="Letzte Änderung",
+            ),
         ),
     ]

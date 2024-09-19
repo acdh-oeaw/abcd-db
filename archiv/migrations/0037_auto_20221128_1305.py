@@ -6,20 +6,20 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0036_create_trigger'),
+        ("archiv", "0036_create_trigger"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='event',
-            name='legacy_id',
+            model_name="event",
+            name="legacy_id",
         ),
         migrations.RemoveField(
-            model_name='work',
-            name='legacy_id',
+            model_name="work",
+            name="legacy_id",
         ),
         migrations.RemoveField(
-            model_name='work',
-            name='orig_data_csv',
+            model_name="work",
+            name="orig_data_csv",
         ),
     ]

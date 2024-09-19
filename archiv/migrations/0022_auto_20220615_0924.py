@@ -6,33 +6,59 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0021_alter_event_key_word'),
+        ("archiv", "0021_alter_event_key_word"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='place',
-            name='geonames_id',
-            field=models.URLField(blank=True, help_text="z.B. 'https://www.geonames.org/2782480/ansfelden.html'", null=True, verbose_name='GeoNames ID'),
+            model_name="place",
+            name="geonames_id",
+            field=models.URLField(
+                blank=True,
+                help_text="z.B. 'https://www.geonames.org/2782480/ansfelden.html'",
+                null=True,
+                verbose_name="GeoNames ID",
+            ),
         ),
         migrations.AddField(
-            model_name='place',
-            name='lat',
-            field=models.FloatField(blank=True, help_text="Längengrad, z.B. '48.20969'", null=True, verbose_name='Längengrad'),
+            model_name="place",
+            name="lat",
+            field=models.FloatField(
+                blank=True,
+                help_text="Längengrad, z.B. '48.20969'",
+                null=True,
+                verbose_name="Längengrad",
+            ),
         ),
         migrations.AddField(
-            model_name='place',
-            name='long',
-            field=models.FloatField(blank=True, help_text="Breitengrad, z.B. '14.29004'", null=True, verbose_name='Breitengrad'),
+            model_name="place",
+            name="long",
+            field=models.FloatField(
+                blank=True,
+                help_text="Breitengrad, z.B. '14.29004'",
+                null=True,
+                verbose_name="Breitengrad",
+            ),
         ),
         migrations.AddField(
-            model_name='place',
-            name='remarks',
-            field=models.TextField(blank=True, help_text='Anmerkungen zur Person', null=True, verbose_name='Anmerkungen'),
+            model_name="place",
+            name="remarks",
+            field=models.TextField(
+                blank=True,
+                help_text="Anmerkungen zur Person",
+                null=True,
+                verbose_name="Anmerkungen",
+            ),
         ),
         migrations.AlterField(
-            model_name='place',
-            name='title',
-            field=models.CharField(blank=True, help_text='z.B. Ansfelden', max_length=250, null=True, verbose_name='Ortsname'),
+            model_name="place",
+            name="title",
+            field=models.CharField(
+                blank=True,
+                help_text="z.B. Ansfelden",
+                max_length=250,
+                null=True,
+                verbose_name="Ortsname",
+            ),
         ),
     ]

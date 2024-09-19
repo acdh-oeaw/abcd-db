@@ -9,7 +9,7 @@ jobs:
       POSTGRES_DB: github_actions
     services:
       postgres:
-        image: postgres:13
+        image: postgres:16
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -19,17 +19,15 @@ jobs:
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v1
+    - uses: actions/checkout@v4
+    - name: Set up Python 12
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.8
-    - uses: actions/cache@v2
+        python-version: "3.12"
+    - uses: actions/cache@v4
       with:
         path: ${{ env.pythonLocation }}
         key: ${{ env.pythonLocation }}-${{ hashFiles('requirements_dev.txt') }}
-    - name: GDAL
-      run: sudo apt-get install postgresql-common libpq-dev python3-gdal
     - name: Install dependencies
       run: |
         pip install --upgrade --upgrade-strategy eager -r requirements_dev.txt
@@ -40,8 +38,8 @@ jobs:
     - name: Create Coverage Report
       run: coverage xml
     - name: "Upload coverage to Codecov"
-      uses: codecov/codecov-action@v1
+      uses: codecov/codecov-action@v4
       with:
         token: ${{secrets.CODECOV_TOKEN}}
         file: ./coverage.xml
-        fail_ci_if_error: true
+        fail_ci_if_error: false

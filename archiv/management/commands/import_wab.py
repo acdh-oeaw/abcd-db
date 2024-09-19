@@ -21,19 +21,23 @@ def is_date(string, fuzzy=False):
 
 
 files = sorted(
-    [x for x in glob.glob('../xml/bruckner-wab-data/data/wab-*.xml') if 'exclude' not in x]
+    [
+        x
+        for x in glob.glob("../xml/bruckner-wab-data/data/wab-*.xml")
+        if "exclude" not in x
+    ]
 )
 
 
 class Command(BaseCommand):
-    help = 'imports WAB-XMLs'
+    help = "imports WAB-XMLs"
 
     def handle(self, *args, **kwargs):
         for x in tqdm(files, total=len(files)):
             with open(x) as fp:
-                soup = BeautifulSoup(fp, 'xml')
-            wab_id = soup.find("identifier", {'label': 'WAB'}).text
-            proper_wab_id = x.split('/')[-1].replace('wab-', '').replace('.xml', '')
+                soup = BeautifulSoup(fp, "xml")
+            wab_id = soup.find("identifier", {"label": "WAB"}).text
+            proper_wab_id = x.split("/")[-1].replace("wab-", "").replace(".xml", "")
             proper_wab_id
             title = soup.find("title")
             if title:
