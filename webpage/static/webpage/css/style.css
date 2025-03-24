@@ -5,9 +5,6 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    background-color: #ffffff;
-    font-family: 'Open Sans', 'Myriad Pro', 'Helvetica', sans-serif;
-    background: url(http://www.bruckner-online.at/wp-content/themes/buntington-child/public/img/bg_1.jpg) 0 0 repeat;
 }
 
 cite {
@@ -87,6 +84,7 @@ span.select2-container--default .select2-selection--single .select2-selection__r
 
 a {
     color: #ab1923;
+    text-decoration: underline dotted;
 }
 
 header {
