@@ -9,10 +9,8 @@ SHARED_URL = "https://shared.acdh.oeaw.ac.at/"
 PROJECT_NAME = "abcd"
 
 
-ACDH_IMPRINT_URL = (
-    "https://shared.acdh.oeaw.ac.at/acdh-common-assets/api/imprint.php?serviceID="
-)
-REDMINE_ID = 19928
+ACDH_IMPRINT_URL = "https://imprint.acdh.oeaw.ac.at/"
+REDMINE_ID = os.environ.get("REDMINE_ID", 19928)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY", "TZRHHwGV")

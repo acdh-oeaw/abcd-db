@@ -1,8 +1,10 @@
 myenv
 env
+venv
 db.sqlite3
 .env
 env.default
+env.secret
 *.sql
 .git
 /venv
