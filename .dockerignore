@@ -8,3 +8,4 @@ env.secret
 *.sql
 .git
 /venv
+.github

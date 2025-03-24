@@ -30,7 +30,6 @@
         <!-- Matomo -->
         <script type="text/javascript">
         var _paq = window._paq = window._paq || [];
-        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
         (function() {
@@ -155,18 +154,11 @@
             </div>
             <main>
                 <div id="content">
-                    {% if DEV_VERSION %}
-                        <div class="alert alert-danger" role="alert">
-                            This is a DEVELOPMENT instance. Click <a href="https://{{ PROJECT_NAME }}.acdh.oeaw.ac.at">here</a> for
-                            the Production version
-                        </div>
-                    {% endif %}
                     {% block content %}{% endblock content %}
                 </div>
             </main>
             {% block scripts %}
-                <script src="{{ SHARED_URL }}fundament/dist/fundament/js/fundament.min.js"></script>
-                <script src="{{ SHARED_URL }}apis/libraries/scroll-to-top/js/ap-scroll-top.min.js"></script>
+                <script src="{% static 'webpage/js/fundament.min.js' %}"></script>
             {% endblock scripts %}
             {% block scripts2 %}
             {% endblock scripts2 %}
