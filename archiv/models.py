@@ -1,5 +1,3 @@
-import ciso8601
-import time
 from datetime import datetime
 from django.db import models
 from django.contrib.postgres.search import SearchVectorField
@@ -7,44 +5,12 @@ from django.contrib.postgres.indexes import GinIndex
 from django.urls import reverse
 from django.utils.html import strip_tags
 from ckeditor.fields import RichTextField
-from typesense import api_call
 from next_prev import next_in_order, prev_in_order
 
-from acdh_cfts_pyutils import TYPESENSE_CLIENT as ts_client, CFTS_SCHEMA_NAME
 from browsing.browsing_utils import model_to_dict
 from gnd.models import GndPersonBase
 from vocabs.models import SkosConcept
 from .utils import fix_hrefs
-
-
-TS_SCHEMA_NAME = "abcd-db"
-
-TS_SCHEMA = {
-    "name": TS_SCHEMA_NAME,
-    "fields": [
-        {
-            "name": "id",
-            "type": "string",
-        },
-        {"name": "rec_id", "type": "string"},
-        {"name": "resolver", "type": "string"},
-        {"name": "project", "type": "string", "facet": True},
-        {"name": "title", "type": "string"},
-        {"name": "full_text", "type": "string"},
-        {
-            "name": "date",
-            "type": "int64",
-            "facet": True,
-        },
-        {"name": "year", "type": "int32", "optional": True, "facet": True},
-        {"name": "persons", "type": "string[]", "facet": True, "optional": True},
-        {"name": "places", "type": "string[]", "facet": True, "optional": True},
-        {"name": "wabs", "type": "string[]", "facet": True, "optional": True},
-        {"name": "works", "type": "string[]", "facet": True, "optional": True},
-        {"name": "keywords", "type": "string[]", "facet": True, "optional": True},
-    ],
-    "default_sorting_field": "date",
-}
 
 
 def set_extra(self, **kwargs):
@@ -734,52 +700,6 @@ class Event(AbcdBase):
     @classmethod
     def get_createview_url(self):
         return reverse("archiv:event_create")
-
-    @classmethod
-    def ts_recreate_schema(self):
-        try:
-            ts_client.collections[TS_SCHEMA_NAME].delete()
-        except api_call.ObjectNotFound:
-            pass
-        ts_collection = ts_client.collections.create(TS_SCHEMA)
-        return ts_collection
-
-    @classmethod
-    def ts_update_index(self, records):
-        ts_client.collections[TS_SCHEMA_NAME].documents.import_(
-            records, {"action": "upsert"}
-        )
-        print("Done indexing abcd-db")
-        ts_client.collections[CFTS_SCHEMA_NAME].documents.import_(
-            records, {"action": "upsert"}
-        )
-        print("Done indexing cfts")
-        return "indexed"
-
-    def ts_make_document(self):
-        doc = {
-            "project": TS_SCHEMA_NAME,
-            "id": f"{TS_SCHEMA_NAME}__{str(self.id)}",
-            "rec_id": str(self.id),
-            "resolver": f"https://abcd.acdh-dev.oeaw.ac.at{self.get_absolute_url()}",
-            "full_text": self.full_text,
-            "year": int(str(self.id)[:4]),
-            "wabs": [f"{x}" for x in self.wab.all()],
-            "works": [f"{x}" for x in self.work.all()],
-            "persons": [f"{x}" for x in self.person.all()],
-            "places": [f"{x}" for x in self.place.all()],
-        }
-        if self.date_written is not None:
-            doc["title"] = f"{self.date_written}"
-        else:
-            doc["title"] = f"Eintrag ID {self.id}"
-        try:
-            doc["date"] = int(time.mktime(self.not_before.timetuple()))
-        except AttributeError:
-            date_str = f"{str(self.id)[:4]}-01-01"
-            ts = ciso8601.parse_datetime(date_str)
-            doc["date"] = int(time.mktime(ts.timetuple()))
-        return doc
 
     def join_search_fields(self):
         full_text = set(

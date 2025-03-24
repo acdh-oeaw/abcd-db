@@ -11,8 +11,6 @@ PROJECT_METADATA = {
     und generischen Grundlage für Web Applikationen.",
     "purpose_en": "to bootstrap web development.",
     "version": "0.0.1",
-    "matomo_id": "211",
-    "matomo_url": "//matomo.acdh.oeaw.ac.at/",
     "imprint": "/imprint",
     "social_media": [
         ("fab fa-twitter fa-2x", "https://twitter.com/ACDH_OeAW"),

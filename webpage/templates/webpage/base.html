@@ -17,69 +17,28 @@
             <meta name="description" content="{{ metadata.description }}" />
             <meta name="author" content="{{ metadata.author }}" />
         {% endblock metaDescription %}
-        <!-- favicons -->
-        <link rel="apple-touch-icon"
-              sizes="180x180"
-              href="{{ SHARED_URL }}favicon/apple-touch-icon.png"/>
-        <link rel="icon"
-              type="image/png"
-              sizes="32x32"
-              href="{{ SHARED_URL }}favicon/favicon-32x32.png"/>
-        <link rel="icon"
-              type="image/png"
-              sizes="16x16"
-              href="{{ SHARED_URL }}favicon/favicon-16x16.png"/>
-        <link rel="manifest" href="{{ SHARED_URL }}favicon/manifest.json" />
-        <link rel="mask-icon"
-              href="{{ SHARED_URL }}favicon/safari-pinned-tab.svg"
-              color="#00aba9"/>
-        <meta name="theme-color" content="#ffffff" />
-        <!--favicons end -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,500"
-              rel="stylesheet"/>
         <link rel="stylesheet"
               id="fundament-styles"
-              href="{{ SHARED_URL }}fundament/dist/fundament/css/fundament.min.css"
+              href="{% static 'webpage/css/fundament.min.css' %}"
               type="text/css"/>
         <link rel="stylesheet"
               href="{% static 'webpage/css/style.css' %}"
               rel="stylesheet"/>
         <link rel="stylesheet"
-              href="{{ SHARED_URL }}apis/libraries/scroll-to-top/css/ap-scroll-top.min.css"/>
-        <link rel="stylesheet"
               href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"/>
-        <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
-        <script type="text/javascript">
-        window.cookieconsent_options = {
-            "message": "This website uses cookies to ensure you get the best experience on our website",
-            "dismiss": "Got it!",
-            "learnMore": "More info",
-            "link": "{% projects_metadata 'imprint' %}",
-            "theme": "dark-bottom"
-        };
-        </script>
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js">
-        </script>
-        <!-- End Cookie Consent plugin -->
         <!-- Matomo -->
         <script type="text/javascript">
-        var _paq = _paq || [];
+        var _paq = window._paq = window._paq || [];
         /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
-        (function () {
-            var u = "{% projects_metadata 'matomo_url' %}";
-            _paq.push(['setTrackerUrl', u + 'piwik.php']);
-            _paq.push(['setSiteId', '{% projects_metadata "matomo_id" %}']);
-            var d = document,
-                g = d.createElement('script'),
-                s = d.getElementsByTagName('script')[0];
-            g.type = 'text/javascript';
-            g.async = true;
-            g.defer = true;
-            g.src = u + 'piwik.js';
-            s.parentNode.insertBefore(g, s);
+        (function() {
+            var u="https://matomo.acdh.oeaw.ac.at/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '211']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
         })();
         </script>
         <!-- End Matomo Code -->
@@ -194,15 +153,17 @@
                 </nav>
                 <!-- .site-navigation -->
             </div>
-            <div id="content">
-                {% if DEV_VERSION %}
-                    <div class="alert alert-danger" role="alert">
-                        This is a DEVELOPMENT instance. Click <a href="https://{{ PROJECT_NAME }}.acdh.oeaw.ac.at">here</a> for
-                        the Production version
-                    </div>
-                {% endif %}
-                {% block content %}{% endblock content %}
-            </div>
+            <main>
+                <div id="content">
+                    {% if DEV_VERSION %}
+                        <div class="alert alert-danger" role="alert">
+                            This is a DEVELOPMENT instance. Click <a href="https://{{ PROJECT_NAME }}.acdh.oeaw.ac.at">here</a> for
+                            the Production version
+                        </div>
+                    {% endif %}
+                    {% block content %}{% endblock content %}
+                </div>
+            </main>
             {% block scripts %}
                 <script src="{{ SHARED_URL }}fundament/dist/fundament/js/fundament.min.js"></script>
                 <script src="{{ SHARED_URL }}apis/libraries/scroll-to-top/js/ap-scroll-top.min.js"></script>
