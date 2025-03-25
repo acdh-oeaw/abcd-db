@@ -5,8 +5,6 @@ from next_prev import next_in_order, prev_in_order
 from browsing.browsing_utils import model_to_dict
 from ckeditor.fields import RichTextField
 
-from mptt.models import MPTTModel, TreeForeignKey
-
 
 def set_extra(self, **kwargs):
     self.extra = kwargs
@@ -143,7 +141,7 @@ class SkosCollection(models.Model):
         return False
 
 
-class SkosConcept(MPTTModel):
+class SkosConcept(models.Model):
     """
     A SKOS concept can be viewed as an idea or notion; a unit of thought.
     However, what constitutes a unit of thought is subjective,
@@ -170,7 +168,7 @@ class SkosConcept(MPTTModel):
         related_name="has_members",
         on_delete=models.SET_NULL,
     )
-    broader_concept = TreeForeignKey(
+    broader_concept = models.ForeignKey(
         "self",
         verbose_name="skos:broader",
         blank=True,
@@ -203,8 +201,12 @@ class SkosConcept(MPTTModel):
         data_lookup="text_Text1",
     )
 
-    class MPTTMeta:
-        parent_attr = "broader_concept"
+    class Meta:
+        ordering = [
+            "pref_label",
+        ]
+        verbose_name = "Schlagwort"
+        verbose_name_plural = "Schlagwörter"
 
     def __str__(self):
         return f"{self.pref_label}"
